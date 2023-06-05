@@ -1,4 +1,4 @@
-#include "Player.hpp"
+#include "player.hpp"
 #include <godot_cpp/core/class_db.hpp>
 
 using namespace godot;
