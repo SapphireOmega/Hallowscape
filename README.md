@@ -10,6 +10,7 @@ Directories:
   - `godot/godot-cpp` contains the C++ GDExtension repo.
   - `godot/src` contains the C++ source files.
   - `godot/project` contains the Godot project files.
+  - `godot/demo` contains the Godot platforming demo for reference
   - `godot/SConstruct` tells sconstruct how our C++ module(s) should be compiled
 
 ## Compiling the Godot Project
