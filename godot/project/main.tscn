@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3cbgyvp8plfo"]
+[gd_scene load_steps=3 format=3 uid="uid://b3cbgyvp8plfo"]
 
 [ext_resource type="Texture2D" uid="uid://dmxe6s57vjwtr" path="res://icon.svg" id="1_5d5j4"]
+[ext_resource type="PackedScene" uid="uid://cjjdbfhy3bjrm" path="res://Music_Gallery.tscn" id="2_5lbqa"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" type="Player" parent="."]
-position = Vector2(19.1811, 9.13052)
+position = Vector2(0.29313, 0.221062)
 texture = ExtResource("1_5d5j4")
 centered = false
+
+[node name="Music" parent="." instance=ExtResource("2_5lbqa")]
