@@ -1,6 +1,6 @@
 # Godot C++
 
-In this directory are found all the C++ source code for the Godot game.
+In this directory all the C++ source code for the Godot game is found.
 
 ## Discussion On GDScript and C++
 
