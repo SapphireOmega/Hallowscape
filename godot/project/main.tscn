@@ -1,10 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3cbgyvp8plfo"]
 
-[ext_resource type="Texture2D" uid="uid://dmxe6s57vjwtr" path="res://icon.svg" id="1_5d5j4"]
+[ext_resource type="PackedScene" uid="uid://bjeakqqo8rcuu" path="res://player.tscn" id="1_sioap"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" type="Player" parent="."]
-position = Vector2(19.1811, 9.13052)
-texture = ExtResource("1_5d5j4")
-centered = false
+[node name="Player" parent="." instance=ExtResource("1_sioap")]
+position = Vector2(50, 595)
+scale = Vector2(0.5, 0.5)
