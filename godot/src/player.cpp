@@ -1,21 +1,33 @@
 #include "player.hpp"
+
 #include <godot_cpp/core/class_db.hpp>
 
 using namespace godot;
 
-void Player::_bind_methods() {}
-
-Player::Player() {
-	time_passed = 0.0;
+auto Player::_bind_methods() -> void {
 }
 
-Player::~Player() {}
+Player::Player() {
+	_player_input = Input::get_singleton();
+	speed = 500.0;
+}
 
-void Player::_process(double delta) {
-	time_passed += delta;
+Player::~Player() {
+}
 
-	Vector2 new_position = Vector2(10.0 + (10.0 * sin(time_passed * 2.0)),
-	                               10.0 + (10.0 * cos(time_passed * 1.5)));
+auto Player::get_input() -> std::map<InputAxis, InputValue> {
+	return {
+		{ x_input, { _player_input->is_action_pressed("ui_right") - _player_input->is_action_pressed("ui_left") } }
+	};
+}
 
+auto Player::_ready() -> void {
+	_sprite = get_node<Sprite2D>("Sprite2D");
+	_collision_shape = get_node<CollisionShape2D>("CollisionShape2D");
+}
+
+auto Player::_process(double delta) -> void {
+	Vector2 velocity = Vector2(get_input()[x_input].magnitude, 0).normalized() * speed;
+	Vector2 new_position = get_position() + velocity * (real_t)delta;
 	set_position(new_position);
 }
