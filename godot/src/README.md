@@ -2,7 +2,7 @@
 
 In this directory all the C++ source code for the Godot game is found.
 
-## Discussion On GDScript and C++
+## Discussion on GDScript and C++
 
 Godot has a built-in interpreted scripting language called GDScript. It also exports bindings for other languages. One of these officially supported languages is C++. We have set up this project such that the C++ bindings are available. They are not, however, necessary. The C++ bindings may have some uses, and thus we have set up the project to have the C++ option.
 
