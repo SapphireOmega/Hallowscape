@@ -16,20 +16,26 @@ autostart = true
 
 [node name="Random" type="Node" parent="."]
 
-[node name="SU_4" type="AudioStreamPlayer" parent="Random"]
+[node name="Low" type="Node" parent="Random"]
+
+[node name="SU_4" type="AudioStreamPlayer" parent="Random/Low"]
 stream = ExtResource("2_kh1r8")
 
-[node name="SU_5" type="AudioStreamPlayer" parent="Random"]
-stream = ExtResource("3_ybnxc")
+[node name="SU_2" type="AudioStreamPlayer" parent="Random/Low"]
+stream = ExtResource("6_fgkdx")
 
-[node name="SU_6" type="AudioStreamPlayer" parent="Random"]
+[node name="Rising" type="Node" parent="Random"]
+
+[node name="SU_6" type="AudioStreamPlayer" parent="Random/Rising"]
 stream = ExtResource("4_sj7ay")
 
-[node name="SU_7" type="AudioStreamPlayer" parent="Random"]
-stream = ExtResource("5_4i8lg")
+[node name="SU_5" type="AudioStreamPlayer" parent="Random/Rising"]
+stream = ExtResource("3_ybnxc")
 
-[node name="SU_2" type="AudioStreamPlayer" parent="Random"]
-stream = ExtResource("6_fgkdx")
+[node name="High" type="Node" parent="Random"]
+
+[node name="SU_7" type="AudioStreamPlayer" parent="Random/High"]
+stream = ExtResource("5_4i8lg")
 
 [node name="On_event" type="Node" parent="."]
 
