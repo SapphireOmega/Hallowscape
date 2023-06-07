@@ -80,7 +80,6 @@ func _on_timer_timeout() ->void:
 		if stop_random_track_layered() == 0:
 			n_active_layers -= 1
 		else:
-			print("test")
 			var songname = queue.pop_back()
 			queue = []
 			play_track_by_name(songname)
@@ -99,9 +98,6 @@ func _on_timer_timeout() ->void:
 				n_active_layers -= 1
 			else:
 				threat_difference = 0
-
-	print(n_active_layers)
-	print(get_currently_playing())
 
 
 #plays a random track, but only does higher intensity tracks if enough tracks
