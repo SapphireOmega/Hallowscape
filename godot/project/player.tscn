@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjeakqqo8rcuu"]
+[gd_scene load_steps=3 format=3 uid="uid://dwegtrm7rnfdf"]
 
 [ext_resource type="Texture2D" uid="uid://dmxe6s57vjwtr" path="res://icon.svg" id="1_cxusk"]
 
@@ -6,6 +6,12 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="Player"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

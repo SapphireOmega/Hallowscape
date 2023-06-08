@@ -38,6 +38,9 @@ var jump_buffer_timer : float = 0
 var is_jumping := false
 # ----------------------------------- #
 
+@export var move_textures : Array = [
+	preload("res://walking/new_atlas_texture.tres"),
+]
 
 # All iputs we want to keep track of
 func get_input() -> Dictionary:
@@ -63,7 +66,9 @@ func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
 	
 	# Stop if we're not doing movement inputs.
-	if x_dir == 0: 
+	if x_dir == 0:
+		# initiate Idle animation
+		$Sprite2D/AnimationPlayer.play("Idle") 
 		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
 		return
 	
@@ -79,6 +84,9 @@ func x_movement(delta: float) -> void:
 	
 	# Accelerate
 	velocity.x += x_dir * accel_rate * delta
+	
+	# initiate walking animation
+	$Sprite2D/AnimationPlayer.play("walking")
 	
 	set_direction(x_dir) # This is purely for visuals
 
@@ -113,7 +121,8 @@ func jump_logic(_delta: float) -> void:
 		velocity.y = -jump_force
 	
 	# We're not actually interested in checking if the player is holding the jump button
-#	if get_input()["jump"]:pass
+	#if get_input()["jump"]:
+	#	$Sprite2D/AnimationPlayer.play("Jump")
 	
 	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
 	# This should only happen when moving upwards, as doing this while falling would lead to
@@ -125,6 +134,13 @@ func jump_logic(_delta: float) -> void:
 	# The value added to the treshold is arbritary,
 	# But it solves a problem where jumping into 
 	if is_on_ceiling(): velocity.y = jump_hang_treshold + 100.0
+	
+	if velocity.y == 0 and velocity.x != 0:
+		# initiate walking animation after jumping and still moving
+		$Sprite2D/AnimationPlayer.play("walking")
+	else:
+		# initiate Idle animation after jumping and not moving
+		$Sprite2D/AnimationPlayer.play("Idle")
 
 
 func apply_gravity(delta: float) -> void:
@@ -146,6 +162,8 @@ func apply_gravity(delta: float) -> void:
 	if is_jumping and abs(velocity.y) < jump_hang_treshold:
 		applied_gravity *= jump_hang_gravity_mult
 	
+	# initiate jumping animation
+	$Sprite2D/AnimationPlayer.play("Jump")
 	velocity.y += applied_gravity
 
 

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjjdbfhy3bjrm"]
+
+[ext_resource type="Script" path="res://Music_Gallery.gd" id="1_1hhhn"]
+[ext_resource type="AudioStream" uid="uid://6ghd8l08m3qt" path="res://sounds/music/placeholder/SU-4.ogg" id="2_kh1r8"]
+[ext_resource type="AudioStream" uid="uid://64bp0fhrwnuj" path="res://sounds/music/placeholder/SU-5.ogg" id="3_ybnxc"]
+[ext_resource type="AudioStream" uid="uid://ytmbed0y5yeo" path="res://sounds/music/placeholder/SU-6.ogg" id="4_sj7ay"]
+[ext_resource type="AudioStream" uid="uid://knnasfbpluyv" path="res://sounds/music/placeholder/SU-7.ogg" id="5_4i8lg"]
+[ext_resource type="AudioStream" uid="uid://7udfibq7h106" path="res://sounds/music/placeholder/SU-2.ogg" id="6_fgkdx"]
+[ext_resource type="AudioStream" uid="uid://c4gilawj61l2l" path="res://sounds/music/placeholder/SU-1.ogg" id="7_0tfo7"]
+
+[node name="Music_Gallery" type="Node"]
+script = ExtResource("1_1hhhn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="Random" type="Node" parent="."]
+
+[node name="Low" type="Node" parent="Random"]
+
+[node name="SU_4" type="AudioStreamPlayer" parent="Random/Low"]
+stream = ExtResource("2_kh1r8")
+bus = &"Music"
+
+[node name="SU_2" type="AudioStreamPlayer" parent="Random/Low"]
+stream = ExtResource("6_fgkdx")
+bus = &"Music"
+
+[node name="Rising" type="Node" parent="Random"]
+
+[node name="SU_6" type="AudioStreamPlayer" parent="Random/Rising"]
+stream = ExtResource("4_sj7ay")
+bus = &"Music"
+
+[node name="SU_5" type="AudioStreamPlayer" parent="Random/Rising"]
+stream = ExtResource("3_ybnxc")
+bus = &"Music"
+
+[node name="High" type="Node" parent="Random"]
+
+[node name="SU_7" type="AudioStreamPlayer" parent="Random/High"]
+stream = ExtResource("5_4i8lg")
+bus = &"Music"
+
+[node name="On_event" type="Node" parent="."]
+
+[node name="SU_1" type="AudioStreamPlayer" parent="On_event"]
+stream = ExtResource("7_0tfo7")
+bus = &"Music"
+
+[node name="SU_7" type="AudioStreamPlayer" parent="On_event"]
+stream = ExtResource("5_4i8lg")
+bus = &"Music"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
