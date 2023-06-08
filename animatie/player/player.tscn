@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://dqxkshvxfx6je"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_4p7q0"]
-[ext_resource type="Texture2D" uid="uid://cwc2nciob3evb" path="res://assets/player/AnimationSheet_Character.png" id="1_5c53g"]
-[ext_resource type="Animation" uid="uid://b8lvwn14qu3sa" path="res://animations/fall.res" id="3_3g3gf"]
-[ext_resource type="Animation" uid="uid://cqa7bbboo4hwd" path="res://animations/idle.res" id="4_eo0em"]
-[ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://animations/jump.res" id="5_7n1kk"]
-[ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://animations/landing.res" id="6_mtea6"]
-[ext_resource type="Animation" uid="uid://rqrxdfipi603" path="res://animations/walk.res" id="7_h8v1w"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_4p7q0"]
+[ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://player/AnimationSheet_Character.png" id="1_5c53g"]
+[ext_resource type="Animation" uid="uid://b8lvwn14qu3sa" path="res://player/animations/fall.res" id="3_3g3gf"]
+[ext_resource type="Animation" uid="uid://cqa7bbboo4hwd" path="res://player/animations/idle.res" id="4_eo0em"]
+[ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://player/animations/jump.res" id="5_7n1kk"]
+[ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://player/animations/landing.res" id="6_mtea6"]
+[ext_resource type="Animation" uid="uid://rqrxdfipi603" path="res://player/animations/walk.res" id="7_h8v1w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uigr4"]
 size = Vector2(16, 28)
