@@ -43,17 +43,17 @@ func get_currently_playing():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #THIS IS TEST CODE TO EASILY REQEST FUNCTIONS
-func _process(_delta):
-	#this is just to check if we need to queue a song layer
-	#TODO: change input to something sensical
-	if Input.is_action_just_pressed("ui_up") == true:
-		up_music_intensity()
-		#queue_track("SU_7")
-		pass
-	if Input.is_action_just_pressed("ui_down") == true:
-		lower_music_intensity()
-		#stop_track_by_name("SU_7")
-		pass
+#func _process(_delta):
+#	#this is just to check if we need to queue a song layer
+#	#TODO: change input to something sensical
+#	if Input.is_action_just_pressed("ui_up") == true:
+#		up_music_intensity()
+#		#queue_track("SU_7")
+#		pass
+#	if Input.is_action_just_pressed("ui_down") == true:
+#		lower_music_intensity()
+#		#stop_track_by_name("SU_7")
+#		pass
 
 
 
