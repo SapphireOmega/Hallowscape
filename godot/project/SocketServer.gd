@@ -1,5 +1,6 @@
 extends Node
 
+@export var RunOnLaunch = false
 var server = TCPServer.new()
 var password = "verysecure"
 
@@ -7,9 +8,10 @@ var PORT = 8080
 
 func _ready():
 	# Start listening on designated port
-	server.listen(PORT)
-	Thread.new().start(processConnectionRequests)
-	print(IP.get_local_addresses())
+	if RunOnLaunch:
+		server.listen(PORT)
+		Thread.new().start(processConnectionRequests)
+		print(IP.get_local_addresses())
 
 # Thread for handling incoming TCP connection requests
 func processConnectionRequests():
