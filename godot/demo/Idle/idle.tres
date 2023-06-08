@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bk2g345cw2hup"]
+
+[ext_resource type="Texture2D" uid="uid://fjfgew0d4m35" path="res://assets/megabot assets files/Sprites/player/idle.png" id="1_1g3lt"]
+
+[resource]
+atlas = ExtResource("1_1g3lt")
+region = Rect2(0, 0, 28, 28)
