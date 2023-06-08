@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://buwempu0wgu20"]
+
+[ext_resource type="Texture2D" uid="uid://cmcix7ivss6v" path="res://Assets/GothicVania-town-files/PNG/environment/layers/background.png" id="1_h4k3f"]
+[ext_resource type="Texture2D" uid="uid://b01q4s4k4txoa" path="res://Assets/GothicVania-town-files/PNG/environment/layers/middleground.png" id="2_2q7k2"]
+
+[sub_resource type="GDScript" id="GDScript_wdyxm"]
+script/source = "extends ParallaxBackground
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_8obj0"]
+script/source = "extends ParallaxLayer
+
+
+@export var CLOUD_SPEED = 40
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	motion_offset.x -= delta*CLOUD_SPEED
+	# pass
+
+"
+
+[node name="Bg" type="ParallaxBackground"]
+script = SubResource("GDScript_wdyxm")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.5, 1.5)
+motion_mirroring = Vector2(1152, 0)
+script = SubResource("GDScript_8obj0")
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(576, 432)
+scale = Vector2(3, 3)
+texture = ExtResource("1_h4k3f")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Middleground" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(576, 616)
+scale = Vector2(3, 3)
+texture = ExtResource("2_2q7k2")
