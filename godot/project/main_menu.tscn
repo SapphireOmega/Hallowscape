@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnr1jwdvislp7"]
+[gd_scene load_steps=6 format=3 uid="uid://dnr1jwdvislp7"]
 
-[ext_resource type="Script" path="res://main_menu.gd" id="1_lbadr"]
+[ext_resource type="Texture2D" uid="uid://3fcxqiato82w" path="res://Main_menu(placeholder).jpg" id="2_2yq6f"]
+[ext_resource type="Texture2D" uid="uid://cl4flihkpst5p" path="res://menu_button_icon.png" id="3_qanju"]
+
+[sub_resource type="GDScript" id="GDScript_jx633"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$VBoxContainer/Start.grab_focus()
+	MusicGallery.play_track_by_name(\"SU_1\")
+	
+
+func _on_start_button_up():
+	MusicGallery.stop_track_by_name(\"SU_1\")
+	#add below whatever the start scene is
+	get_tree().change_scene_to_file(\"res://ingame_UI.tscn\")
+
+
+
+func _on_options_button_up():
+	pass
+
+
+func _on_quit_button_up():
+	get_tree().quit()
+
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqm7c"]
+texture = ExtResource("3_qanju")
+region_rect = Rect2(3, 10, 25, 15)
+modulate_color = Color(0.67451, 0.67451, 0.67451, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tvye3"]
+texture = ExtResource("3_qanju")
+region_rect = Rect2(3, 10, 25, 15)
+modulate_color = Color(0.462745, 0.462745, 0.462745, 1)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -9,7 +46,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lbadr")
+script = SubResource("GDScript_jx633")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2yq6f")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -29,6 +76,8 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../Quit")
+theme_override_styles/normal = SubResource("StyleBoxTexture_sqm7c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tvye3")
 text = "New game
 "
 
