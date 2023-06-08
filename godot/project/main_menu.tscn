@@ -7,12 +7,14 @@
 script/source = "extends Control
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	$VBoxContainer/Start.grab_focus()
-	MusicGallery.play_track_by_name(\"SU_1\")
+	$VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
+	MusicGallery.play_track_by_name(\"SU_1\") #main menu theme
 	
 
+
+#stops playing the main menu theme, then switches to the main scene
 func _on_start_button_up():
 	MusicGallery.stop_track_by_name(\"SU_1\")
 	#add below whatever the start scene is
@@ -20,10 +22,12 @@ func _on_start_button_up():
 
 
 
+
+#TODO: make options menu
 func _on_options_button_up():
 	pass
 
-
+#quits the game
 func _on_quit_button_up():
 	get_tree().quit()
 
