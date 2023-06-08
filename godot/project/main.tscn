@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3cbgyvp8plfo"]
+[gd_scene load_steps=5 format=3 uid="uid://b3cbgyvp8plfo"]
 
-[ext_resource type="PackedScene" uid="uid://buoq4pbtcwkia" path="res://Music_Gallery.tscn" id="2_5lbqa"]
+[ext_resource type="PackedScene" uid="uid://cjjdbfhy3bjrm" path="res://Music_Gallery.tscn" id="2_5lbqa"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://parallax_background.tscn" id="2_s8enx"]
 [ext_resource type="PackedScene" uid="uid://18qb31urmb5k" path="res://Town/town_tilemap.tscn" id="3_tyxrq"]
+[ext_resource type="Script" path="res://SocketServer.gd" id="4_er4fa"]
 
 [node name="Main" type="Node2D"]
 
@@ -13,3 +14,6 @@
 [node name="TileMap" parent="." instance=ExtResource("3_tyxrq")]
 position = Vector2(1, 152)
 layer_0/tile_data = PackedInt32Array(1966080, 1310720, 8, 1966081, 1376256, 8, 1966082, 1310720, 8, 1966083, 1310720, 8, 1966084, 1376256, 8, 1966085, 1310720, 8, 1966086, 1376256, 8, 1966087, 1376256, 8, 1966088, 1310720, 8, 1966089, 1376256, 8, 1966090, 1310720, 8, 1966091, 1310720, 8, 1966092, 1376256, 8, 1966093, 1310720, 8, 1966094, 1376256, 8, 1966095, 1376256, 8, 1835008, 655360, 9, 1900544, 655360, 10, 1835009, 720896, 9, 1900545, 720896, 10, 1835010, 786432, 9, 1900546, 786432, 10, 1835014, 458752, 9, 1900550, 458752, 10, 1835015, 524288, 9, 1900551, 524288, 10, 1835011, 917504, 9, 1900547, 917504, 10, 1703939, 917504, 6, 1769475, 917504, 7)
+
+[node name="SocketServer" type="Node" parent="."]
+script = ExtResource("4_er4fa")
