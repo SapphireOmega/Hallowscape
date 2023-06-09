@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3cbgyvp8plfo"]
+[gd_scene load_steps=6 format=3 uid="uid://b3cbgyvp8plfo"]
 
-[ext_resource type="PackedScene" uid="uid://cjjdbfhy3bjrm" path="res://Music_Gallery.tscn" id="2_5lbqa"]
+[ext_resource type="PackedScene" uid="uid://cjjdbfhy3bjrm" path="res://sounds/Music_Gallery.tscn" id="2_5lbqa"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://parallax_background.tscn" id="2_s8enx"]
 [ext_resource type="PackedScene" uid="uid://18qb31urmb5k" path="res://Town/town_tilemap.tscn" id="3_tyxrq"]
 [ext_resource type="Script" path="res://SocketServer.gd" id="4_er4fa"]
+[ext_resource type="PackedScene" uid="uid://by6yogcoubfxo" path="res://gui.tscn" id="5_orpp2"]
 
 [node name="Main" type="Node2D"]
 
@@ -17,3 +18,5 @@ layer_0/tile_data = PackedInt32Array(1966080, 1310720, 8, 1966081, 1376256, 8, 1
 
 [node name="SocketServer" type="Node" parent="."]
 script = ExtResource("4_er4fa")
+
+[node name="GUI" parent="." instance=ExtResource("5_orpp2")]
