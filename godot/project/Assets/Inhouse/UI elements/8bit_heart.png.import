@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl4flihkpst5p"
-path="res://.godot/imported/menu_button_icon.png-b681ef5c3c36df814920900f93461402.ctex"
+uid="uid://bg503mobppmxe"
+path="res://.godot/imported/8bit_heart.png-dcc5fb13692bd72367a5e35bebb8903e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://menu_button_icon.png"
-dest_files=["res://.godot/imported/menu_button_icon.png-b681ef5c3c36df814920900f93461402.ctex"]
+source_file="res://Assets/Inhouse/UI elements/8bit_heart.png"
+dest_files=["res://.godot/imported/8bit_heart.png-dcc5fb13692bd72367a5e35bebb8903e.ctex"]
 
 [params]
 
