@@ -8,13 +8,13 @@ extends Control
 
 func _ready():
 	$VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
-	MusicGallery.play_track_by_name("SU_7") #main menu theme
+	MusicGallery.play_track_by_name("pengel") #main menu theme
 	
 
 
 #stops playing the main menu theme, then switches to the main scene
 func _on_start_button_up():
-	MusicGallery.stop_track_by_name("SU_7")
+	MusicGallery.stop_track_by_name("pengel")
 	#add below whatever the start scene is
 	get_tree().change_scene_to_file("res://main.tscn")
 
