@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MusicGallery="*res://Music_Gallery.tscn"
+MusicGallery="*res://sounds/Music_Gallery.tscn"
 
 [rendering]
 

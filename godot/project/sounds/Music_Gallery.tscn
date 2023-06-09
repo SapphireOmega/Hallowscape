@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjjdbfhy3bjrm"]
 
-[ext_resource type="Script" path="res://Music_Gallery.gd" id="1_1hhhn"]
+[ext_resource type="Script" path="res://sounds/Music_Gallery.gd" id="1_0apwy"]
 [ext_resource type="AudioStream" uid="uid://6ghd8l08m3qt" path="res://sounds/music/placeholder/SU-4.ogg" id="2_kh1r8"]
 [ext_resource type="AudioStream" uid="uid://64bp0fhrwnuj" path="res://sounds/music/placeholder/SU-5.ogg" id="3_ybnxc"]
 [ext_resource type="AudioStream" uid="uid://ytmbed0y5yeo" path="res://sounds/music/placeholder/SU-6.ogg" id="4_sj7ay"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://go2l6ch3m734" path="res://sounds/music/pvg_songs/pengel.ogg" id="8_45k0x"]
 
 [node name="Music_Gallery" type="Node"]
-script = ExtResource("1_1hhhn")
+script = ExtResource("1_0apwy")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
