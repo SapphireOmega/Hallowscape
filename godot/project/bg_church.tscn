@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://drpb5urr7208t"]
+
+[ext_resource type="Texture2D" uid="uid://3id760wdk4ar" path="res://Assets/ gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png" id="1_7pk3h"]
+[ext_resource type="Texture2D" uid="uid://dp4ljukj3yyu" path="res://Assets/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-clouds.png" id="2_aiwyj"]
+
+[sub_resource type="GDScript" id="GDScript_8obj0"]
+script/source = "extends ParallaxLayer
+
+@export var CLOUD_SPEED_1 = 40
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	motion_offset.x -= delta*CLOUD_SPEED_1
+"
+
+[sub_resource type="GDScript" id="GDScript_v2i4f"]
+script/source = "extends ParallaxLayer
+
+
+@export var CLOUD_SPEED_2 = 30
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	motion_offset.x -= delta*CLOUD_SPEED_2
+"
+
+[node name="background_layer" type="ParallaxBackground"]
+
+[node name="Old-dark-castle-interior-background" type="Sprite2D" parent="."]
+position = Vector2(576, 184)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_7pk3h")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(640, 2.08165e-12)
+script = SubResource("GDScript_8obj0")
+
+[node name="Night-town-background-clouds" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(160, 120)
+texture = ExtResource("2_aiwyj")
+
+[node name="Night-town-background-clouds2" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(544, 120)
+texture = ExtResource("2_aiwyj")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(640, 2.08165e-12)
+script = SubResource("GDScript_v2i4f")
+
+[node name="Night-town-background-clouds2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(312, 96)
+texture = ExtResource("2_aiwyj")

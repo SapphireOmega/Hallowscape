@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://by6yogcoubfxo"]
 
-[ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://ingame_menu.tscn" id="1_h6si4"]
-[ext_resource type="Texture2D" uid="uid://bg503mobppmxe" path="res://Assets/Inhouse/UI elements/8bit_heart.png" id="2_3yanb"]
+[ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="1_ltsap"]
+[ext_resource type="Texture2D" uid="uid://bg503mobppmxe" path="res://Assets/Inhouse/UI elements/8bit_heart.png" id="2_m7g5y"]
 
 [node name="GUI" type="CanvasLayer"]
 
-[node name="Ingame_menu" parent="." instance=ExtResource("1_h6si4")]
+[node name="Ingame_menu" parent="." instance=ExtResource("1_ltsap")]
 
 [node name="PanelContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
@@ -27,7 +27,7 @@ size_flags_horizontal = 0
 
 [node name="heart_icon" type="TextureRect" parent="PanelContainer/VSplitContainer/P1_info_panel"]
 layout_mode = 2
-texture = ExtResource("2_3yanb")
+texture = ExtResource("2_m7g5y")
 expand_mode = 2
 stretch_mode = 5
 
@@ -45,6 +45,6 @@ layout_mode = 2
 
 [node name="heart_icon" type="TextureRect" parent="PanelContainer/VSplitContainer/P2_info_panel"]
 layout_mode = 2
-texture = ExtResource("2_3yanb")
+texture = ExtResource("2_m7g5y")
 expand_mode = 2
 stretch_mode = 5

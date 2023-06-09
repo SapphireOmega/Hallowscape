@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://b887pry8xnfh0"]
 
-[ext_resource type="Script" path="res://ingame_menu.gd" id="1_j7bkm"]
+[ext_resource type="Script" path="res://Menus/ingame_menu.gd" id="1_8e4mf"]
 
 [node name="Ingame_menu" type="CanvasLayer"]
 process_mode = 3
 visible = false
-script = ExtResource("1_j7bkm")
+script = ExtResource("1_8e4mf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

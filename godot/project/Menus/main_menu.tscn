@@ -1,40 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnr1jwdvislp7"]
+[gd_scene load_steps=3 format=3 uid="uid://d3m6x5g4aav3"]
 
-[ext_resource type="Texture2D" uid="uid://3fcxqiato82w" path="res://Main_menu(placeholder).jpg" id="2_2yq6f"]
-
-[sub_resource type="GDScript" id="GDScript_jx633"]
-script/source = "extends Control
-
-# TODO: make this scene the launch scene
-# untill then please use f6 to start the main menu
-# its already setup to switch scenes to the main scene
-# use get_tree().change_scene_to_file() to change scenes between main
-# menu and other scenes, should work in reverse too in theory
-
-func _ready():
-	$VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
-	MusicGallery.play_track_by_name(\"SU_7\") #main menu theme
-	
-
-
-#stops playing the main menu theme, then switches to the main scene
-func _on_start_button_up():
-	MusicGallery.stop_track_by_name(\"SU_7\")
-	#add below whatever the start scene is
-	get_tree().change_scene_to_file(\"res://main.tscn\")
-
-
-
-
-#TODO: make options menu
-func _on_options_button_up():
-	pass
-
-#quits the game
-func _on_quit_button_up():
-	get_tree().quit()
-
-"
+[ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2j5sl"]
+[ext_resource type="Texture2D" uid="uid://3fcxqiato82w" path="res://Menus/Main_menu(placeholder).jpg" id="2_2yq6f"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -43,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_jx633")
+script = ExtResource("1_2j5sl")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
