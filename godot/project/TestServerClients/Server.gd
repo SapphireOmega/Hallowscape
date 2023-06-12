@@ -1,40 +1,60 @@
 extends Node
 
 @export var PORT = 8080
+@export var RunOnLaunch = true
 
-var server = TCPServer.new()
-var mutex = Mutex.new()
-var threads = []
+var server : TCPServer
+var ThreadsMutex : Mutex
+var GeneralMutex : Mutex
 
+var GameRunning = true
+var RunningThreads = []
+var ClosingThreads = []
 var MAX_PLAYERS = 2
 var n_players = 0
 
 func _ready():
-	server.listen(PORT)
-	print(server.is_listening())
-	var PCRThread = Thread.new()
-	PCRThread.start(processConnectionRequest)
+	if RunOnLaunch:
+		server = TCPServer.new()
+		ThreadsMutex = Mutex.new()
+		GeneralMutex = Mutex.new()
 
-func processConnectionRequest():
-	while true:
+		server.listen(PORT)
+		var PCRThread = Thread.new()
+		PCRThread.start(processConnectionRequest.bind(PCRThread))
+		
+		ThreadsMutex.lock()
+		RunningThreads.append(PCRThread)
+		ThreadsMutex.unlock()
+
+func _process(_delta):
+	for thread in ClosingThreads:
+		ClosingThreads.erase(thread)
+		thread.wait_to_finish()
+		
+
+func processConnectionRequest(PCRThread):
+	while GameRunning:
 		if server.is_connection_available() and n_players <= MAX_PLAYERS:
 			var tcp = server.take_connection()
-			print("connected")
 #
-			mutex.lock()
+			GeneralMutex.lock()
 			n_players += 1
-			mutex.unlock()
-
-			print("Client " + str(n_players) + " connected")
+			GeneralMutex.unlock()
 
 			var SCThread = Thread.new()
-			SCThread.start(serveClient.bind(tcp, n_players))
-			threads.append(SCThread)
-#
-	for thread in threads:
-		thread.wait_to_finish()
+			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
+			
+			ThreadsMutex.lock()
+			RunningThreads.append(SCThread)
+			ThreadsMutex.unlock()
+	
+	ThreadsMutex.lock()
+	RunningThreads.erase(PCRThread)
+	ClosingThreads.append(PCRThread)
+	ThreadsMutex.unlock
 
-func serveClient(tcp, clientID):
+func serveClient(SCThread, tcp, clientID):
 	while tcp.get_status() == tcp.STATUS_CONNECTED:
 		tcp.poll()
 		if tcp.get_status() != tcp.STATUS_CONNECTED:
@@ -42,10 +62,7 @@ func serveClient(tcp, clientID):
 		var bytes = tcp.get_available_bytes()
 		if bytes > 0:
 			var data = tcp.get_partial_data(bytes)
-			var action = data[1].get_string_from_utf8()
-			print("action :",action)
-			var command = JSON.parse_string(action)
-			print("after parse :",command)
+			var command = JSON.parse_string(data[1].get_string_from_utf8())
 			if command:
 				if command["type"] == "pressed":
 					Input.action_press(command["action"])
@@ -54,8 +71,18 @@ func serveClient(tcp, clientID):
 
 	tcp.disconnect_from_host()
 
-	mutex.lock()
+	GeneralMutex.lock()
 	n_players -= 1
-	mutex.unlock()
+	GeneralMutex.unlock()
+	
+	ThreadsMutex.lock()
+	RunningThreads.erase(SCThread)
+	ClosingThreads.append(SCThread)
+	ThreadsMutex.unlock()
 
-	print("Client " + str(clientID) + " disconnected")
+func _exit_tree():
+	for thread in RunningThreads:
+		thread.wait_to_finish()
+	
+	for thread in ClosingThreads:
+		thread.wait_to_finish()
