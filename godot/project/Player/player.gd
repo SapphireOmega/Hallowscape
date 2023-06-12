@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-@export var speed = 300
+@export var speed = 150
 @export var gravity = 30
-@export var jump_force = 600
+@export var jump_force = 500
+@export var max_jump_force = 3000
 @export var double_jump_force = 300
 @export var face_dir = 1
 
@@ -15,18 +16,20 @@ var has_double_jumped = false
 
 func _physics_process(delta):
 	velocity.y += gravity
+	
+	if is_on_floor():
+		velocity.y = 0
 
-	match player_state:
-		animation_states.MOVE:
-			move()
-		animation_states.ATTACK:
-			attack()
-		animation_states.JUMP:
-			jump()
-		animation_states.FALL:
-			fall()
-		animation_states.LAND:
-			land()
+	if player_state == animation_states.MOVE:
+		move()
+	if player_state == animation_states.ATTACK:
+		attack()
+	if player_state == animation_states.JUMP:
+		jump()
+	if player_state == animation_states.FALL:
+		fall()
+	if player_state == animation_states.LAND:
+		land()
 
 	move_and_slide()
 
@@ -44,12 +47,11 @@ func move():
 	if Input.is_action_just_pressed("jump"):
 		player_state = animation_states.JUMP
 		
-#	if !is_on_floor():
-#		print("vallen op andere plek")
-#		player_state = animation_states.FALL
+	if !is_on_floor():
+		player_state = animation_states.FALL
 		
-#	if has_jumped && is_on_floor():
-#		player_state = animation_states.LAND
+	if has_jumped && is_on_floor():
+		player_state = animation_states.LAND
 
 
 func attack():
@@ -60,23 +62,30 @@ func attack_finished():
 	
 	
 func jump():
+	var movement = Input.get_axis("move_left", "move_right")
+	velocity.x = speed * movement
 	$AnimationPlayer.play("jump")
-	#is_on_floor pakt ie niet
-	print(is_on_floor())
 	if !has_jumped && is_on_floor():
-		velocity.y = -jump_force
+		if velocity.y > -max_jump_force:
+			print("hoi")
+			velocity.y += -jump_force
 		has_jumped = true
-	elif !has_double_jumped:
-		velocity.y = -double_jump_force
-		has_double_jumped = true
+	elif has_jumped && !has_double_jumped && !is_on_floor():
+		if Input.is_action_just_pressed("jump"):
+			print("in double jump")
+			velocity.y += -double_jump_force
+			has_double_jumped = true
+		
+	if velocity.y > 0:
+		player_state = animation_states.FALL
+
 
 func jump_finished():
+	print("falling in 2")
 	player_state = animation_states.FALL
 
 
 func fall():
-	if !is_on_floor():
-		velocity.y += gravity
 	$AnimationPlayer.play("fall")
 
 func fall_finished():
@@ -85,9 +94,10 @@ func fall_finished():
 
 func land():
 	if is_on_floor() && has_jumped:
+		print("hoi")
 		has_jumped = false
 		has_double_jumped = false
-		$AnimationPlayer.play("land")
+	$AnimationPlayer.play("land")
 
 func land_finished():
 	player_state = animation_states.MOVE
@@ -108,3 +118,4 @@ func update_move_animation(movement):
 		
 		
 	
+
