@@ -17,6 +17,10 @@ func _physics_process(delta: float) -> void:
 	$Line2D.points[1] = Vector2.ZERO     if !is_casting \
 				   else Vector2(1000, 0) if !is_colliding() \
 				   else to_local(get_collision_point())
+	if is_colliding():
+		var collider = get_collider()
+		if collider.name == "player":
+			collider.die()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

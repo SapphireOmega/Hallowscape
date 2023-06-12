@@ -7,12 +7,19 @@ extends CharacterBody2D
 @export var double_jump_force = 300
 @export var face_dir = 1
 
+var spawn_point: Vector2
+
 var player_state = animation_states.MOVE
 enum animation_states {MOVE, ATTACK, JUMP, FALL, LAND}
 
 var has_jumped = false
 var has_double_jumped = false
 
+func _ready() -> void:
+	spawn_point = self.position
+	
+func die() -> void:
+	self.position = spawn_point
 
 func _physics_process(delta):
 	velocity.y += gravity

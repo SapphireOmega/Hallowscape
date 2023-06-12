@@ -41,5 +41,5 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 
 [node name="Laser" parent="." instance=ExtResource("5_edxov")]
-position = Vector2(1192.5, 336)
+position = Vector2(1192.5, 332)
 rotation = 4.71239
