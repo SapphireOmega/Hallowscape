@@ -33,7 +33,7 @@ func _process(_delta):
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
 	
-	if n_players <= MAX_PLAYERS and !PCRThread.is_alive():
+	if n_players < MAX_PLAYERS and !PCRThread.is_alive():
 		PCRThread = Thread.new()
 		PCRThread.start(processConnectionRequest)
 		
