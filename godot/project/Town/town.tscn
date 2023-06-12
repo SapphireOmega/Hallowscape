@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdga3r4t1ndnl"]
+[gd_scene load_steps=6 format=3 uid="uid://cdga3r4t1ndnl"]
 
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_agad7"]
 [ext_resource type="Script" path="res://Town/town.gd" id="1_khjla"]
 [ext_resource type="PackedScene" uid="uid://18qb31urmb5k" path="res://Town/town_tilemap.tscn" id="2_h2bxa"]
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_ki5f8"]
+[ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_edxov"]
 
 [node name="Town" type="Node2D"]
 script = ExtResource("1_khjla")
@@ -38,3 +39,7 @@ limit_right = 2016
 limit_bottom = 360
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
+
+[node name="Laser" parent="." instance=ExtResource("5_edxov")]
+position = Vector2(1192.5, 336)
+rotation = 4.71239
