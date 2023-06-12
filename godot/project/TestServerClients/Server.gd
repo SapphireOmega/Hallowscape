@@ -63,7 +63,7 @@ func processConnectionRequest(PCRThread):
 	ThreadsMutex.unlock
 
 func serveClient(SCThread, tcp, clientID):
-	while tcp.get_status() == tcp.STATUS_CONNECTED:
+	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
 		tcp.poll()
 		if tcp.get_status() != tcp.STATUS_CONNECTED:
 			break
@@ -89,6 +89,8 @@ func serveClient(SCThread, tcp, clientID):
 	ThreadsMutex.unlock()
 
 func _exit_tree():
+	GameRunning = false
+	
 	for thread in RunningThreads:
 		thread.wait_to_finish()
 	
