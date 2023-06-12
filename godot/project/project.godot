@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicGallery="*res://sounds/Music_Gallery.tscn"
+LifeTracker="*res://Menus/life_tracker.gd"
 
 [display]
 
