@@ -7,9 +7,8 @@
 [ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://Player/animations/jump.res" id="5_7n1kk"]
 [ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://Player/animations/landing.res" id="6_mtea6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rl6u"]
-radius = 7.5
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n0ik"]
+size = Vector2(16, 28)
 
 [sub_resource type="Animation" id="Animation_ffvq5"]
 length = 0.001
@@ -94,8 +93,8 @@ hframes = 8
 vframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3)
-shape = SubResource("CapsuleShape2D_6rl6u")
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_2n0ik")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
