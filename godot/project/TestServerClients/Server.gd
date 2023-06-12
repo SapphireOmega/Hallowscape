@@ -6,6 +6,7 @@ extends Node
 var server : TCPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
+var PCRThread : Thread
 
 var GameRunning = true
 var RunningThreads = []
@@ -20,7 +21,7 @@ func _ready():
 		GeneralMutex = Mutex.new()
 
 		server.listen(PORT)
-		var PCRThread = Thread.new()
+		PCRThread = Thread.new()
 		PCRThread.start(processConnectionRequest.bind(PCRThread))
 		
 		ThreadsMutex.lock()
@@ -31,11 +32,18 @@ func _process(_delta):
 	for thread in ClosingThreads:
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
+	
+	if n_players <= MAX_PLAYERS and !PCRThread:
+		PCRThread = Thread.new()
+		PCRThread.start(processConnectionRequest.bind(PCRThread))
 		
+		ThreadsMutex.lock()
+		RunningThreads.append(PCRThread)
+		ThreadsMutex.unlock()
 
 func processConnectionRequest(PCRThread):
-	while GameRunning:
-		if server.is_connection_available() and n_players <= MAX_PLAYERS:
+	while GameRunning and n_players <= MAX_PLAYERS:
+		if server.is_connection_available():
 			var tcp = server.take_connection()
 #
 			GeneralMutex.lock()
