@@ -21,11 +21,11 @@ var land_timer : float = 0
 # ------------- #
 
 # JUMP VARAIABLES ------------------- #
-@export var jump_force : float = 600
+@export var jump_force : float = 350
 @export var jump_cut : float = 0.25
-@export var jump_gravity_max : float = 500
+@export var jump_gravity_max : float = 200
 @export var jump_hang_treshold : float = 2.0
-@export var jump_hang_gravity_mult : float = 0.1
+@export var jump_hang_gravity_mult : float = 0.15
 # Timers
 @export var jump_coyote : float = 0.1
 @export var jump_buffer : float = 0.12
@@ -119,9 +119,6 @@ func jump_logic(_delta: float) -> void:
 			jump_coyote_timer = 0
 			jump_buffer_timer = 0
 			velocity.y = -jump_force
-	else:
-		if !is_jumping && !is_double_jumping:
-			double_jump_bypass = true
 	
 	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
 	# This should only happen when moving upwards, as doing this while falling would lead to
@@ -139,9 +136,14 @@ func double_jump_logic(_delta: float) -> void:
 	if is_on_floor():
 		is_double_jumping = false
 		double_jump_bypass = false
+	if jump_coyote_timer <= 0 and !is_jumping:
+		double_jump_bypass = true
+
+	print(double_jump_bypass)
 	if get_input()["just_jump"] && (is_jumping or double_jump_bypass) && !is_double_jumping:
 		is_double_jumping = true
 		double_jump_bypass = false
+		print("double jump")
 		velocity.y = -jump_force
 
 
@@ -185,6 +187,9 @@ func update_animation():
 		if !$AnimationPlayer.current_animation == "attack":
 			#TODO: add attack trigger thingy
 			$AnimationPlayer.play("attack")
+		else:
+			#TODO: add stop attacking thingy
+			pass
 	else:
 		if is_jumping == true:
 			if velocity.y < 0:
