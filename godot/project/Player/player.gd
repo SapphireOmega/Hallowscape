@@ -1,20 +1,50 @@
 extends CharacterBody2D
+## This character controller was created with the intent of being a decent starting point for Platformers.
+## 
+## Instead of teaching the basics, I tried to implement more advanced considerations.
+## That's why I call it 'Movement 2'. This is a sequel to learning demos of similar a kind.
+## Beyond coyote time and a jump buffer I go through all the things listed in the following video:
+## https://www.youtube.com/watch?v=2S3g8CgBG1g
+## Except for separate air and ground acceleration, as I don't think it's necessary.
 
-@export var speed = 150
-@export var gravity = 30
-@export var jump_force = 500
-@export var max_jump_force = 3000
-@export var face_dir = 1
 
+# BASIC MOVEMENT VARAIABLES ---------------- #
+var face_direction := 1
+var x_dir := 1
+
+@export var max_speed: float = 200
+@export var acceleration: float = 1440
+@export var turning_acceleration : float = 3600
+@export var deceleration: float = 2200
+# ------------------------------------------ #
+
+# GRAVITY ----- #
+@export var gravity_acceleration : float = 1400
+@export var gravity_max : float = 600
+# ------------- #
+
+# animations ----- #
+@export var land_anim_length : float = 0.05
+var land_timer : float = 0
+# ------------- #
+
+# JUMP VARAIABLES ------------------- #
+@export var jump_force : float = 600
+@export var jump_cut : float = 0.25
+@export var jump_gravity_max : float = 500
+@export var jump_hang_treshold : float = 2.0
+@export var jump_hang_gravity_mult : float = 0.1
+# Timers
+@export var jump_coyote : float = 0.1
+@export var jump_buffer : float = 0.12
+
+var jump_coyote_timer : float = 0
+var jump_buffer_timer : float = 0
+var is_jumping := false
+var is_double_jumping := false
+var double_jump_bypass := false
+# ----------------------------------- #
 var spawn_point: Vector2
-
-var player_state = animation_states.MOVE
-enum animation_states {MOVE, ATTACK, JUMP, FALL, LAND}
-
-var has_jumped = false
-var has_double_jumped = false
-var can_jump = false
-var coyote_timer = 0
 
 func _ready() -> void:
 	spawn_point = self.position
@@ -22,157 +52,167 @@ func _ready() -> void:
 func die() -> void:
 	self.position = spawn_point
 
-func _physics_process(delta):
-	timer(delta)
-	velocity.y += gravity
+# All iputs we want to keep track of
+func get_input() -> Dictionary:
+	return {
+		"x": Input.get_axis("move_left", "move_right"),
+		"y": Input.get_axis("ui_down", "ui_up"),
+		"just_jump": Input.is_action_just_pressed("jump") == true,
+		"jump": Input.is_action_pressed("jump") == true,
+		"released_jump": Input.is_action_just_released("jump") == true,
+		"attack": Input.is_action_pressed("attack") == true
+	}
+
+
+func _physics_process(delta: float) -> void:
+	x_movement(delta)
+	double_jump_logic(delta)
+	jump_logic(delta)
+	apply_gravity(delta)
 	
-	if is_on_floor():
-		velocity.y = 0
-		coyote_timer = 0.2
-		can_jump = true
-
-	if player_state == animation_states.MOVE:
-		move()
-	if player_state == animation_states.ATTACK:
-		attack()
-	if player_state == animation_states.JUMP:
-		jump()
-	if player_state == animation_states.FALL:
-		fall()
-	if player_state == animation_states.LAND:
-		land()
-
+	timers(delta)
 	move_and_slide()
+	update_animation()
+
+
+func x_movement(delta: float) -> void:
+	x_dir = get_input()["x"]
+
+	if x_dir == 0: # Stop if we're not doing movement inputs.
+		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
+		return
 	
-func movement():
-	var movement = Input.get_axis("move_left", "move_right")
-	velocity.x = speed * movement
-	set_direction(movement)
+	# If we are doing movement inputs and above max speed, don't accelerate nor decelerate
+	# Except if we are turning
+	# (This keeps our momentum gained from outside or slopes)
+	if abs(velocity.x) >= max_speed and sign(velocity.x) == x_dir:
+		return
 	
-func move():
-	var movement = Input.get_axis("move_left", "move_right")
-#	velocity.x = speed * movement
-#
-#	set_direction(movement)
-	movement()
-	update_move_animation(movement)
+	# Are we turning?
+	# Deciding between acceleration and turn_acceleration
+	var accel_rate : float = acceleration if sign(velocity.x) == x_dir else turning_acceleration
 	
-	if Input.is_action_just_pressed("attack"):
-		player_state = animation_states.ATTACK
-		
-	if Input.is_action_just_pressed("jump"):
-		player_state = animation_states.JUMP
-		
-	if !is_on_floor():
-		player_state = animation_states.FALL
-		
-	if has_jumped && is_on_floor():
-		player_state = animation_states.LAND
-
-
-func attack():
-	$AnimationPlayer.play("attack")
+	# Accelerate
+	velocity.x += x_dir * accel_rate * delta
 	
-func attack_finished():
-	player_state = animation_states.MOVE
+	set_direction(x_dir) # This is purely for visuals
+
+
+func set_direction(hor_direction) -> void:
+	# This is purely for visuals
+	# Turning relies on the scale of the player
+	# To animate, only scale the sprite
+	if hor_direction == 0:
+		return
+	apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
+	face_direction = hor_direction # remember direction
+
+
+func jump_logic(_delta: float) -> void:
+	# Reset our jump requirements
+	if is_on_floor():
+		jump_coyote_timer = jump_coyote
+		if is_jumping == true:
+			is_jumping = false
+			if !$AnimationPlayer.current_animation == "attack":
+				$AnimationPlayer.play("land")
+				land_timer = land_anim_length
+	if get_input()["just_jump"]:
+		jump_buffer_timer = jump_buffer
 	
-	
-func jump():
-#	var movement = Input.get_axis("move_left", "move_right")
-#	velocity.x = speed * movement
-#	set_direction(movement)
-	movement()
-	$AnimationPlayer.play("jump")
-#
-	if coyote_timer > 0 && can_jump:
-		if !is_on_floor():
-			can_jump = false
-
-		velocity.y = -jump_force
-		coyote_timer = 0.2
-		
-	if Input.is_action_just_pressed("jump") && !can_jump && coyote_timer > 0:
-		movement()
-		velocity.y = -jump_force
-	
-	if velocity.y > 0:
-		player_state = animation_states.FALL
-
-
-func jump_finished():
-	print("falling in 2")
-	player_state = animation_states.FALL
-
-
-func fall():
-	movement()
-	$AnimationPlayer.play("fall")
-
-func fall_finished():
-	player_state = animation_states.LAND
-
-
-func land():
-	if is_on_floor() && has_jumped:
-		has_jumped = false
-		can_jump = true
-	$AnimationPlayer.play("land")
-
-func land_finished():
-	player_state = animation_states.MOVE
-
-
-#functie zodat poppetje goede kant op kijkt
-func set_direction(movement):
-	if movement != 0: #niet nodig bij stilstaan
-		apply_scale(Vector2(movement * face_dir, 1)) # flip
-		face_dir = movement # remember direction
-		
-
-func update_move_animation(movement):
-	if movement != 0:
-		$AnimationPlayer.play("run")
+	# Jump if grounded, there is jump input, and we aren't jumping already
+	if jump_coyote_timer > 0 and jump_buffer_timer > 0:
+		if !is_jumping:
+			is_jumping = true
+			jump_coyote_timer = 0
+			jump_buffer_timer = 0
+			velocity.y = -jump_force
 	else:
-		$AnimationPlayer.play("idle")
-		
+		if !is_jumping && !is_double_jumping:
+			double_jump_bypass = true
 	
-func timer(delta):
-	coyote_timer -= delta
-		
-		
+	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
+	# This should only happen when moving upwards, as doing this while falling would lead to
+	# The ability to studder our player mid falling
+	if get_input()["released_jump"] and velocity.y < 0:
+		velocity.y -= (jump_cut * velocity.y)
 	
-#func jump():
-#	var movement = Input.get_axis("move_left", "move_right")
-#	velocity.x = speed * movement
-#	$AnimationPlayer.play("jump")
-##	if can_jump && is_on_floor():
-#		if velocity.y > -max_jump_force:
-#			velocity.y = -jump_force
-#		has_jumped = true
-#	elif has_jumped && !has_double_jumped && !is_on_floor():
-#		if Input.is_action_just_pressed("jump"):
-#			print("in double jump")
-#			velocity.y = -jump_force
-#			has_double_jumped = true
-#
-#	set_direction(movement)
-#
-#	if velocity.y > 0:
-#		player_state = animation_states.FALL
-
-# op grond staat, double jumpen
-# can jump false als je 
+	# This way we won't start slowly descending / floating once hit a ceiling
+	# The value added to the treshold is arbritary,
+	# But it solves a problem where jumping into 
+	if is_on_ceiling(): velocity.y = jump_hang_treshold + 100.0
 
 
+func double_jump_logic(_delta: float) -> void:
+	if is_on_floor():
+		is_double_jumping = false
+		double_jump_bypass = false
+	if get_input()["just_jump"] && (is_jumping or double_jump_bypass) && !is_double_jumping:
+		is_double_jumping = true
+		double_jump_bypass = false
+		velocity.y = -jump_force
+
+
+func apply_gravity(delta: float) -> void:
+	var applied_gravity : float = 0
+	
+	# No gravity if we are grounded
+	if is_on_floor() == true:
+		return
+	
+	# Normal gravity limit
+	if velocity.y <= gravity_max:
+		applied_gravity = gravity_acceleration * delta
+	
+	# If moving upwards while jumping, the limit is jump_gravity_max to achieve lower gravity
+	if (is_jumping and velocity.y < 0) and velocity.y > jump_gravity_max:
+		applied_gravity = 0
+	
+	# Lower the gravity at the peak of our jump (where velocity is the smallest)
+	if is_jumping and abs(velocity.y) < jump_hang_treshold:
+		applied_gravity *= jump_hang_gravity_mult
+	
+	velocity.y += applied_gravity
+
+
+func timers(delta: float) -> void:
+	# Using timer nodes here would mean unnececary functions and node calls
+	# This way everything is contained in just 1 script with no node requirements
+	if jump_coyote_timer >= 0:
+		jump_coyote_timer -= delta
+	if jump_buffer_timer >= 0:
+		jump_buffer_timer -= delta
+	if land_timer >= 0:
+		land_timer -= delta
 
 
 
-#if can_jump == true && !can_double_jump:
-#			print("mag springen")
-#			if velocity.y > -max_jump_force:
-#				velocity.y = -jump_force
-#			can_jump = false
-#		if !can_jump && can_double_jump:
-#			if velocity.y > -max_jump_force:
-#				velocity.y = -jump_force
-#			can_double_jump = false
+
+func update_animation():
+	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
+		if !$AnimationPlayer.current_animation == "attack":
+			#TODO: add attack trigger thingy
+			$AnimationPlayer.play("attack")
+	else:
+		if is_jumping == true:
+			if velocity.y < 0:
+				$AnimationPlayer.play("jump")
+			else:
+				$AnimationPlayer.play("fall")
+		else:
+			#this is the lowest priority
+			if $AnimationPlayer.current_animation == "land" && 	land_timer > 0:
+				pass
+			else:
+				#this is the lowest priority
+				if get_input()["x"] != 0:
+					$AnimationPlayer.play("run")
+				else:
+					$AnimationPlayer.play("idle")
+	
+
+
+
+
+
+
