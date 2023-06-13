@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var max_jump_force = 3000
 @export var face_dir = 1
 
+var spawn_point: Vector2
+
 var player_state = animation_states.MOVE
 enum animation_states {MOVE, ATTACK, JUMP, FALL, LAND}
 
@@ -14,6 +16,11 @@ var has_double_jumped = false
 var can_jump = false
 var coyote_timer = 0
 
+func _ready() -> void:
+	spawn_point = self.position
+	
+func die() -> void:
+	self.position = spawn_point
 
 func _physics_process(delta):
 	timer(delta)
