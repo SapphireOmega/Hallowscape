@@ -4,31 +4,31 @@ extends CharacterBody2D
 var face_direction := 1
 var x_dir := 1
 
-@export var max_speed: float = 200
+@export var max_speed: float = 135
 @export var acceleration: float = 1440
 @export var turning_acceleration : float = 3600
 @export var deceleration: float = 2200
 # ------------------------------------------ #
 
 # GRAVITY ----- #
-@export var gravity_acceleration : float = 1400
-@export var gravity_max : float = 600
+@export var gravity_acceleration : float = 1100
+@export var gravity_max : float = 400
 # ------------- #
 
 # animations ----- #
 @export var land_anim_length : float = 0.05
 var land_timer : float = 0
-# ------------- #
+# ------------- #g
 
 # JUMP VARAIABLES ------------------- #
-@export var jump_force : float = 350
+@export var jump_force : float = 330
 @export var jump_cut : float = 0.25
-@export var jump_gravity_max : float = 200
+@export var jump_gravity_max : float = 150
 @export var jump_hang_treshold : float = 2.0
-@export var jump_hang_gravity_mult : float = 0.15
+@export var jump_hang_gravity_mult : float = 0.10
 # Timers
-@export var jump_coyote : float = 0.1*1
-@export var jump_buffer : float = 0.12*1
+@export var jump_coyote : float = 0.12
+@export var jump_buffer : float = 0.14
 
 var jump_coyote_timer : float = 0
 var jump_buffer_timer : float = 0
@@ -52,7 +52,8 @@ func get_input() -> Dictionary:
 		"just_jump": Input.is_action_just_pressed("jump") == true,
 		"jump": Input.is_action_pressed("jump") == true,
 		"released_jump": Input.is_action_just_released("jump") == true,
-		"attack": Input.is_action_pressed("attack") == true
+		"just_attack": Input.is_action_just_pressed("attack") == true,
+		"attack": Input.is_action_just_pressed("attack") == true
 	}
 
 
@@ -129,7 +130,8 @@ func jump_logic(_delta: float) -> void:
 	# This way we won't start slowly descending / floating once hit a ceiling
 	# The value added to the treshold is arbritary,
 	# But it solves a problem where jumping into 
-	if is_on_ceiling(): velocity.y = jump_hang_treshold + 100.0
+	if is_on_ceiling(): velocity.y = jump_hang_treshold + 10.0
+	if is_on_ceiling(): print("test") 
 
 
 func double_jump_logic(_delta: float) -> void:
@@ -138,11 +140,10 @@ func double_jump_logic(_delta: float) -> void:
 		double_jump_bypass = false
 	if jump_coyote_timer <= 0 and !is_jumping:
 		double_jump_bypass = true
-	print(double_jump_bypass)
 
 	if get_input()["just_jump"] && (is_jumping or double_jump_bypass) && !is_double_jumping:
 		is_double_jumping = true
-		velocity.y = -jump_force
+		velocity.y = -jump_force*0.9
 
 
 func apply_gravity(delta: float) -> void:
@@ -182,7 +183,7 @@ func timers(delta: float) -> void:
 
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
-		if !$AnimationPlayer.current_animation == "attack":
+		if !$AnimationPlayer.current_animation == "just_attack":
 			#TODO: add attack trigger thingy
 			$AnimationPlayer.play("attack")
 		else:
