@@ -7,6 +7,7 @@ var server : TCPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
+var udp_server:Node
 
 var GameRunning = true
 var RunningThreads = []
@@ -16,6 +17,9 @@ var n_players = 0
 
 func _ready():
 	if RunOnLaunch:
+		print("hey")
+		udp_server = preload("res://TestServerClients/udp_server.tscn").instantiate()
+		add_child(udp_server)
 		server = TCPServer.new()
 		ThreadsMutex = Mutex.new()
 		GeneralMutex = Mutex.new()
