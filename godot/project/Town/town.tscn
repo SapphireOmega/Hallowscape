@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdga3r4t1ndnl"]
+[gd_scene load_steps=9 format=3 uid="uid://cdga3r4t1ndnl"]
 
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_agad7"]
 [ext_resource type="Script" path="res://Town/town.gd" id="1_khjla"]
 [ext_resource type="PackedScene" uid="uid://18qb31urmb5k" path="res://Town/town_tilemap.tscn" id="2_h2bxa"]
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_ki5f8"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_edxov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7b8c"]
+size = Vector2(96, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brdqp"]
+size = Vector2(112, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2n0m"]
+size = Vector2(80, 4)
 
 [node name="Town" type="Node2D"]
 script = ExtResource("1_khjla")
@@ -30,6 +39,7 @@ layer_2/tile_data = PackedInt32Array(1048587, 458754, 1, 1114123, 458754, 2, 104
 
 [node name="player" parent="." instance=ExtResource("3_ki5f8")]
 position = Vector2(48, 312)
+jump_coyote = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(49, 305)
@@ -43,3 +53,26 @@ drag_horizontal_enabled = true
 [node name="Laser" parent="." instance=ExtResource("5_edxov")]
 position = Vector2(1192.5, 332)
 rotation = 4.71239
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(1632, 290)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_l7b8c")
+one_way_collision = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1710, 258)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-6, 0)
+shape = SubResource("RectangleShape2D_brdqp")
+one_way_collision = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1378, 305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-10, 1)
+shape = SubResource("RectangleShape2D_f2n0m")
+one_way_collision = true

@@ -82,6 +82,9 @@ _data = {
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_p1f8f")
+max_speed = 150.0
+jump_force = 500.0
+jump_coyote = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0nsmd")
