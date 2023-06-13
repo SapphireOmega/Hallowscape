@@ -139,11 +139,9 @@ func double_jump_logic(_delta: float) -> void:
 	if jump_coyote_timer <= 0 and !is_jumping:
 		double_jump_bypass = true
 
-	print(double_jump_bypass)
 	if get_input()["just_jump"] && (is_jumping or double_jump_bypass) && !is_double_jumping:
 		is_double_jumping = true
 		double_jump_bypass = false
-		print("double jump")
 		velocity.y = -jump_force
 
 
