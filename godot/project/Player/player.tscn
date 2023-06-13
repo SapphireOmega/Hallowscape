@@ -91,7 +91,7 @@ vframes = 9
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-1, 2)
-polygon = PackedVector2Array(-7, -12, 7, -12, 8, 8, 8, 10, 7, 12, 5, 13, 1, 14, -3, 13, -4, 12, -5, 10, -7, 9)
+polygon = PackedVector2Array(-7, -12, 7, -12, 8, 8, 7, 10, 5, 12, 1, 14, -3, 12, -5, 10, -7, 9)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
