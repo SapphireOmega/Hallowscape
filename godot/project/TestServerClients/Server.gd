@@ -7,7 +7,7 @@ var server : TCPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
-var udp_server:Node
+var udp_server : Node
 
 var GameRunning = true
 var RunningThreads = []
@@ -17,9 +17,9 @@ var n_players = 0
 
 func _ready():
 	if RunOnLaunch:
-		print("hey")
 		udp_server = preload("res://TestServerClients/udp_server.tscn").instantiate()
 		add_child(udp_server)
+
 		server = TCPServer.new()
 		ThreadsMutex = Mutex.new()
 		GeneralMutex = Mutex.new()
@@ -38,6 +38,9 @@ func _process(_delta):
 		thread.wait_to_finish()
 	
 	if n_players < MAX_PLAYERS and !PCRThread.is_alive():
+		udp_server = preload("res://TestServerClients/udp_server.tscn").instantiate()
+		add_child(udp_server)
+		
 		PCRThread = Thread.new()
 		PCRThread.start(processConnectionRequest)
 		
@@ -62,6 +65,8 @@ func processConnectionRequest():
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
 			ThreadsMutex.unlock()
+	
+	udp_server.queue_free()
 	
 	ThreadsMutex.lock()
 	RunningThreads.erase(PCRThread)
