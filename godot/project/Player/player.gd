@@ -168,7 +168,7 @@ func apply_gravity(delta: float) -> void:
 
 
 func timers(delta: float) -> void:
-	# Using timer nodes here would mean unnececary functions and node calls
+	# Using timer nodes here would mean unnecessary functions and node calls
 	# This way everything is contained in just 1 script with no node requirements
 	if jump_coyote_timer >= 0:
 		jump_coyote_timer -= delta
