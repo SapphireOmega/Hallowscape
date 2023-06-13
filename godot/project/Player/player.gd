@@ -27,8 +27,8 @@ var land_timer : float = 0
 @export var jump_hang_treshold : float = 2.0
 @export var jump_hang_gravity_mult : float = 0.15
 # Timers
-@export var jump_coyote : float = 0.1
-@export var jump_buffer : float = 0.12
+@export var jump_coyote : float = 0.1*1
+@export var jump_buffer : float = 0.12*1
 
 var jump_coyote_timer : float = 0
 var jump_buffer_timer : float = 0
@@ -138,10 +138,10 @@ func double_jump_logic(_delta: float) -> void:
 		double_jump_bypass = false
 	if jump_coyote_timer <= 0 and !is_jumping:
 		double_jump_bypass = true
+	print(double_jump_bypass)
 
 	if get_input()["just_jump"] && (is_jumping or double_jump_bypass) && !is_double_jumping:
 		is_double_jumping = true
-		double_jump_bypass = false
 		velocity.y = -jump_force
 
 
