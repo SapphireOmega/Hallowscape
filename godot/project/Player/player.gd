@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var gravity = 30
 @export var jump_force = 500
 @export var max_jump_force = 3000
-@export var double_jump_force = 300
 @export var face_dir = 1
 
 var spawn_point: Vector2
@@ -14,6 +13,8 @@ enum animation_states {MOVE, ATTACK, JUMP, FALL, LAND}
 
 var has_jumped = false
 var has_double_jumped = false
+var can_jump = false
+var coyote_timer = 0
 
 func _ready() -> void:
 	spawn_point = self.position
@@ -22,10 +23,13 @@ func die() -> void:
 	self.position = spawn_point
 
 func _physics_process(delta):
+	timer(delta)
 	velocity.y += gravity
 	
 	if is_on_floor():
 		velocity.y = 0
+		coyote_timer = 0.2
+		can_jump = true
 
 	if player_state == animation_states.MOVE:
 		move()
@@ -39,13 +43,18 @@ func _physics_process(delta):
 		land()
 
 	move_and_slide()
-
+	
+func movement():
+	var movement = Input.get_axis("move_left", "move_right")
+	velocity.x = speed * movement
+	set_direction(movement)
 	
 func move():
 	var movement = Input.get_axis("move_left", "move_right")
-	velocity.x = speed * movement
-
-	set_direction(movement)
+#	velocity.x = speed * movement
+#
+#	set_direction(movement)
+	movement()
 	update_move_animation(movement)
 	
 	if Input.is_action_just_pressed("attack"):
@@ -69,20 +78,23 @@ func attack_finished():
 	
 	
 func jump():
-	var movement = Input.get_axis("move_left", "move_right")
-	velocity.x = speed * movement
+#	var movement = Input.get_axis("move_left", "move_right")
+#	velocity.x = speed * movement
+#	set_direction(movement)
+	movement()
 	$AnimationPlayer.play("jump")
-	if !has_jumped && is_on_floor():
-		if velocity.y > -max_jump_force:
-			print("hoi")
-			velocity.y += -jump_force
-		has_jumped = true
-	elif has_jumped && !has_double_jumped && !is_on_floor():
-		if Input.is_action_just_pressed("jump"):
-			print("in double jump")
-			velocity.y += -double_jump_force
-			has_double_jumped = true
+#
+	if coyote_timer > 0 && can_jump:
+		if !is_on_floor():
+			can_jump = false
+
+		velocity.y = -jump_force
+		coyote_timer = 0.2
 		
+	if Input.is_action_just_pressed("jump") && !can_jump && coyote_timer > 0:
+		movement()
+		velocity.y = -jump_force
+	
 	if velocity.y > 0:
 		player_state = animation_states.FALL
 
@@ -93,6 +105,7 @@ func jump_finished():
 
 
 func fall():
+	movement()
 	$AnimationPlayer.play("fall")
 
 func fall_finished():
@@ -101,9 +114,8 @@ func fall_finished():
 
 func land():
 	if is_on_floor() && has_jumped:
-		print("hoi")
 		has_jumped = false
-		has_double_jumped = false
+		can_jump = true
 	$AnimationPlayer.play("land")
 
 func land_finished():
@@ -123,6 +135,44 @@ func update_move_animation(movement):
 	else:
 		$AnimationPlayer.play("idle")
 		
+	
+func timer(delta):
+	coyote_timer -= delta
+		
 		
 	
+#func jump():
+#	var movement = Input.get_axis("move_left", "move_right")
+#	velocity.x = speed * movement
+#	$AnimationPlayer.play("jump")
+##	if can_jump && is_on_floor():
+#		if velocity.y > -max_jump_force:
+#			velocity.y = -jump_force
+#		has_jumped = true
+#	elif has_jumped && !has_double_jumped && !is_on_floor():
+#		if Input.is_action_just_pressed("jump"):
+#			print("in double jump")
+#			velocity.y = -jump_force
+#			has_double_jumped = true
+#
+#	set_direction(movement)
+#
+#	if velocity.y > 0:
+#		player_state = animation_states.FALL
 
+# op grond staat, double jumpen
+# can jump false als je 
+
+
+
+
+
+#if can_jump == true && !can_double_jump:
+#			print("mag springen")
+#			if velocity.y > -max_jump_force:
+#				velocity.y = -jump_force
+#			can_jump = false
+#		if !can_jump && can_double_jump:
+#			if velocity.y > -max_jump_force:
+#				velocity.y = -jump_force
+#			can_double_jump = false
