@@ -20,4 +20,3 @@ func send_packet():
 	var message = "gameplay"
 	var error = server.put_packet(message.to_ascii_buffer())
 	print(message)
-

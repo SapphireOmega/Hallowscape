@@ -9,6 +9,7 @@ var GeneralMutex : Mutex
 var PCRThread : Thread
 var udp_server : Node
 
+var players = {"ID1":null, "ID2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
@@ -55,25 +56,29 @@ func processConnectionRequest():
 
 			GeneralMutex.lock()
 			n_players += 1
+			players[players.find_key(null)] = tcp
 			GeneralMutex.unlock()
 
 			var SCThread = Thread.new()
 			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
 			
-			print("client " + str(n_players) + " connected")
+			print("client " + str(players.find_key(tcp)) + " connected")
 			
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
 			ThreadsMutex.unlock()
 	
 	udp_server.queue_free()
-	
+
 	ThreadsMutex.lock()
 	RunningThreads.erase(PCRThread)
 	ClosingThreads.append(PCRThread)
 	ThreadsMutex.unlock()
 
 func serveClient(SCThread, tcp, clientID):
+#	await get_tree().create_timer(3.0).timeout
+#	tcp.put_data("puzzel".to_utf8_buffer())
+
 	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
 		tcp.poll()
 		if tcp.get_status() != tcp.STATUS_CONNECTED:
@@ -82,25 +87,33 @@ func serveClient(SCThread, tcp, clientID):
 		var bytes = tcp.get_available_bytes()
 		if bytes > 0:
 			var data = tcp.get_partial_data(bytes)
+#			print(data[1].get_string_from_utf8())
 			var command = JSON.parse_string(data[1].get_string_from_utf8())
 			if command:
 				if command["type"] == "pressed":
 					Input.action_press(command["action"])
-				else:
+				elif command["type"] == "released":
 					Input.action_release(command["action"])
+				else:
+					pass
 
-	tcp.disconnect_from_host()
-	
-	print("client " + str(clientID) + " disconnected")
+	print("client " + str(players.find_key(tcp)) + " disconnected")
 	
 	GeneralMutex.lock()
 	n_players -= 1
+	players[players.find_key(tcp)] = null
 	GeneralMutex.unlock()
+	
+	tcp.disconnect_from_host()
 	
 	ThreadsMutex.lock()
 	RunningThreads.erase(SCThread)
 	ClosingThreads.append(SCThread)
 	ThreadsMutex.unlock()
+
+func sendToClient(PlayerID, message):
+	var reciever = players[PlayerID]
+	reciever.put_data(message.to_utf8_buffer())
 
 func _exit_tree():
 	GameRunning = false
