@@ -23,6 +23,7 @@ func _process(delta):
 "
 
 [node name="background_layer" type="ParallaxBackground"]
+follow_viewport_enabled = true
 
 [node name="Old-dark-castle-interior-background" type="Sprite2D" parent="."]
 position = Vector2(576, 184)
@@ -30,8 +31,10 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_7pk3h")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 2.08165e-12)
 script = SubResource("GDScript_8obj0")
+CLOUD_SPEED_1 = 20
 
 [node name="Night-town-background-clouds" type="Sprite2D" parent="ParallaxLayer3"]
 position = Vector2(160, 120)
@@ -42,7 +45,7 @@ position = Vector2(544, 120)
 texture = ExtResource("2_aiwyj")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(2, 2)
+motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(640, 2.08165e-12)
 script = SubResource("GDScript_v2i4f")
 

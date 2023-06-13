@@ -21,10 +21,10 @@ func _process(delta):
 script/source = "extends ParallaxLayer
 
 
-@export var CLOUD_SPEED = 40
+@export var CLOUD_SPEED = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	motion_offset.x -= delta*CLOUD_SPEED
 	# pass
 
@@ -35,7 +35,7 @@ script = SubResource("GDScript_wdyxm")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 z_index = 1
-motion_scale = Vector2(1.5, 1.5)
+motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 0)
 script = SubResource("GDScript_8obj0")
 
@@ -45,6 +45,7 @@ scale = Vector2(1.66667, 1.25)
 texture = ExtResource("1_h4k3f")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
 motion_mirroring = Vector2(640, 0)
 
 [node name="Middleground" type="Sprite2D" parent="ParallaxLayer2"]
