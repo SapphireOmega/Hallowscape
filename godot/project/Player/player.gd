@@ -66,10 +66,10 @@ func _physics_process(delta: float) -> void:
 	
 	timers(delta)
 	move_and_slide()
-	push_barrels(delta)
+	if self.is_on_floor: push_barrels(delta)
 	update_animation()
 
-func push_barrels(delta:float ) -> void:
+func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var angle = collision.get_angle()
