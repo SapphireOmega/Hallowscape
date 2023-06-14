@@ -25,7 +25,10 @@ extends Node
 # queue_track(songname) - stops all other songs and queues up songname
 # stop_track_by_name(songname) - stops the requested song
 
+var n_random_tracks : int = 5
+
 var threat_difference : int = 0
+var n_desired_layers : int = 0
 var n_active_layers : int = 0
 var currently_playing := ""
 var queue := []
@@ -66,16 +69,24 @@ func queue_track(songname):
 
 #queue a intensity increase
 func up_music_intensity(level=1):
-	threat_difference += level
+	n_desired_layers = min(n_desired_layers + level, n_random_tracks )
+
+#set the desired number of song layers
+func set_music_intensity(level):
+	if level < 0 or level > n_random_tracks:
+		return 1
+	n_desired_layers = level
+	return 0
 
 #queue a intensity decrease
 func lower_music_intensity(level=1):
-	threat_difference -= level
+	n_desired_layers = max(n_desired_layers - level, 0)
 
 
 #the timer in this scene will call this function every X seconds (to the beat)
 #when that happens we check if there are queued tracks and play them
 func _on_timer_timeout() ->void:
+	threat_difference = n_desired_layers - n_active_layers
 	if len(queue) > 0: #first check if we need to play a set track
 		if stop_random_track_layered() == 0:
 			n_active_layers -= 1
