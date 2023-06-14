@@ -15,3 +15,4 @@
 
 [node name="Server" parent="." instance=ExtResource("4_ymwuv")]
 process_mode = 3
+RunOnLaunch = false
