@@ -21,8 +21,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func send_packet():
 	var message = \"gameplay\"
-	var error = server.put_packet(message.to_ascii_buffer())
-#	print(message)
+	var error = server.put_packet(message.to_utf8_buffer())
+
+#func _process():
+#	var bytes = server.get_available_bytes()
+#	if bytes > 0:
+#		var data = server.get_partial_data(bytes)
+#		print(data.server)
 "
 
 [node name="udp_server" type="Node2D"]
