@@ -53,7 +53,8 @@ func get_input() -> Dictionary:
 		"jump": Input.is_action_pressed("jump") == true,
 		"released_jump": Input.is_action_just_released("jump") == true,
 		"just_attack": Input.is_action_just_pressed("attack") == true,
-		"attack": Input.is_action_just_pressed("attack") == true
+		"attack": Input.is_action_just_pressed("attack") == true,
+		"interact": Input.is_action_just_pressed("interact") == true
 	}
 
 

@@ -3,6 +3,7 @@ extends RayCast2D
 @export var is_casting := true : set = set_is_casting, get = get_is_casting
 
 func set_is_casting(x: bool) -> void:
+	print("SETTING IS CASTING TO", x)
 	is_casting = x
 	
 func get_is_casting() -> bool:
@@ -17,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	$Line2D.points[1] = Vector2.ZERO     if !is_casting \
 				   else Vector2(1000, 0) if !is_colliding() \
 				   else to_local(get_collision_point())
-	if is_colliding():
+	if is_casting && is_colliding():
 		var collider = get_collider()
 		if collider.name == "player":
 			collider.die()
