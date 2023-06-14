@@ -3,7 +3,6 @@ extends RayCast2D
 @export var is_casting := true : set = set_is_casting, get = get_is_casting
 
 func set_is_casting(x: bool) -> void:
-	print("SETTING IS CASTING TO", x)
 	is_casting = x
 	
 func get_is_casting() -> bool:
