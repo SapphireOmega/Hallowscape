@@ -8,18 +8,9 @@ func _ready():
 	$Label.text = str(num_player)+"/"+str(max_player)
 	var pos = get_viewport_rect().size/2
 	$Label.set_position(pos)
-	$Label.visible = true
-
-@rpc
-func pause_game(bool):
-	$Label.text = str(num_player)+"/"+str(max_player)
-	var pos = get_viewport_rect().size/2
-	$Label.set_position(pos)
-	$Label.visible = bool
-	get_tree().paused = bool
-	print("hey")
 
 @rpc
 func set_players(num):
 	num_player = num
+	$Label.text = str(num_player)+"/"+str(max_player)
 	

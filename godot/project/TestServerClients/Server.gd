@@ -7,7 +7,6 @@ var server : TCPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
-
 var players = {"ID1":null, "ID2":null}
 var GameRunning = true
 var RunningThreads = []
@@ -16,24 +15,21 @@ var MAX_PLAYERS = 2
 var n_players = 0
 
 func _ready():
-	if !RunOnLaunch:
-		self.set_process(false)
-		return
-	
-	var ip = get_ip_addr()
-	print(ip)
+	if RunOnLaunch:
+		var ip = get_ip_addr()
+		print(ip)
 
-	server = TCPServer.new()
-	ThreadsMutex = Mutex.new()
-	GeneralMutex = Mutex.new()
+		server = TCPServer.new()
+		ThreadsMutex = Mutex.new()
+		GeneralMutex = Mutex.new()
 
-	server.listen(PORT)
-	PCRThread = Thread.new()
-	PCRThread.start(processConnectionRequest)
-	
-	ThreadsMutex.lock()
-	RunningThreads.append(PCRThread)
-	ThreadsMutex.unlock()
+		server.listen(PORT)
+		PCRThread = Thread.new()
+		PCRThread.start(processConnectionRequest)
+		
+		ThreadsMutex.lock()
+		RunningThreads.append(PCRThread)
+		ThreadsMutex.unlock()
 
 func _process(_delta):
 	for thread in ClosingThreads:
@@ -58,8 +54,9 @@ func get_ip_addr():
 	return ip
 
 func processConnectionRequest():
-	get_tree().paused = true
-	
+	var bar = preload("res://waiting_player/waiting_player.tscn").instantiate()
+	bar.set_players(n_players)
+	add_child(bar)
 	while GameRunning and n_players < MAX_PLAYERS:
 		if server.is_connection_available():
 			var tcp = server.take_connection()
@@ -68,7 +65,7 @@ func processConnectionRequest():
 			n_players += 1
 			players[players.find_key(null)] = tcp
 			GeneralMutex.unlock()
-
+			bar.set_players(n_players)
 			var SCThread = Thread.new()
 			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
 			
@@ -77,9 +74,8 @@ func processConnectionRequest():
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
 			ThreadsMutex.unlock()
-	
-	get_tree().paused = false
-
+	bar.queue_free()
+#	get_tree().paused = false
 	ThreadsMutex.lock()
 	RunningThreads.erase(PCRThread)
 	ClosingThreads.append(PCRThread)
@@ -123,8 +119,7 @@ func serveClient(SCThread, tcp, clientID):
 
 func sendToClient(PlayerID, message):
 	var reciever = players[PlayerID]
-	if reciever:
-		reciever.put_data(message.to_utf8_buffer())
+	reciever.put_data(message.to_utf8_buffer())
 
 func _exit_tree():
 	GameRunning = false
