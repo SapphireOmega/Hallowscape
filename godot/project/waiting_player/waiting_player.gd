@@ -13,4 +13,6 @@ func _ready():
 func set_players(num):
 	num_player = num
 	$Label.text = str(num_player)+"/"+str(max_player)
+	var pos = get_viewport_rect().size/2
+	$Label.set_position(pos)
 	
