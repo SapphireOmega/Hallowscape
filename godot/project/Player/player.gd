@@ -194,12 +194,10 @@ func timers(delta: float) -> void:
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
 		if !$AnimationPlayer.current_animation == "just_attack":
-			#TODO: add attack trigger thingy
+			$Area2D/CollisionShape2D.disabled = false
 			$AnimationPlayer.play("attack")
-		else:
-			#TODO: add stop attacking thingy
-			pass
 	else:
+		$Area2D/CollisionShape2D.disabled = true
 		if is_jumping == true:
 			if velocity.y < 0:
 				$AnimationPlayer.play("jump")
@@ -239,4 +237,4 @@ func _player_detected(body: Area2D):
 
 
 
-
+	

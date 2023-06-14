@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqxkshvxfx6je"]
+[gd_scene load_steps=12 format=3 uid="uid://dqxkshvxfx6je"]
 
 [ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://Player/AnimationSheet_Character.png" id="1_0nsmd"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_p1f8f"]
+[ext_resource type="PackedScene" uid="uid://c35a88jlpxe02" path="res://Player/area_2d.tscn" id="2_2b3wm"]
 [ext_resource type="Animation" uid="uid://b8lvwn14qu3sa" path="res://Player/animations/fall.res" id="3_3g3gf"]
 [ext_resource type="Animation" uid="uid://cqa7bbboo4hwd" path="res://Player/animations/idle.res" id="4_eo0em"]
 [ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://Player/animations/jump.res" id="5_7n1kk"]
@@ -38,20 +39,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [64, 65, 66, 67, 68, 69, 70, 71]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"attack_finished"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_k8fpi"]
 resource_name = "run"
@@ -82,7 +69,11 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_p1f8f")
+
+[node name="Area2D" parent="." instance=ExtResource("2_2b3wm")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0nsmd")
@@ -97,3 +88,5 @@ polygon = PackedVector2Array(-5, -12, 7, -12, 7, 8, 6, 10, 4, 12, 0, 14, -5, 14)
 libraries = {
 "": SubResource("AnimationLibrary_pbuc1")
 }
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

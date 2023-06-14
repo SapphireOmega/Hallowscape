@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpfqsxn2iwbtg"]
+[gd_scene load_steps=9 format=3 uid="uid://dpfqsxn2iwbtg"]
 
 [ext_resource type="Script" path="res://NPCS/Enemy1/Enemy1.gd" id="1_nao3q"]
 [ext_resource type="Texture2D" uid="uid://ceug7vqmbpvrk" path="res://Assets/ gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-walk.png" id="2_8ll81"]
@@ -7,26 +7,10 @@
 size = Vector2(44, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgl2j"]
-size = Vector2(42, 12)
+size = Vector2(15, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riui5"]
-size = Vector2(28.5, 12)
-
-[sub_resource type="Animation" id="Animation_kvcnt"]
-resource_name = "walk"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
-}
+size = Vector2(15, 12)
 
 [sub_resource type="Animation" id="Animation_j114p"]
 length = 0.001
@@ -43,27 +27,28 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_kvcnt"]
+resource_name = "walk"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwd6d"]
 _data = {
 "RESET": SubResource("Animation_j114p"),
 "walk": SubResource("Animation_kvcnt")
 }
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_wkqlw"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_scvv4"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d7r2c"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0sndp"]
-states/Start/position = Vector2(254, 100)
-states/walk/node = SubResource("AnimationNodeBlendSpace2D_wkqlw")
-states/walk/position = Vector2(539, 70)
-transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_scvv4"), "walk", "End", SubResource("AnimationNodeStateMachineTransition_d7r2c")]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_sgt1p"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["hit"]]
 script = ExtResource("1_nao3q")
@@ -75,19 +60,22 @@ flip_h = true
 hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_f2wj2")
 
 [node name="Detect_player" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect_player"]
-position = Vector2(43, -2)
+position = Vector2(29.5, -2)
 shape = SubResource("RectangleShape2D_kgl2j")
 
 [node name="Attack_player" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_player"]
-position = Vector2(36.75, -2)
+position = Vector2(29.5, -2)
 shape = SubResource("RectangleShape2D_riui5")
 debug_color = Color(0.988235, 0, 0.298039, 0.419608)
 
@@ -96,9 +84,4 @@ libraries = {
 "": SubResource("AnimationLibrary_hwd6d")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_0sndp")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_sgt1p")
-parameters/walk/blend_position = Vector2(0, 0)
+[connection signal="body_entered" from="Detect_player" to="." method="_on_detect_player_body_entered"]

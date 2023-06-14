@@ -5,9 +5,6 @@ var hits_taken = 0
 @export var gravity = 10
 var speed = 32
 
-
-
-
 func _ready():
 	$AnimationPlayer.play("walk")
 	velocity.x = 50
@@ -42,3 +39,7 @@ func take_damage():
 		await t.timeout
 		t.queue_free()
 		queue_free()
+
+
+func _on_detect_player_body_entered(body):
+	change_state()

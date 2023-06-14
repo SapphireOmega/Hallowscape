@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlnat3w28mehk"]
+
+[ext_resource type="Script" path="res://NPCS/Enemy2/enemy_2_walls.gd" id="1_ol41v"]
+[ext_resource type="PackedScene" uid="uid://bf006fvv8xgl8" path="res://NPCS/Enemy2/Enemy2.tscn" id="2_3po6s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awm57"]
+size = Vector2(10, 86)
+
+[node name="Enemy2" type="Node2D"]
+script = ExtResource("1_ol41v")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(104, 0)
+shape = SubResource("RectangleShape2D_awm57")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-64, 0)
+shape = SubResource("RectangleShape2D_awm57")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_3po6s")]
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered" flags=18]

@@ -7,7 +7,6 @@ var server : TCPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
-
 var players = {"ID1":null, "ID2":null}
 var GameRunning = true
 var RunningThreads = []
@@ -55,9 +54,13 @@ func get_ip_addr():
 	return ip
 
 func processConnectionRequest():
-#	get_tree().paused = true
+	get_tree().paused = true
+	var bar = preload("res://waiting_player/waiting_player.tscn").instantiate()
+	bar.set_players(n_players)
+	add_child(bar)
 	
 	while GameRunning and n_players < MAX_PLAYERS:
+		bar.set_players(n_players)
 		if server.is_connection_available():
 			var tcp = server.take_connection()
 
@@ -65,7 +68,7 @@ func processConnectionRequest():
 			n_players += 1
 			players[players.find_key(null)] = tcp
 			GeneralMutex.unlock()
-
+			bar.set_players(n_players)
 			var SCThread = Thread.new()
 			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
 			
@@ -74,8 +77,9 @@ func processConnectionRequest():
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
 			ThreadsMutex.unlock()
-	
-#	get_tree().paused = false
+
+	bar.queue_free()
+	get_tree().paused = false
 
 	ThreadsMutex.lock()
 	RunningThreads.erase(PCRThread)
