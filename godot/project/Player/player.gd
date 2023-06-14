@@ -66,8 +66,17 @@ func _physics_process(delta: float) -> void:
 	
 	timers(delta)
 	move_and_slide()
+	push_barrels(delta)
 	update_animation()
 
+func push_barrels(delta:float ) -> void:
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var angle = collision.get_angle()
+		var obj: Object = collision.get_collider()
+		if obj.has_method("slide") && (angle > 1.569 && angle < 1.571):
+			print(angle)
+			obj.slide(delta, 100 * face_direction)
 
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]

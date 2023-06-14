@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 				   else to_local(get_collision_point())
 	if is_casting && is_colliding():
 		var collider = get_collider()
-		if collider.name == "player":
+		if collider.has_method("die"):
 			collider.die()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
