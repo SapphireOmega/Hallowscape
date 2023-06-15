@@ -35,6 +35,10 @@ func _ready():
 	ThreadsMutex.unlock()
 
 func _process(_delta):
+	if Input.is_action_just_pressed("add_player"):
+		n_players+=1
+	if Input.is_action_just_pressed("remove_player"):
+		n_players-=1
 	for thread in ClosingThreads:
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
