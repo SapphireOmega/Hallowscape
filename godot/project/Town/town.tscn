@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdga3r4t1ndnl"]
+[gd_scene load_steps=11 format=3 uid="uid://cdga3r4t1ndnl"]
 
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_agad7"]
 [ext_resource type="Script" path="res://Town/town.gd" id="1_khjla"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_ki5f8"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_edxov"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_q60aq"]
+[ext_resource type="PackedScene" uid="uid://1jjspwmcuqg1" path="res://Barrel/barrel.tscn" id="7_h2qlt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7b8c"]
 size = Vector2(96, 4)
@@ -36,35 +37,10 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(1048587, 458754, 1, 1114123, 458754, 2, 1048588, 524290, 1, 1114124, 524290, 2, 1179660, 524290, 3, 1048589, 589826, 1, 1114125, 589826, 2, 1179661, 589826, 3, 1048619, 458754, 1, 1114155, 458754, 2, 1048620, 524290, 1, 1114156, 524290, 2, 1179692, 524290, 3, 1048621, 589826, 1, 1114157, 589826, 2, 1179693, 589826, 3, 1245232, 655362, 2, 1310768, 655362, 3, 1245233, 720898, 2, 1310769, 720898, 3, 1245234, 786434, 2, 1310770, 786434, 3, 1245218, 655362, 2, 1310754, 655362, 3, 1245219, 720898, 2, 1310755, 720898, 3, 1245220, 786434, 2, 1310756, 786434, 3, 1245260, 655362, 2, 1310796, 655362, 3, 1245261, 720898, 2, 1310797, 720898, 3, 1245262, 786434, 2, 1310798, 786434, 3, 1114217, 1048578, 6, 1179753, 1048578, 7, 1245289, 1048578, 8, 1310825, 1048578, 9, 1114218, 1114114, 6, 1179754, 1114114, 7, 1245290, 1114114, 8, 1310826, 1114114, 9, 1114219, 1179650, 6, 1179755, 1179650, 7, 1245291, 1179650, 8, 1310827, 1179650, 9, 1114220, 1245186, 6, 1179756, 1245186, 7, 1245292, 1245186, 8, 1310828, 1245186, 9, 1114221, 1310722, 6, 1179757, 1310722, 7, 1245293, 1310722, 8, 1310829, 1310722, 9, 917518, 917506, 3, 983054, 917506, 4, 1048590, 917506, 5, 1114126, 917506, 6, 1179662, 917506, 7, 1245198, 917506, 8, 1310734, 917506, 9, 917519, 983042, 3, 983055, 983042, 4, 1048591, 983042, 5, 1114127, 983042, 6, 1179663, 983042, 7, 1245199, 983042, 8, 1310735, 983042, 9, 917520, 1048578, 3, 917517, 851970, 3)
+layer_2/tile_data = PackedInt32Array(1048587, 458754, 1, 1114123, 458754, 2, 1048588, 524290, 1, 1114124, 524290, 2, 1179660, 524290, 3, 1048589, 589826, 1, 1114125, 589826, 2, 1179661, 589826, 3, 1048619, 458754, 1, 1114155, 458754, 2, 1048620, 524290, 1, 1114156, 524290, 2, 1179692, 524290, 3, 1048621, 589826, 1, 1114157, 589826, 2, 1179693, 589826, 3, 1245260, 655362, 2, 1310796, 655362, 3, 1245261, 720898, 2, 1310797, 720898, 3, 1245262, 786434, 2, 1310798, 786434, 3, 1114217, 1048578, 6, 1179753, 1048578, 7, 1245289, 1048578, 8, 1310825, 1048578, 9, 1114218, 1114114, 6, 1179754, 1114114, 7, 1245290, 1114114, 8, 1310826, 1114114, 9, 1114219, 1179650, 6, 1179755, 1179650, 7, 1245291, 1179650, 8, 1310827, 1179650, 9, 1114220, 1245186, 6, 1179756, 1245186, 7, 1245292, 1245186, 8, 1310828, 1245186, 9, 1114221, 1310722, 6, 1179757, 1310722, 7, 1245293, 1310722, 8, 1310829, 1310722, 9, 917518, 917506, 3, 983054, 917506, 4, 1048590, 917506, 5, 1114126, 917506, 6, 1179662, 917506, 7, 1245198, 917506, 8, 1310734, 917506, 9, 917519, 983042, 3, 983055, 983042, 4, 1048591, 983042, 5, 1114127, 983042, 6, 1179663, 983042, 7, 1245199, 983042, 8, 1310735, 983042, 9, 917520, 1048578, 3, 917517, 851970, 3)
 
-[node name="LaserConsole" parent="." instance=ExtResource("6_q60aq")]
-position = Vector2(1208, 258)
-
-[node name="Line2D" type="Line2D" parent="LaserConsole"]
-position = Vector2(8.5, 2.5)
-scale = Vector2(16, 16)
-points = PackedVector2Array(-0.032, 0.188, 0.5625, 0.1875, 0.5625, 4.5625, -1.375, 4.5625)
-width = 0.062
-default_color = Color(0, 0, 0, 1)
-
-[node name="Laser" parent="." instance=ExtResource("5_edxov")]
-position = Vector2(1192.5, 332)
-rotation = -1.5708
-
-[node name="LaserConsole2" parent="." instance=ExtResource("6_q60aq")]
-position = Vector2(1109, 324)
-laser_name = "Laser2"
-
-[node name="Line2D" type="Line2D" parent="LaserConsole2"]
-position = Vector2(8, 6.5)
-points = PackedVector2Array(0, 0, 50.5, 0, 50.5, -56)
-width = 1.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Laser2" parent="." instance=ExtResource("5_edxov")]
-position = Vector2(1167, 273)
-rotation = 3.14159
+[node name="Barrel" parent="." instance=ExtResource("7_h2qlt")]
+position = Vector2(129, 320)
 
 [node name="player" parent="." instance=ExtResource("3_ki5f8")]
 position = Vector2(48, 312)
@@ -100,3 +76,30 @@ position = Vector2(1378, 305)
 position = Vector2(-10, 1)
 shape = SubResource("RectangleShape2D_f2n0m")
 one_way_collision = true
+
+[node name="Laser" parent="." instance=ExtResource("5_edxov")]
+position = Vector2(1192.5, 332)
+rotation = -1.5708
+
+[node name="Laser2" parent="." instance=ExtResource("5_edxov")]
+position = Vector2(1167, 273)
+rotation = 3.14159
+
+[node name="LaserConsole" parent="." instance=ExtResource("6_q60aq")]
+position = Vector2(1208, 258)
+
+[node name="Line2D" type="Line2D" parent="LaserConsole"]
+position = Vector2(8.5, 2.5)
+scale = Vector2(16, 16)
+points = PackedVector2Array(-0.032, 0.188, 0.5625, 0.1875, 0.5625, 4.5625, -1.375, 4.5625)
+width = 0.062
+default_color = Color(0, 0, 0, 1)
+
+[node name="LaserConsole2" parent="." instance=ExtResource("6_q60aq")]
+position = Vector2(1109, 324)
+
+[node name="Line2D" type="Line2D" parent="LaserConsole2"]
+position = Vector2(8, 6.5)
+points = PackedVector2Array(0, 0, 50.5, 0, 50.5, -56)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
