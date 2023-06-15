@@ -9,6 +9,7 @@ func slide(delta: float, speed: float):
 func _physics_process(delta) -> void:
 	self.velocity.y += gravity * delta
 	move_and_slide()
+	self.position = round(self.position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
