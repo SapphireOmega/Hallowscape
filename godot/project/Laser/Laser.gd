@@ -1,6 +1,6 @@
 extends RayCast2D
 
-@export var is_casting := true : set = set_is_casting, get = get_is_casting
+@export var is_casting = true : set = set_is_casting, get = get_is_casting
 
 func set_is_casting(x: bool) -> void:
 	is_casting = x
