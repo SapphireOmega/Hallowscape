@@ -36,6 +36,10 @@ func _ready():
 	ThreadsMutex.unlock()
 
 func _process(_delta):
+	if Input.is_action_just_pressed("add_player"):
+		n_players+=1
+	if Input.is_action_just_pressed("remove_player"):
+		n_players-=1
 	for thread in ClosingThreads:
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
@@ -58,9 +62,8 @@ func get_ip_addr():
 	return ip
 
 func processConnectionRequest():
-	get_tree().paused = true
 	$CanvasLayer.visible = true
-	
+	get_tree().paused = true
 	while GameRunning and n_players < MAX_PLAYERS:
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" + str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
