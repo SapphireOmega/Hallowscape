@@ -75,7 +75,6 @@ func push_barrels(delta: float) -> void:
 		var angle = collision.get_angle()
 		var obj: Object = collision.get_collider()
 		if obj.has_method("slide") && (angle > 1.569 && angle < 1.571):
-			print(angle)
 			obj.slide(delta, 100 * face_direction)
 
 func x_movement(delta: float) -> void:
