@@ -15,21 +15,24 @@ var MAX_PLAYERS = 2
 var n_players = 0
 
 func _ready():
-	if RunOnLaunch:
-		var ip = get_ip_addr()
-		print(ip)
-
-		server = TCPServer.new()
-		ThreadsMutex = Mutex.new()
-		GeneralMutex = Mutex.new()
-
-		server.listen(PORT)
-		PCRThread = Thread.new()
-		PCRThread.start(processConnectionRequest)
+	if !RunOnLaunch:
+		self.set_process(false)
+		return
 		
-		ThreadsMutex.lock()
-		RunningThreads.append(PCRThread)
-		ThreadsMutex.unlock()
+	var ip = get_ip_addr()
+	print(ip)
+
+	server = TCPServer.new()
+	ThreadsMutex = Mutex.new()
+	GeneralMutex = Mutex.new()
+
+	server.listen(PORT)
+	PCRThread = Thread.new()
+	PCRThread.start(processConnectionRequest)
+	
+	ThreadsMutex.lock()
+	RunningThreads.append(PCRThread)
+	ThreadsMutex.unlock()
 
 func _process(_delta):
 	for thread in ClosingThreads:
