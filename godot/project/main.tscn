@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3cbgyvp8plfo"]
+[gd_scene load_steps=4 format=3 uid="uid://b3cbgyvp8plfo"]
 
-[ext_resource type="PackedScene" uid="uid://cjjdbfhy3bjrm" path="res://sounds/Music_Gallery.tscn" id="2_5lbqa"]
 [ext_resource type="PackedScene" uid="uid://cdga3r4t1ndnl" path="res://Town/town.tscn" id="2_kl8an"]
 [ext_resource type="PackedScene" uid="uid://by6yogcoubfxo" path="res://Menus/gui.tscn" id="3_gdflh"]
 [ext_resource type="PackedScene" uid="uid://bqq5egog134ni" path="res://TestServerClients/Server.tscn" id="4_ymwuv"]
@@ -8,8 +7,6 @@
 [node name="Main" type="Node2D"]
 
 [node name="Town" parent="." instance=ExtResource("2_kl8an")]
-
-[node name="Music" parent="." instance=ExtResource("2_5lbqa")]
 
 [node name="GUI" parent="." instance=ExtResource("3_gdflh")]
 
