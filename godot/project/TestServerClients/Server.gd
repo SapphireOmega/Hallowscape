@@ -20,7 +20,6 @@ func _ready():
 		return
 		
 	var ip = get_ip_addr()
-	print(ip)
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
 	server = TCPServer.new()
@@ -59,10 +58,12 @@ func get_ip_addr():
 
 func processConnectionRequest():
 	get_tree().paused = true
+	
 	$CanvasLayer.visible = true
 	
 	while GameRunning and n_players < MAX_PLAYERS:
-		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" + str(MAX_PLAYERS) + " connected"
+		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
+		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
 			var tcp = server.take_connection()
 
@@ -126,13 +127,17 @@ func serveClient(SCThread, tcp, clientID):
 
 func sendToPlayer(PlayerID, message):
 	var reciever = players[PlayerID]
-	reciever.put_data(message.to_utf8_buffer())
+	print(reciever)
+	if reciever:
+		reciever.put_data(message.to_utf8_buffer())
 
 func _exit_tree():
 	GameRunning = false
 	
 	for thread in RunningThreads:
-		thread.wait_to_finish()
+		if thread.is_alive():
+			thread.wait_to_finish()
 	
 	for thread in ClosingThreads:
-		thread.wait_to_finish()
+		if thread.is_alive():
+			thread.wait_to_finish()
