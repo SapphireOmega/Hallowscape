@@ -42,34 +42,6 @@ layer_2/tile_data = PackedInt32Array(1048587, 458754, 1, 1114123, 458754, 2, 104
 [node name="Barrel" parent="." instance=ExtResource("7_h2qlt")]
 position = Vector2(129, 320)
 
-[node name="LaserConsole" parent="." instance=ExtResource("6_q60aq")]
-position = Vector2(1208, 258)
-
-[node name="Line2D" type="Line2D" parent="LaserConsole"]
-position = Vector2(8.5, 2.5)
-scale = Vector2(16, 16)
-points = PackedVector2Array(-0.032, 0.188, 0.5625, 0.1875, 0.5625, 4.5625, -1.375, 4.5625)
-width = 0.062
-default_color = Color(0, 0, 0, 1)
-
-[node name="Laser" parent="." instance=ExtResource("5_edxov")]
-position = Vector2(1192.5, 332)
-rotation = -1.5708
-
-[node name="LaserConsole2" parent="." instance=ExtResource("6_q60aq")]
-position = Vector2(1109, 324)
-laser_name = "Laser2"
-
-[node name="Line2D" type="Line2D" parent="LaserConsole2"]
-position = Vector2(8, 6.5)
-points = PackedVector2Array(0, 0, 50.5, 0, 50.5, -56)
-width = 1.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Laser2" parent="." instance=ExtResource("5_edxov")]
-position = Vector2(1167, 273)
-rotation = 3.14159
-
 [node name="player" parent="." instance=ExtResource("3_ki5f8")]
 position = Vector2(48, 312)
 
@@ -104,3 +76,31 @@ position = Vector2(1378, 305)
 position = Vector2(-10, 1)
 shape = SubResource("RectangleShape2D_f2n0m")
 one_way_collision = true
+
+[node name="Laser" parent="." instance=ExtResource("5_edxov")]
+position = Vector2(1192.5, 332)
+rotation = -1.5708
+
+[node name="Laser2" parent="." instance=ExtResource("5_edxov")]
+position = Vector2(1167, 273)
+rotation = 3.14159
+
+[node name="LaserConsole" parent="." instance=ExtResource("6_q60aq")]
+position = Vector2(1208, 258)
+
+[node name="Line2D" type="Line2D" parent="LaserConsole"]
+position = Vector2(8.5, 2.5)
+scale = Vector2(16, 16)
+points = PackedVector2Array(-0.032, 0.188, 0.5625, 0.1875, 0.5625, 4.5625, -1.375, 4.5625)
+width = 0.062
+default_color = Color(0, 0, 0, 1)
+
+[node name="LaserConsole2" parent="." instance=ExtResource("6_q60aq")]
+position = Vector2(1109, 324)
+laser_name = "Laser2"
+
+[node name="Line2D" type="Line2D" parent="LaserConsole2"]
+position = Vector2(8, 6.5)
+points = PackedVector2Array(0, 0, 50.5, 0, 50.5, -56)
+width = 1.0
+default_color = Color(0, 0, 0, 1)

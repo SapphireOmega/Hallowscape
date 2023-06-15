@@ -20,7 +20,7 @@ func _ready():
 		return
 		
 	var ip = get_ip_addr()
-	print(ip)
+	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
 	server = TCPServer.new()
 	ThreadsMutex = Mutex.new()
@@ -35,6 +35,11 @@ func _ready():
 	ThreadsMutex.unlock()
 
 func _process(_delta):
+	if Input.is_action_just_pressed("add_player"):
+		n_players+=1
+	if Input.is_action_just_pressed("remove_player"):
+		n_players-=1
+
 	for thread in ClosingThreads:
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
@@ -58,12 +63,12 @@ func get_ip_addr():
 
 func processConnectionRequest():
 	get_tree().paused = true
-	var bar = preload("res://waiting_player/waiting_player.tscn").instantiate()
-	bar.set_players(n_players)
-	add_child(bar)
+	
+	$CanvasLayer.visible = true
 	
 	while GameRunning and n_players < MAX_PLAYERS:
-		bar.set_players(n_players)
+		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
+		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
 			var tcp = server.take_connection()
 
@@ -71,7 +76,7 @@ func processConnectionRequest():
 			n_players += 1
 			players[players.find_key(null)] = tcp
 			GeneralMutex.unlock()
-			bar.set_players(n_players)
+
 			var SCThread = Thread.new()
 			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
 			
@@ -81,7 +86,7 @@ func processConnectionRequest():
 			RunningThreads.append(SCThread)
 			ThreadsMutex.unlock()
 
-	bar.queue_free()
+	$CanvasLayer.visible = false
 	get_tree().paused = false
 
 	ThreadsMutex.lock()
@@ -125,15 +130,19 @@ func serveClient(SCThread, tcp, clientID):
 	ClosingThreads.append(SCThread)
 	ThreadsMutex.unlock()
 
-func sendToClient(PlayerID, message):
+func sendToPlayer(PlayerID, message):
 	var reciever = players[PlayerID]
-	reciever.put_data(message.to_utf8_buffer())
+	print(reciever)
+	if reciever:
+		reciever.put_data(message.to_utf8_buffer())
 
 func _exit_tree():
 	GameRunning = false
 	
 	for thread in RunningThreads:
-		thread.wait_to_finish()
+		if thread.is_alive():
+			thread.wait_to_finish()
 	
 	for thread in ClosingThreads:
-		thread.wait_to_finish()
+		if thread.is_alive():
+			thread.wait_to_finish()
