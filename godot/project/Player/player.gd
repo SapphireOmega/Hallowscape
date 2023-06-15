@@ -211,7 +211,7 @@ func update_animation():
 
 #------------ interactables --- #
 
-func _player_detected(body: Area2D):
+func _player_detected(body: CharacterBody2D):
 	var t = Timer.new()
 	# Waits for exact frame where the player hits.
 	t.set_wait_time(0.2)

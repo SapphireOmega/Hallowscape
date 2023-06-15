@@ -12,7 +12,7 @@ size = Vector2(10, 86)
 script = ExtResource("1_7wd4j")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(472, 0)
+position = Vector2(328, 0)
 shape = SubResource("RectangleShape2D_awm57")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
