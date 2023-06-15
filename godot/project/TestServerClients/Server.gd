@@ -62,8 +62,9 @@ func get_ip_addr():
 	return ip
 
 func processConnectionRequest():
-	$CanvasLayer.visible = true
 	get_tree().paused = true
+	$CanvasLayer.visible = true
+	
 	while GameRunning and n_players < MAX_PLAYERS:
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" + str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
