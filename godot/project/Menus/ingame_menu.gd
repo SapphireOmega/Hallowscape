@@ -14,8 +14,11 @@ var is_paused = false :
 #this means that when esc is used for example to quit a dialogue,
 #it wont pause the game instead
 func _unhandled_input(event):
-	if event.is_action_released("ui_cancel"):
-		self.is_paused = !is_paused
+	var cs = get_tree().current_scene
+	var cl = cs.find_child("Current_level")
+	if cl.get_child_count() != 0 && cl.get_child(0).name != "Menu":
+		if event.is_action_released("ui_cancel"):
+			self.is_paused = !is_paused
 
 
 #resume the game button

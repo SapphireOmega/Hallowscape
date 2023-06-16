@@ -1,16 +1,13 @@
 extends Area2D
 	
 
-var entered = false
+
 
 func _on_body_entered(body: CharacterBody2D):
-	entered = true
+	if body.name == "player":
+		StageManager.changeStage(StageManager.CHURCH, 25, 310)
 	
 
-func _on_body_exited(body: CharacterBody2D):
-	entered = false
 
 
-func _physics_process(delta):
-	if entered == true:
-		get_tree().change_scene_to_file("res://Church/church.tscn")
+
