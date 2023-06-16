@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxeulfyc440ed"]
+[gd_scene load_steps=11 format=3 uid="uid://cxeulfyc440ed"]
 
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="1_1drrj"]
 [ext_resource type="PackedScene" uid="uid://ds7xbyyv2m5vh" path="res://Church/bg_church.tscn" id="1_ta75v"]
 [ext_resource type="Texture2D" uid="uid://d17r4ifaff001" path="res://Assets/ gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png" id="2_khh8y"]
 [ext_resource type="Script" path="res://Church/Area2D.gd" id="4_heb55"]
-[ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="5_wyokp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_osvp7"]
 b = Vector2(0, 9.89373)
@@ -809,8 +808,6 @@ script = ExtResource("4_heb55")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3.5, 230.812)
 shape = SubResource("RectangleShape2D_833nu")
-
-[node name="Ingame_menu" parent="." instance=ExtResource("5_wyokp")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3xc7y")
