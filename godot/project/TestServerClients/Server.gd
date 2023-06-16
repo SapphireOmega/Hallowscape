@@ -11,7 +11,7 @@ var players = {"ID1":null, "ID2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
-var MAX_PLAYERS = 2
+var MAX_PLAYERS = 1
 var n_players = 0
 
 func _ready():
