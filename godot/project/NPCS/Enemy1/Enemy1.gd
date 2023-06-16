@@ -17,7 +17,6 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func change_state():
-	print("changing state")
 	if facing_right:
 		facing_right = false
 	else:
