@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://drpb5urr7208t"]
 
-[ext_resource type="Texture2D" uid="uid://3id760wdk4ar" path="res://Assets/ gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png" id="1_7pk3h"]
-[ext_resource type="Texture2D" uid="uid://dp4ljukj3yyu" path="res://Assets/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-clouds.png" id="2_aiwyj"]
+[ext_resource type="Texture2D" uid="uid://3id760wdk4ar" path="res://Assets/gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png" id="1_7pk3h"]
+[ext_resource type="Texture2D" uid="uid://dp4ljukj3yyu" path="res://Assets/gothicvania patreon collection/night-town-background-files/layers/night-town-background-clouds.png" id="2_aiwyj"]
 
 [sub_resource type="GDScript" id="GDScript_8obj0"]
 script/source = "extends ParallaxLayer
