@@ -8,7 +8,7 @@
 
 [node name="JorisLevel" parent="." instance=ExtResource("1_wtopb")]
 
-[node name="GUI" parent="." instance=ExtResource("3_gdflh")]
-
 [node name="Server" parent="." instance=ExtResource("4_ymwuv")]
 process_mode = 3
+
+[node name="GUI" parent="." instance=ExtResource("3_gdflh")]
