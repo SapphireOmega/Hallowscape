@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=17 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
 [ext_resource type="TileSet" uid="uid://xfd7ufx5rj34" path="res://Town/town_tilemap.tres" id="2_ik626"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="PackedScene" uid="uid://bf006fvv8xgl8" path="res://NPCS/Enemy2/Enemy2.tscn" id="7_4wtm8"]
 [ext_resource type="PackedScene" uid="uid://dpfqsxn2iwbtg" path="res://NPCS/Enemy1/enemy_1.tscn" id="7_y6771"]
+[ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -26,6 +27,9 @@ size = Vector2(58, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e84k7"]
 size = Vector2(90, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ecr"]
+size = Vector2(18, 75.25)
 
 [node name="JorisLevel" type="Node2D"]
 
@@ -160,4 +164,15 @@ one_way_collision = true
 position = Vector2(1341, 309)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("7_4wtm8")]
-position = Vector2(1784, 221)
+position = Vector2(1787, 246)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(13, -34)
+script = ExtResource("9_ce241")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1987, 233.625)
+shape = SubResource("RectangleShape2D_u0ecr")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
