@@ -71,6 +71,7 @@ func processConnectionRequest():
 		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
 			var tcp = server.take_connection()
+			tcp.set_no_delay(true)
 
 			GeneralMutex.lock()
 			n_players += 1
@@ -106,15 +107,28 @@ func serveClient(SCThread, tcp, clientID):
 		var bytes = tcp.get_available_bytes()
 		if bytes > 0:
 			var data = tcp.get_partial_data(bytes)
-#			print(data[1].get_string_from_utf8())
-			var command = JSON.parse_string(data[1].get_string_from_utf8())
-			if command:
-				if command["type"] == "pressed":
-					Input.action_press(command["action"])
-				elif command["type"] == "released":
-					Input.action_release(command["action"])
-				else:
-					pass
+			print(data[1].get_string_from_utf8())
+#			var command = data[1].get_string_from_utf8()
+#			if command == "release": 
+#				Input.action_release("move_right")
+#				Input.action_release("move_left")
+#				Input.action_release("jump")
+#			else:
+#				Input.action_press(command)
+			
+			var arguments = data[1].get_string_from_utf8().split(":")
+			if arguments[0] == "p":
+				Input.action_press(arguments[1])
+			elif arguments[0] == "r":
+				Input.action_release(arguments[1])
+
+#			if command:
+#				if command["type"] == "pressed":
+#					Input.action_press(command["action"])
+#				elif command["type"] == "released":
+#					Input.action_release(command["action"])
+#				else:
+#					pass
 
 	print("client " + str(players.find_key(tcp)) + " disconnected")
 	
