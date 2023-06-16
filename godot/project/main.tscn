@@ -1,10 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3cbgyvp8plfo"]
-
-[ext_resource type="PackedScene" uid="uid://cx81owv8k5jdj" path="res://JorisLevel/joris_level.tscn" id="1_wtopb"]
-[ext_resource type="PackedScene" uid="uid://by6yogcoubfxo" path="res://Menus/gui.tscn" id="3_gdflh"]
+[gd_scene format=3 uid="uid://b3cbgyvp8plfo"]
 
 [node name="Main" type="Node2D"]
 
-[node name="JorisLevel" parent="." instance=ExtResource("1_wtopb")]
-
-[node name="GUI" parent="." instance=ExtResource("3_gdflh")]
+[node name="Current_level" type="Node" parent="."]

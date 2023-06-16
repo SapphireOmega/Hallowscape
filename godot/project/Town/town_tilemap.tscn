@@ -36,12 +36,12 @@ position = Vector2(1998, 197)
 rotation = -1.56623
 shape = SubResource("SegmentShape2D_h4ejm")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Door" type="Area2D" parent="."]
 script = ExtResource("2_1fhne")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Door_box" type="CollisionShape2D" parent="Door"]
 position = Vector2(1987, 233.625)
 shape = SubResource("RectangleShape2D_7agsq")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]

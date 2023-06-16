@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://by6yogcoubfxo"]
 
 [ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="1_ltsap"]
-[ext_resource type="PackedScene" uid="uid://6n813wl0k3v8" path="res://Menus/life_tracker.tscn" id="2_qtl2p"]
+[ext_resource type="Script" path="res://Menus/gui.gd" id="1_xm7xi"]
 
 [node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_xm7xi")
 
 [node name="Ingame_menu" parent="." instance=ExtResource("1_ltsap")]
-
-[node name="Life_tracker" parent="." instance=ExtResource("2_qtl2p")]
