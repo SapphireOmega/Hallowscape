@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # ---levels-------------- #
 #ADD LEVELS TO THIS LIST!
+const JORISLEVEL = preload("res://JorisLevel/joris_level.tscn")
 const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
@@ -14,7 +15,7 @@ const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main sce
 
 # this determines which scene loads on default run
 # set to MAINMENU in final build
-@export var default_scene = TOWN
+@export var default_scene = JORISLEVEL
 
 #this fixes the node hierarchy on launch.
 func _on_ready():
