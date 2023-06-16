@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dpfqsxn2iwbtg" path="res://NPCS/Enemy1/enemy_1.tscn" id="2_jkwcb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm57"]
-size = Vector2(10, 86)
+size = Vector2(10, 44)
 
 [node name="Enemy1" type="Node2D"]
 
@@ -12,11 +12,11 @@ size = Vector2(10, 86)
 script = ExtResource("1_7wd4j")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(328, 0)
+position = Vector2(56, 8)
 shape = SubResource("RectangleShape2D_awm57")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-64, 0)
+position = Vector2(-64, 8)
 shape = SubResource("RectangleShape2D_awm57")
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_jkwcb")]

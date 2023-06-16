@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=16 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
 [ext_resource type="TileSet" uid="uid://xfd7ufx5rj34" path="res://Town/town_tilemap.tres" id="2_ik626"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="PackedScene" uid="uid://bf006fvv8xgl8" path="res://NPCS/Enemy2/Enemy2.tscn" id="7_4wtm8"]
-[ext_resource type="PackedScene" uid="uid://dpfqsxn2iwbtg" path="res://NPCS/Enemy1/enemy_1.tscn" id="7_y6771"]
+[ext_resource type="PackedScene" uid="uid://ch422r8ofcrul" path="res://NPCS/Enemy1/enemy1_walls.tscn" id="7_c258x"]
+[ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -107,7 +108,7 @@ position = Vector2(865, 211)
 position = Vector2(1264, 313)
 
 [node name="player" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(65, 318)
+position = Vector2(58, 306)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(49, 305)
@@ -121,7 +122,7 @@ drag_horizontal_enabled = true
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource("2_ik626")
 format = 2
-layer_0/tile_data = PackedInt32Array(1048670, 458754, 5, 1114206, 458754, 6, 1048671, 524290, 5, 1114207, 524290, 6, 1048672, 589826, 5, 1114208, 589826, 6, 1048673, 655362, 5, 1114209, 655362, 6, 1048674, 720898, 5, 1114210, 720898, 6, 1048675, 786434, 5, 1114211, 786434, 6)
+layer_0/tile_data = PackedInt32Array(1048670, 458754, 5, 1114206, 458754, 6, 1048671, 524290, 5, 1114207, 524290, 6, 1048672, 589826, 5, 1114208, 589826, 6, 1048673, 655362, 5, 1114209, 655362, 6, 1048674, 720898, 5, 1114210, 720898, 6, 1048675, 786434, 5, 1114211, 786434, 6, 1376254, 131074, 4, 1310847, 131074, 4, 1245311, 131074, 4, 1179775, 131074, 4, 1114239, 131074, 4, 1048703, 131074, 4, 983167, 131074, 4, 917631, 131074, 4, 852095, 131074, 4, 786559, 131074, 4, 721023, 131074, 4, 655487, 131074, 4, 589951, 131074, 4, 524415, 131074, 4, 458879, 131074, 4, 393343, 131074, 4, 327807, 131074, 4, 262271, 131074, 4, 196735, 131074, 4, 127, 131074, 4, -65409, 131074, 4, -130945, 131074, 4, -196481, 131074, 4, 131199, 131074, 4, 65663, 131074, 4)
 
 [node name="One-ways" type="StaticBody2D" parent="."]
 position = Vector2(401, 166)
@@ -156,8 +157,19 @@ position = Vector2(1148, 123)
 shape = SubResource("RectangleShape2D_e84k7")
 one_way_collision = true
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("7_y6771")]
-position = Vector2(1341, 309)
+[node name="Enemy1" parent="." instance=ExtResource("7_c258x")]
+position = Vector2(1358, 317)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("7_4wtm8")]
-position = Vector2(1784, 221)
+position = Vector2(1780, 251)
+hitpoints = 6
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("9_4lijp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+build_mode = 1
+polygon = PackedVector2Array(1508, 286, 1513, 279, 1515, 271, 1520, 266, 1527, 265, 1535, 260, 1542, 259, 1550, 260, 1558, 257, 1566, 259, 1568, 262, 1577, 262, 1582, 268, 1585, 275, 1590, 281, 1590, 287, 1590, 289, 1508, 289)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
