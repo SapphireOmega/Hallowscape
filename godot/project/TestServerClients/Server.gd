@@ -72,18 +72,18 @@ func processConnectionRequest():
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
 		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
-			var tcp = server.take_connection()
+			var udp = server.take_connection()
 #			tcp.set_no_delay(true)
 
 			GeneralMutex.lock()
 			n_players += 1
-			players[players.find_key(null)] = tcp
+			players[players.find_key(null)] = udp
 			GeneralMutex.unlock()
 
 			var SCThread = Thread.new()
-			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
+			SCThread.start(serveClient.bind(SCThread, udp, n_players))
 			
-			print("client " + str(players.find_key(tcp)) + " connected")
+			print("client " + str(players.find_key(udp)) + " connected")
 			
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
@@ -97,18 +97,20 @@ func processConnectionRequest():
 	ClosingThreads.append(PCRThread)
 	ThreadsMutex.unlock()
 
-func serveClient(SCThread, tcp : PacketPeerUDP, clientID):
-	tcp.bind(PORT, tcp.get_packet_ip())
+func serveClient(SCThread, udp : PacketPeerUDP, clientID):
+	udp.bind(PORT, udp.get_packet_ip())
 	while true:
 		server.poll()
-		if tcp.get_available_packet_count() > 0:
-			var data = tcp.get_packet().get_string_from_utf8()
+		if udp.get_available_packet_count() > 0:
+			var data = udp.get_packet().get_string_from_utf8()
 			print(data)
 			var command = JSON.parse_string(data)
 			if command["type"] == "pressed":
 				Input.action_press(command["action"])
 			elif command["type"] == "released":
 				Input.action_release(command["action"])
+			else:
+				break
 
 #	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
 #		tcp.poll()
@@ -126,14 +128,14 @@ func serveClient(SCThread, tcp : PacketPeerUDP, clientID):
 #			elif arguments[0] == "r":
 #				Input.action_release(arguments[1])
 
-	print("client " + str(players.find_key(tcp)) + " disconnected")
+	print("client " + str(players.find_key(udp)) + " disconnected")
 	
 	GeneralMutex.lock()
 	n_players -= 1
-	players[players.find_key(tcp)] = null
+	players[players.find_key(udp)] = null
 	GeneralMutex.unlock()
 	
-	tcp.disconnect_from_host()
+	udp.disconnect_from_host()
 	
 	ThreadsMutex.lock()
 	RunningThreads.erase(SCThread)
