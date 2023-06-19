@@ -36,6 +36,9 @@ var is_jumping := false
 var is_double_jumping := false
 var double_jump_bypass := false
 # ----------------------------------- #
+@export var shake_duration = 0.1
+@export var shake_intensity = 3
+# ----------------------------------- #
 var spawn_point: Vector2
 
 func _ready() -> void:
@@ -236,7 +239,7 @@ func _player_detected(body: CharacterBody2D):
 	
 
 	if body.is_in_group("hit"):
-		$Camera2D.shake(0.1, 5)
+		$Camera2D.shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
 		pass
