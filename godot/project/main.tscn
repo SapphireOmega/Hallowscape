@@ -2,4 +2,6 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="Player_data" type="Node" parent="."]
+
 [node name="Current_level" type="Node" parent="."]

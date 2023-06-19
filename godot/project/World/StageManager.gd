@@ -31,10 +31,12 @@ func _on_ready():
 		print(f6_error_msg)
 	elif last_child.name == self.name:
 		self.queue_free()
-	if $"/root/Main".find_child("Current_level").get_child(0) == null:
-		print("rip no stage found")
-		$"/root/Main".find_child("Current_level").add_child(default_scene.instantiate())
+	if curStagePath().get_child(0) == null:
+		print("Stage Manager: No self-chosen stage found, selecting the default stage instead")
+		curStagePath().add_child(default_scene.instantiate())
 
+func curStagePath():
+	return $"/root/Main".find_child("Current_level")
 
 func changeStage(stage_path, x=0, y=0):
 	$ColorRect.show()
@@ -45,14 +47,15 @@ func changeStage(stage_path, x=0, y=0):
 	
 	var stage = stage_path.instantiate()
 	
-	if $"/root/Main".find_child("Current_level").get_child(0) != null:
-		$"/root/Main".find_child("Current_level").get_child(0).free()
-	$"/root/Main".find_child("Current_level").add_child(stage)
+	if curStagePath().get_child(0) != null:
+		curStagePath().get_child(0).free()
+	curStagePath().add_child(stage)
 	
 	
-	var player = stage.get_node_or_null("player")
-	if player != null:
+	var players = find_players()
+	for player in players:
 		move_player_to(player, x, y)
+		player.set_spawn()
 	
 	
 	$Anim.play("TransOut")
@@ -60,7 +63,7 @@ func changeStage(stage_path, x=0, y=0):
 	$ColorRect.hide()
 	$Loadingtext.hide()
 
-
+#grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
 	player.position = Vector2(x,y)
 	var cam = player.get_node("Camera2D")
@@ -68,6 +71,15 @@ func move_player_to(player, x, y):
 	await get_tree().process_frame
 	await get_tree().process_frame
 	cam.position_smoothing_enabled = true
+
+
+func find_players():
+	var players = []
+	var stage = curStagePath().get_child(0)
+	for node in stage.get_children():
+		if node.has_method("set_spawn"):
+			players.append(node)
+	return players
 
 
 
