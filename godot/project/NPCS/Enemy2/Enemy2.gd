@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 @export var hitpoints = 3
 var hits_taken = 0
-@export var gravity = 10
+
 @onready var Animationtree : AnimationTree = $AnimationTree
 @onready var animation = $AnimationPlayer
 
 @export var speed = 40
+@export var gravity = 10
+
+var vision = 250
 var player_pos
 var target_pos
 @onready var player = get_parent().get_node("player")
@@ -24,7 +27,8 @@ func _ready():
 	animation.queue("idle")
 
 func _process(delta):
-	if abs(player.position.x - position.x) > 250:
+	# Move towards the player if the player is within a certain area.
+	if abs(player.position.x - position.x) > vision:
 		velocity.x = 0
 	elif player.position.x - position.x > 0:
 		if player.position.x < 0.9*position.x:
@@ -75,19 +79,7 @@ func take_damage():
 	print("hit taken")
 	if hitpoints == hits_taken:
 		print("died")
-		var t = Timer.new()
-		t.set_wait_time(0.1)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
-		await t.timeout
 		## Death animation ##
-		t.set_wait_time(0.1)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
-		await t.timeout
-		t.queue_free()
 		queue_free()
 
 func body_enter_attack(body: CharacterBody2D):

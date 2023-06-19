@@ -227,8 +227,11 @@ func _player_detected(body: CharacterBody2D):
 	self.add_child(t)
 	t.start()
 	await t.timeout
+	
+	
 
 	if body.is_in_group("hit"):
+		$Camera2D.shake(0.1, 5)
 		body.take_damage()
 	else:
 		pass
