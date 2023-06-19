@@ -127,6 +127,9 @@ script = ExtResource("7_u5yps")
 
 [node name="Timer" type="Timer" parent="player/Camera2D"]
 
+[node name="player2" parent="." instance=ExtResource("3_v13p8")]
+position = Vector2(82, 306)
+
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource("2_ik626")
 format = 2

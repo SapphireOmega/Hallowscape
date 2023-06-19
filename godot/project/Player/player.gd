@@ -40,6 +40,11 @@ var spawn_point: Vector2
 
 func _ready() -> void:
 	spawn_point = self.position
+
+
+#expects either no arg (set spawn to current loc) or a Vector2
+func set_spawn(point: Vector2 = self.spawn_point) -> void:
+	spawn_point = self.position
 	
 func die() -> void:
 	self.position = spawn_point
