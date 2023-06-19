@@ -843,5 +843,17 @@ limit_bottom = 360
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 
+[node name="player2" parent="." instance=ExtResource("1_1drrj")]
+position = Vector2(72, 312)
+
+[node name="Camera2D" type="Camera2D" parent="player2"]
+position = Vector2(40, 312)
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 360
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
