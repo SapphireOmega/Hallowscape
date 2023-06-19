@@ -1,9 +1,10 @@
 extends Node
 
-@export var PORT = 8080
+@export var PORT = 12983
 @export var RunOnLaunch = true
 
-var server : TCPServer
+#var server : TCPServer
+var server : UDPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
@@ -22,7 +23,8 @@ func _ready():
 	var ip = get_ip_addr()
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
-	server = TCPServer.new()
+#	server = TCPServer.new()
+	server = UDPServer.new()
 	ThreadsMutex = Mutex.new()
 	GeneralMutex = Mutex.new()
 
@@ -63,15 +65,15 @@ func get_ip_addr():
 
 func processConnectionRequest():
 	get_tree().paused = true
-	
 	$CanvasLayer.visible = true
 	
 	while GameRunning and n_players < MAX_PLAYERS:
+		server.poll()
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
 		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
 			var tcp = server.take_connection()
-			tcp.set_no_delay(true)
+#			tcp.set_no_delay(true)
 
 			GeneralMutex.lock()
 			n_players += 1
@@ -95,40 +97,34 @@ func processConnectionRequest():
 	ClosingThreads.append(PCRThread)
 	ThreadsMutex.unlock()
 
-func serveClient(SCThread, tcp, clientID):
-#	await get_tree().create_timer(3.0).timeout
-#	tcp.put_data("puzzel".to_utf8_buffer())
+func serveClient(SCThread, tcp : PacketPeerUDP, clientID):
+	tcp.bind(PORT, tcp.get_packet_ip())
+	while true:
+		server.poll()
+		if tcp.get_available_packet_count() > 0:
+			var data = tcp.get_packet().get_string_from_utf8()
+			print(data)
+			var command = JSON.parse_string(data)
+			if command["type"] == "pressed":
+				Input.action_press(command["action"])
+			elif command["type"] == "released":
+				Input.action_release(command["action"])
 
-	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
-		tcp.poll()
-		if tcp.get_status() != tcp.STATUS_CONNECTED:
-			break
+#	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
+#		tcp.poll()
+#		if tcp.get_status() != tcp.STATUS_CONNECTED:
+#			break
 
-		var bytes = tcp.get_available_bytes()
-		if bytes > 0:
-			var data = tcp.get_partial_data(bytes)
-			print(data[1].get_string_from_utf8())
-#			var command = data[1].get_string_from_utf8()
-#			if command == "release": 
-#				Input.action_release("move_right")
-#				Input.action_release("move_left")
-#				Input.action_release("jump")
-#			else:
-#				Input.action_press(command)
-			
-			var arguments = data[1].get_string_from_utf8().split(":")
-			if arguments[0] == "p":
-				Input.action_press(arguments[1])
-			elif arguments[0] == "r":
-				Input.action_release(arguments[1])
-
-#			if command:
-#				if command["type"] == "pressed":
-#					Input.action_press(command["action"])
-#				elif command["type"] == "released":
-#					Input.action_release(command["action"])
-#				else:
-#					pass
+#		var bytes = tcp.get_available_bytes()
+#		if bytes > 0:
+#			var data = tcp.get_partial_data(bytes)
+#			print(data[1].get_string_from_utf8())
+#
+#			var arguments = data[1].get_string_from_utf8().split(":")
+#			if arguments[0] == "p":
+#				Input.action_press(arguments[1])
+#			elif arguments[0] == "r":
+#				Input.action_release(arguments[1])
 
 	print("client " + str(players.find_key(tcp)) + " disconnected")
 	
