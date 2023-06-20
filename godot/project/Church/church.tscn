@@ -8,12 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="5_wyokp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_osvp7"]
-a = Vector2(-0.000579834, -18.8857)
 b = Vector2(0, 9.89373)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dtjel"]
-a = Vector2(-231.315, -6.79828e-05)
-b = Vector2(-231.633, 29.578)
+b = Vector2(1.59343e-05, 29.6812)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ltrrs"]
 b = Vector2(1.52588e-05, 29.6812)
@@ -842,19 +840,5 @@ position = Vector2(47, 312)
 position = Vector2(72, 312)
 player_id = 2
 
-[node name="LaserConsole" parent="." instance=ExtResource("7_qwowr")]
-position = Vector2(1046, 82)
-laser_names = ["Laser3"]
-
-[node name="Laser" parent="." instance=ExtResource("7_vaasb")]
-position = Vector2(953, -95)
-rotation = 1.55509
-target_position = Vector2(100, 0)
-
-[node name="Laser2" parent="." instance=ExtResource("7_vaasb")]
-position = Vector2(644, 336)
-target_position = Vector2(509, 0)
-
-[node name="Laser3" parent="." instance=ExtResource("7_vaasb")]
-position = Vector2(785, -123)
-target_position = Vector2(361, 0)
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
