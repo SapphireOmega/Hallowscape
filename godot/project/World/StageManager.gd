@@ -38,6 +38,10 @@ func _on_ready():
 func curStagePath():
 	return $"/root/Main".find_child("Current_level")
 
+
+func getCam():
+	return $"/root/Main".find_child("Player_data").get_child(0)
+
 func changeStage(stage_path, x=0, y=0):
 	$ColorRect.show()
 	$Loadingtext.show()
@@ -55,9 +59,10 @@ func changeStage(stage_path, x=0, y=0):
 	var players = find_players()
 	for player in players:
 		move_player_to(player, x, y)
+		x+= 15
 		player.set_spawn()
 	
-	
+	fastMoveCam(getCam())
 	$Anim.play("TransOut")
 	await $Anim.animation_finished
 	$ColorRect.hide()
@@ -66,12 +71,13 @@ func changeStage(stage_path, x=0, y=0):
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
 	player.position = Vector2(x,y)
-	var cam = player.get_node("Camera2D")
+
+
+func fastMoveCam(cam):
 	cam.position_smoothing_enabled = false
 	await get_tree().process_frame
 	await get_tree().process_frame
 	cam.position_smoothing_enabled = true
-
 
 func find_players():
 	var players = []

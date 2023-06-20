@@ -20,6 +20,11 @@ func _process(delta):
 		print(vee)
 		self.position = vee
 
+func setCamLimits(top, bottom, left, right):
+	self.limit_top = top
+	self.limit_bottom = bottom
+	self.limit_left = left
+	self.limit_right = right
 
 
 
