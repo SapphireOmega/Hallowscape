@@ -85,14 +85,9 @@ position = Vector2(202, 244)
 [node name="player" parent="." instance=ExtResource("3_6mqi6")]
 position = Vector2(276, 193)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(49, 305)
-limit_left = 0
-limit_top = 0
-limit_right = 2016
-limit_bottom = 360
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
+[node name="player2" parent="." instance=ExtResource("3_6mqi6")]
+position = Vector2(233, 181)
+player_id = 2
 
 [node name="OneWays" type="StaticBody2D" parent="."]
 
