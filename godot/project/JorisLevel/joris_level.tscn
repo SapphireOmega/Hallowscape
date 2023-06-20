@@ -118,6 +118,7 @@ position = Vector2(47, 306)
 
 [node name="player2" parent="." instance=ExtResource("3_v13p8")]
 position = Vector2(67, 307)
+player_id = 2
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource("2_ik626")

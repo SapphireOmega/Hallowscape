@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var player_id = 1
+
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var face_direction := 1
 var x_dir := 1
@@ -55,14 +57,14 @@ func die() -> void:
 # All iputs we want to keep track of
 func get_input() -> Dictionary:
 	return {
-		"x": Input.get_axis("move_left", "move_right"),
+		"x": Input.get_axis("move_left"+str(player_id), "move_right"+str(player_id)),
 		"y": Input.get_axis("ui_down", "ui_up"),
-		"just_jump": Input.is_action_just_pressed("jump") == true,
-		"jump": Input.is_action_pressed("jump") == true,
-		"released_jump": Input.is_action_just_released("jump") == true,
-		"just_attack": Input.is_action_just_pressed("attack") == true,
-		"attack": Input.is_action_just_pressed("attack") == true,
-		"interact": Input.is_action_just_pressed("interact") == true
+		"just_jump": Input.is_action_just_pressed("jump"+str(player_id)) == true,
+		"jump": Input.is_action_pressed("jump"+str(player_id)) == true,
+		"released_jump": Input.is_action_just_released("jump"+str(player_id)) == true,
+		"just_attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
+		"attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
+		"interact": Input.is_action_just_pressed("interact"+str(player_id)) == true
 	}
 
 
