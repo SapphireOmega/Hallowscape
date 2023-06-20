@@ -22,7 +22,9 @@ func change_state():
 	else:
 		facing_right = true
 	velocity.x *= -1
-	scale.x *= -1
+	$Sprite2D.scale.x *= -1
+	$Sprite2D2.scale.x *= -1
+	$Detect_player.scale.x *= -1
 
 func take_damage():
 	## hit animation ##
@@ -47,13 +49,13 @@ func take_damage():
 
 
 func _on_detect_player_body_exited(body: CharacterBody2D):
-	if scale.x == 1 and facing_right:
+	if $Sprite2D.scale.x == 1 or $Sprite2D2.scale.x == 1 and facing_right:
 		velocity.x = 50
-	elif scale.x == -1 and facing_right:
+	elif $Sprite2D.scale.x == -1 or $Sprite2D2.scale.x == -1 and facing_right:
 		velocity.x = -50
-	elif scale.x == 1 and !facing_right:
+	elif $Sprite2D.scale.x == 1 or $Sprite2D2.scale.x == 1 and !facing_right:
 		velocity.x = -50
-	elif scale.x == -1 and !facing_right:
+	elif $Sprite2D.scale.x == -1 or $Sprite2D2.scale.x == -1 and !facing_right:
 		velocity.x = 50
 	$Sprite2D.visible = true
 	$Sprite2D2.visible = false

@@ -1,9 +1,10 @@
 extends Node
 
-@export var PORT = 8080
+@export var PORT = 12983
 @export var RunOnLaunch = true
 
 var server : TCPServer
+#var server : UDPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
@@ -11,7 +12,7 @@ var players = {"ID1":null, "ID2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
-var MAX_PLAYERS = 1
+var MAX_PLAYERS = 2
 var n_players = 0
 
 func _ready():
@@ -23,6 +24,7 @@ func _ready():
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
 	server = TCPServer.new()
+#	server = UDPServer.new()
 	ThreadsMutex = Mutex.new()
 	GeneralMutex = Mutex.new()
 
@@ -35,11 +37,6 @@ func _ready():
 	ThreadsMutex.unlock()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("add_player"):
-		n_players+=1
-	if Input.is_action_just_pressed("remove_player"):
-		n_players-=1
-
 	for thread in ClosingThreads:
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
@@ -63,24 +60,25 @@ func get_ip_addr():
 
 func processConnectionRequest():
 	get_tree().paused = true
-	
 	$CanvasLayer.visible = true
 	
 	while GameRunning and n_players < MAX_PLAYERS:
+#		server.poll()
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
 		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
-			var tcp = server.take_connection()
+			var udp = server.take_connection()
+			udp.set_no_delay(true)
 
 			GeneralMutex.lock()
 			n_players += 1
-			players[players.find_key(null)] = tcp
+			players[players.find_key(null)] = udp
 			GeneralMutex.unlock()
 
 			var SCThread = Thread.new()
-			SCThread.start(serveClient.bind(SCThread, tcp, n_players))
+			SCThread.start(serveClient.bind(SCThread, udp, n_players))
 			
-			print("client " + str(players.find_key(tcp)) + " connected")
+			print("client " + str(players.find_key(udp)) + " connected")
 			
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
@@ -95,26 +93,33 @@ func processConnectionRequest():
 	ThreadsMutex.unlock()
 
 func serveClient(SCThread, tcp, clientID):
-#	await get_tree().create_timer(3.0).timeout
-#	tcp.put_data("puzzel".to_utf8_buffer())
+#	udp.bind(PORT, udp.get_packet_ip())
+#	while GameRunning:
+#		server.poll()
+#		if udp.get_available_packet_count() > 0:
+#			var data = udp.get_packet().get_string_from_utf8()
+#			print(data)
+#			var command = JSON.parse_string(data)
+#			if command["type"] == "pressed":
+#				Input.action_press(command["action"])
+#			elif command["type"] == "released":
+#				Input.action_release(command["action"])
+#			else:
+#				pass
 
 	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
 		tcp.poll()
 		if tcp.get_status() != tcp.STATUS_CONNECTED:
 			break
-
 		var bytes = tcp.get_available_bytes()
 		if bytes > 0:
 			var data = tcp.get_partial_data(bytes)
-#			print(data[1].get_string_from_utf8())
-			var command = JSON.parse_string(data[1].get_string_from_utf8())
-			if command:
-				if command["type"] == "pressed":
-					Input.action_press(command["action"])
-				elif command["type"] == "released":
-					Input.action_release(command["action"])
-				else:
-					pass
+			print(data[1].get_string_from_utf8())
+			var arguments = data[1].get_string_from_utf8().split(":")
+			if arguments[0] == "p":
+				Input.action_press(arguments[1])
+			elif arguments[0] == "r":
+				Input.action_release(arguments[1])
 
 	print("client " + str(players.find_key(tcp)) + " disconnected")
 	

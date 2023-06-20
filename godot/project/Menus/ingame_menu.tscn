@@ -44,10 +44,5 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Quit"
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "bladiebla"
-
 [connection signal="button_up" from="VBoxContainer/Resume" to="." method="_on_resume_button_up"]
 [connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]

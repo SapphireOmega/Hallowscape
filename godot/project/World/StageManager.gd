@@ -31,10 +31,20 @@ func _on_ready():
 		print(f6_error_msg)
 	elif last_child.name == self.name:
 		self.queue_free()
-	if $"/root/Main".find_child("Current_level").get_child(0) == null:
-		print("rip no stage found")
-		$"/root/Main".find_child("Current_level").add_child(default_scene.instantiate())
+	if curStagePath().get_child(0) == null:
+		print("Stage Manager: No self-chosen stage found, selecting the default stage instead")
+		curStagePath().add_child(default_scene.instantiate())
+	adjust_cam_to_stage(curStage())
 
+func curStagePath():
+	return $"/root/Main".find_child("Current_level")
+	
+func curStage():
+	return $"/root/Main".find_child("Current_level").get_child(0)
+
+
+func getCam():
+	return $"/root/Main".find_child("Player_data").get_child(0)
 
 func changeStage(stage_path, x=0, y=0):
 	$ColorRect.show()
@@ -45,31 +55,52 @@ func changeStage(stage_path, x=0, y=0):
 	
 	var stage = stage_path.instantiate()
 	
-	if $"/root/Main".find_child("Current_level").get_child(0) != null:
-		$"/root/Main".find_child("Current_level").get_child(0).free()
-	$"/root/Main".find_child("Current_level").add_child(stage)
+	if curStagePath().get_child(0) != null:
+		curStagePath().get_child(0).free()
+	curStagePath().add_child(stage)
 	
 	
-	var player = stage.get_node_or_null("player")
-	if player != null:
+	var players = find_players()
+	for player in players:
 		move_player_to(player, x, y)
+		x+= 15
+		player.set_spawn()
 	
-	
+	fastMoveCam(getCam())
+	adjust_cam_to_stage(stage)
 	$Anim.play("TransOut")
 	await $Anim.animation_finished
 	$ColorRect.hide()
 	$Loadingtext.hide()
 
-
+#grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
 	player.position = Vector2(x,y)
-	var cam = player.get_node("Camera2D")
+
+
+func fastMoveCam(cam):
 	cam.position_smoothing_enabled = false
 	await get_tree().process_frame
 	await get_tree().process_frame
 	cam.position_smoothing_enabled = true
 
+func find_players():
+	var players = []
+	var stage = curStagePath().get_child(0)
+	if stage != null:
+		for node in stage.get_children():
+			if node.has_method("set_spawn"):
+				players.append(node)
+		return players
+	return []
 
+
+
+func adjust_cam_to_stage(stage):
+	if stage.get("CAMLIMITS"):
+		var cl = stage.CAMLIMITS
+		getCam().setCamLimits(cl["top"], cl["bottom"], cl["left"], cl["right"])
+	
 
 func hideGui():
 	$GUI.hide()

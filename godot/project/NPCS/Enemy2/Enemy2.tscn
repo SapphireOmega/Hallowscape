@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://bf006fvv8xgl8"]
 
 [ext_resource type="Script" path="res://NPCS/Enemy2/Enemy2.gd" id="1_2fgon"]
-[ext_resource type="Texture2D" uid="uid://bwbgb8t6lhnvn" path="res://Assets/gothicvania patreon collection/demon-Files/PNG/demon-idle.png" id="2_hkj1l"]
-[ext_resource type="Texture2D" uid="uid://ckt6trf8y8vop" path="res://Assets/gothicvania patreon collection/demon-Files/PNG/demon-attack.png" id="3_y4t7w"]
+[ext_resource type="Texture2D" uid="uid://bwbgb8t6lhnvn" path="res://Assets/gothicvania patreon collection/demon-Files/PNG/demon-idle.png" id="2_tcfdn"]
+[ext_resource type="Texture2D" uid="uid://ckt6trf8y8vop" path="res://Assets/gothicvania patreon collection/demon-Files/PNG/demon-attack.png" id="3_nlnqg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spesj"]
 radius = 17.0294
@@ -160,7 +160,7 @@ graph_offset = Vector2(-203.428, -30.4905)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_o0deo"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["hit"]]
+[node name="CharacterBody2D2" type="CharacterBody2D" groups=["hit"]]
 script = ExtResource("1_2fgon")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["hit"]]
@@ -168,7 +168,7 @@ polygon = PackedVector2Array(-1, -2, 3, -2, 9, -1, 9, -6, 14, -9, 12, -6, 12, 1,
 
 [node name="IdleSprite" type="Sprite2D" parent="."]
 position = Vector2(20, 25)
-texture = ExtResource("2_hkj1l")
+texture = ExtResource("2_tcfdn")
 hframes = 6
 
 [node name="Area2D" type="Area2D" parent="IdleSprite" groups=["hit"]]
@@ -184,7 +184,7 @@ shape = SubResource("CapsuleShape2D_sos7w")
 [node name="AttackSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-12, 5)
-texture = ExtResource("3_y4t7w")
+texture = ExtResource("3_nlnqg")
 hframes = 11
 
 [node name="Area2D" type="Area2D" parent="AttackSprite" groups=["hit"]]

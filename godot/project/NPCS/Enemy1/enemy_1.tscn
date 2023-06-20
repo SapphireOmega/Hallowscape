@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://dpfqsxn2iwbtg"]
 
 [ext_resource type="Script" path="res://NPCS/Enemy1/Enemy1.gd" id="1_nao3q"]
-[ext_resource type="Texture2D" uid="uid://ceug7vqmbpvrk" path="res://Assets/gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-walk.png" id="2_8ll81"]
-[ext_resource type="Texture2D" uid="uid://ntm0ra3l0t44" path="res://Assets/gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-idle.png" id="3_ggfve"]
+[ext_resource type="Texture2D" uid="uid://ceug7vqmbpvrk" path="res://Assets/gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-walk.png" id="2_evps0"]
+[ext_resource type="Texture2D" uid="uid://ntm0ra3l0t44" path="res://Assets/gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-idle.png" id="3_bxytm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2wj2"]
 size = Vector2(44, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgl2j"]
-size = Vector2(2, 12)
+size = Vector2(2, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riui5"]
 size = Vector2(15, 12)
@@ -87,12 +87,12 @@ hitpoints = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_8ll81")
+texture = ExtResource("2_evps0")
 flip_h = true
 hframes = 12
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = ExtResource("3_ggfve")
+texture = ExtResource("3_bxytm")
 flip_h = true
 hframes = 6
 
@@ -105,7 +105,7 @@ shape = SubResource("RectangleShape2D_f2wj2")
 [node name="Detect_player" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect_player"]
-position = Vector2(23, 10)
+position = Vector2(23, 13)
 shape = SubResource("RectangleShape2D_kgl2j")
 
 [node name="Attack_player" type="Area2D" parent="."]
