@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="5_wyokp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_osvp7"]
+a = Vector2(-0.316986, -18.9114)
 b = Vector2(0, 9.89373)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dtjel"]
@@ -788,7 +789,7 @@ scale = Vector2(3.16019, -38.8125)
 shape = SubResource("SegmentShape2D_osvp7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-7.62939e-06, 0)
+position = Vector2(0, -740)
 rotation = 1.5708
 scale = Vector2(3.16019, -38.8125)
 shape = SubResource("SegmentShape2D_dtjel")
