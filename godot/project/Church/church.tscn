@@ -10,10 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="7_vaasb"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_osvp7"]
+a = Vector2(-0.000579834, -18.8857)
 b = Vector2(0, 9.89373)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dtjel"]
-b = Vector2(1.59343e-05, 29.6812)
+a = Vector2(-231.315, -6.79828e-05)
+b = Vector2(-231.633, 29.578)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ltrrs"]
 b = Vector2(1.52588e-05, 29.6812)
@@ -847,6 +849,7 @@ player_id = 2
 
 [node name="LaserConsole" parent="." instance=ExtResource("7_qwowr")]
 position = Vector2(1046, 82)
+laser_names = ["Laser3"]
 
 [node name="Laser" parent="." instance=ExtResource("7_vaasb")]
 position = Vector2(953, -95)
