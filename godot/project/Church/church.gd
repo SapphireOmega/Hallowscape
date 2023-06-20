@@ -1,4 +1,9 @@
 extends Node2D
 
-const CAMLIMITS = {}
+const CAMLIMITS = {
+	"top" :0,
+	"bottom" :360,
+	"left" :0,
+	"right" :1152,
+	}
 

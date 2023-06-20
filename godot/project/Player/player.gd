@@ -239,7 +239,7 @@ func _player_detected(body: CharacterBody2D):
 	
 
 	if body.is_in_group("hit"):
-		$Camera2D.shake(shake_duration, shake_intensity)
+		StageManager.getCam().shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
 		pass

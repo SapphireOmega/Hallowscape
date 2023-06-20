@@ -37,6 +37,9 @@ func _on_ready():
 
 func curStagePath():
 	return $"/root/Main".find_child("Current_level")
+	
+func curStage():
+	return $"/root/Main".find_child("Current_level").get_child(0)
 
 
 func getCam():
@@ -63,6 +66,7 @@ func changeStage(stage_path, x=0, y=0):
 		player.set_spawn()
 	
 	fastMoveCam(getCam())
+	adjust_cam_to_stage(stage)
 	$Anim.play("TransOut")
 	await $Anim.animation_finished
 	$ColorRect.hide()
@@ -82,12 +86,20 @@ func fastMoveCam(cam):
 func find_players():
 	var players = []
 	var stage = curStagePath().get_child(0)
-	for node in stage.get_children():
-		if node.has_method("set_spawn"):
-			players.append(node)
-	return players
+	if stage != null:
+		for node in stage.get_children():
+			if node.has_method("set_spawn"):
+				players.append(node)
+		return players
+	return []
 
 
+
+func adjust_cam_to_stage(stage):
+	if stage.get("CAMLIMITS"):
+		var cl = stage.CAMLIMITS
+		getCam().setCamLimits(cl["top"], cl["bottom"], cl["left"], cl["right"])
+	
 
 func hideGui():
 	$GUI.hide()
