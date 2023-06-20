@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxeulfyc440ed"]
+[gd_scene load_steps=13 format=3 uid="uid://cxeulfyc440ed"]
 
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="1_1drrj"]
+[ext_resource type="Script" path="res://Church/church.gd" id="1_mo6it"]
 [ext_resource type="PackedScene" uid="uid://ds7xbyyv2m5vh" path="res://Church/bg_church.tscn" id="1_ta75v"]
 [ext_resource type="Texture2D" uid="uid://d17r4ifaff001" path="res://Assets/gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png" id="2_khh8y"]
 [ext_resource type="Script" path="res://Church/Area2D.gd" id="4_heb55"]
@@ -775,6 +776,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ne4fk")
 
 [node name="Church" type="Node2D"]
+script = ExtResource("1_mo6it")
 
 [node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
 

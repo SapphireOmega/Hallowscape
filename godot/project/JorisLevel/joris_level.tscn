@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=20 format=3 uid="uid://cx81owv8k5jdj"]
 
+[ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
 [ext_resource type="TileSet" uid="uid://xfd7ufx5rj34" path="res://Town/town_tilemap.tres" id="2_ik626"]
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_v13p8"]
@@ -34,6 +35,7 @@ size = Vector2(90, 4)
 size = Vector2(18, 75.25)
 
 [node name="JorisLevel" type="Node2D"]
+script = ExtResource("1_hhtjg")
 
 [node name="Bg" parent="." instance=ExtResource("1_tdpcp")]
 offset = Vector2(0, -30)
@@ -116,6 +118,7 @@ position = Vector2(1264, 313)
 position = Vector2(1467, 286)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+visible = false
 position = Vector2(49, 305)
 limit_left = 0
 limit_top = 0
