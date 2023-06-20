@@ -114,7 +114,7 @@ func serveClient(SCThread, tcp):
 		var bytes = tcp.get_available_bytes()
 		if bytes > 0:
 			var data = tcp.get_partial_data(bytes)
-			print(data[1].get_string_from_utf8())
+#			print(data[1].get_string_from_utf8())
 			var arguments = data[1].get_string_from_utf8().split(":")
 			if arguments[0] == "p":
 				Input.action_press(arguments[1]+players.find_key(tcp))

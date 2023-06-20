@@ -118,7 +118,9 @@ func set_direction(hor_direction) -> void:
 	# To animate, only scale the sprite
 	if hor_direction == 0:
 		return
-	apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
+	
+	$Area2D.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
+	$Sprite2D.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
 
 
