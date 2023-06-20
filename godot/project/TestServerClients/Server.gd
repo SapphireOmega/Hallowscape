@@ -8,7 +8,7 @@ var server : TCPServer
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
-var players = {"ID1":null, "ID2":null}
+var players = {"1":null, "2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
@@ -76,7 +76,7 @@ func processConnectionRequest():
 			GeneralMutex.unlock()
 
 			var SCThread = Thread.new()
-			SCThread.start(serveClient.bind(SCThread, udp, n_players))
+			SCThread.start(serveClient.bind(SCThread, udp))
 			
 			print("client " + str(players.find_key(udp)) + " connected")
 			
@@ -92,7 +92,7 @@ func processConnectionRequest():
 	ClosingThreads.append(PCRThread)
 	ThreadsMutex.unlock()
 
-func serveClient(SCThread, tcp, clientID):
+func serveClient(SCThread, tcp):
 #	udp.bind(PORT, udp.get_packet_ip())
 #	while GameRunning:
 #		server.poll()
@@ -117,9 +117,9 @@ func serveClient(SCThread, tcp, clientID):
 			print(data[1].get_string_from_utf8())
 			var arguments = data[1].get_string_from_utf8().split(":")
 			if arguments[0] == "p":
-				Input.action_press(arguments[1])
+				Input.action_press(arguments[1]+players.find_key(tcp))
 			elif arguments[0] == "r":
-				Input.action_release(arguments[1])
+				Input.action_release(arguments[1]+players.find_key(tcp))
 
 	print("client " + str(players.find_key(tcp)) + " disconnected")
 	

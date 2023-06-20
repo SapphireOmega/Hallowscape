@@ -45,6 +45,8 @@ var spawn_point: Vector2
 
 func _ready() -> void:
 	spawn_point = self.position
+	if player_id == 2:
+		self.modulate = Color(0, 2, 4.5, 1)
 
 
 #expects either no arg (set spawn to current loc) or a Vector2
