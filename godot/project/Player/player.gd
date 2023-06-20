@@ -6,7 +6,7 @@ extends CharacterBody2D
 var face_direction := 1
 var x_dir := 1
 
-@export var max_speed: float = 135
+@export var max_speed: float = 150
 @export var acceleration: float = 1440
 @export var turning_acceleration : float = 3600
 @export var deceleration: float = 2200
