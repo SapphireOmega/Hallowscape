@@ -45,15 +45,6 @@ position = Vector2(129, 320)
 [node name="player" parent="." instance=ExtResource("3_ki5f8")]
 position = Vector2(48, 312)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(49, 305)
-limit_left = 0
-limit_top = 0
-limit_right = 2016
-limit_bottom = 360
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-
 [node name="player2" parent="." instance=ExtResource("3_ki5f8")]
 position = Vector2(72, 312)
 
