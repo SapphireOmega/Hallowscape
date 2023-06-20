@@ -34,6 +34,7 @@ func _on_ready():
 	if curStagePath().get_child(0) == null:
 		print("Stage Manager: No self-chosen stage found, selecting the default stage instead")
 		curStagePath().add_child(default_scene.instantiate())
+	adjust_cam_to_stage(curStage())
 
 func curStagePath():
 	return $"/root/Main".find_child("Current_level")

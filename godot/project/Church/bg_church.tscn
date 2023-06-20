@@ -27,7 +27,12 @@ follow_viewport_enabled = true
 
 [node name="Old-dark-castle-interior-background" type="Sprite2D" parent="."]
 position = Vector2(576, 184)
-scale = Vector2(1.2, 1.2)
+scale = Vector2(1.2, 1.21053)
+texture = ExtResource("1_7pk3h")
+
+[node name="Old-dark-castle-interior-background2" type="Sprite2D" parent="."]
+position = Vector2(576, -184)
+scale = Vector2(1.2, 1.21053)
 texture = ExtResource("1_7pk3h")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]

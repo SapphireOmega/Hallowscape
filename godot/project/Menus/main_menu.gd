@@ -3,8 +3,6 @@ extends Control
 # TODO: make this scene the launch scene
 # untill then please use f6 to start the main menu
 # its already setup to switch scenes to the main scene
-# use get_tree().change_scene_to_file() to change scenes between main
-# menu and other scenes, should work in reverse too in theory
 
 func _ready():
 	$VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
