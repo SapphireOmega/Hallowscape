@@ -40,6 +40,46 @@ layer_0/tile_data = PackedInt32Array(655389, 262144, 1, 655390, 196608, 1, 85198
 
 [node name="Bg2" parent="." instance=ExtResource("2_25ycy")]
 
+[node name="LaserConsole" parent="." instance=ExtResource("6_46i7n")]
+position = Vector2(202, 202)
+laser_names = ["Laser4", "Laser5", "Laser6"]
+
+[node name="Line2D" type="Line2D" parent="LaserConsole"]
+position = Vector2(-8.5, 6.5)
+points = PackedVector2Array(0, 0, 0, 97, 266, 97, 270, 92, 286, 92, 291, 97, 542, 97)
+width = 1.0
+default_color = Color(0.0980392, 0.0980392, 0.207843, 1)
+
+[node name="LaserConsole2" parent="." instance=ExtResource("6_46i7n")]
+position = Vector2(497, 250)
+laser_names = ["Laser4", "Laser5", "Laser1", "Laser2"]
+
+[node name="Line2D" type="Line2D" parent="LaserConsole2"]
+position = Vector2(-7.5, 6.5)
+points = PackedVector2Array(-1, 0, -1, 51, -7, 51, -11, 46, -23, 46, -23, 43, -23, 46, -25, 46, -29, 51, -171, 51, -171, -41, -162, -41)
+width = 1.0
+default_color = Color(0, 0.0784314, 0.486275, 1)
+
+[node name="Line2D2" type="Line2D" parent="LaserConsole2"]
+position = Vector2(8.5, 5.5)
+points = PackedVector2Array(0, 1, 0, 52, 110, 52, 110, 49)
+width = 1.0
+default_color = Color(0, 0.0784314, 0.486275, 1)
+
+[node name="LaserConsole3" parent="." instance=ExtResource("6_46i7n")]
+position = Vector2(672, 202)
+laser_names = ["Laser2"]
+
+[node name="LaserConsole4" parent="." instance=ExtResource("6_46i7n")]
+position = Vector2(496, 154)
+laser_names = ["Laser5", "Laser6"]
+
+[node name="Line2D" type="Line2D" parent="LaserConsole4"]
+position = Vector2(8.5, 7.5)
+points = PackedVector2Array(0, 0, 8, 0, 8, 142, 111, 142, 111, 144, 111, 142, 230, 142, 230, 144)
+width = 1.0
+default_color = Color(0.337255, 0, 0, 1)
+
 [node name="Laser1" parent="." instance=ExtResource("5_ckp68")]
 position = Vector2(329, 215)
 
@@ -63,24 +103,11 @@ rotation = -1.5708
 enabled = false
 is_casting = false
 
-[node name="LaserConsole" parent="." instance=ExtResource("6_46i7n")]
-position = Vector2(201, 202)
-laser_names = ["Laser4", "Laser5", "Laser6"]
-
-[node name="LaserConsole2" parent="." instance=ExtResource("6_46i7n")]
-position = Vector2(497, 250)
-laser_names = ["Laser4", "Laser5", "Laser1", "Laser2"]
-
-[node name="LaserConsole3" parent="." instance=ExtResource("6_46i7n")]
-position = Vector2(672, 202)
-laser_names = ["Laser2"]
-
-[node name="LaserConsole4" parent="." instance=ExtResource("6_46i7n")]
-position = Vector2(496, 154)
-laser_names = ["Laser5", "Laser6"]
-
 [node name="Barrel" parent="." instance=ExtResource("4_ph7l4")]
 position = Vector2(202, 244)
+
+[node name="Barrel2" parent="." instance=ExtResource("4_ph7l4")]
+position = Vector2(943, 222)
 
 [node name="player" parent="." instance=ExtResource("3_6mqi6")]
 position = Vector2(276, 193)
