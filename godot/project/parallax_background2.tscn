@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://deng5iavg2kkv"]
+
+[ext_resource type="Texture2D" uid="uid://d3nrcs7d3tfik" path="res://Assets/Fort of Illusion Files/Layers/back.png" id="1_8yqdd"]
+[ext_resource type="Texture2D" uid="uid://xudaix8f5fag" path="res://Assets/Fort of Illusion Files/Layers/mountains.png" id="2_kbpka"]
+
+[sub_resource type="GDScript" id="GDScript_wdyxm"]
+script/source = "extends ParallaxBackground
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_8obj0"]
+script/source = "extends ParallaxLayer
+
+
+@export var CLOUD_SPEED = 0
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	motion_offset.x -= delta*CLOUD_SPEED
+	# pass
+
+"
+
+[node name="Bg2" type="ParallaxBackground"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = SubResource("GDScript_wdyxm")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+z_index = 1
+position = Vector2(32, 116)
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(64, 0)
+script = SubResource("GDScript_8obj0")
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("1_8yqdd")
+
+[node name="Background2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(128, 0)
+texture = ExtResource("1_8yqdd")
+
+[node name="Background3" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(256, 0)
+texture = ExtResource("1_8yqdd")
+
+[node name="Background4" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(384, 0)
+texture = ExtResource("1_8yqdd")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+position = Vector2(128.5, 93.5)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(256, 0)
+
+[node name="Middleground" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_kbpka")
+
+[node name="Middleground2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(512, 0)
+texture = ExtResource("2_kbpka")

@@ -16,8 +16,9 @@ func _ready() -> void:
 	connect("body_exited", _on_body_exited)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta) -> void:
-	for body in can_interact:
+func _process(_delta) -> void:
+	for body in can_interact.filter(func(body):
+		return body.has_method("get_input") && body.is_on_floor()):
 		if !body.get_input()["interact"]: return
 		for laser_name in laser_names:
 			var laser: Object = self.get_parent().get_node(laser_name)
