@@ -35,6 +35,45 @@ position = Vector2(576, -184)
 scale = Vector2(1.2, 1.21053)
 texture = ExtResource("1_7pk3h")
 
+[node name="ColorRect" type="ColorRect" parent="Old-dark-castle-interior-background2"]
+offset_left = 20.0
+offset_top = 93.0
+offset_right = 167.0
+offset_bottom = 139.0
+color = Color(0.0588235, 0.133333, 0.160784, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Old-dark-castle-interior-background2/ColorRect"]
+layout_mode = 0
+offset_left = 267.0
+offset_top = -27.0
+offset_right = 354.0
+offset_bottom = 65.0
+color = Color(0.0588235, 0.133333, 0.160784, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Old-dark-castle-interior-background2/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 27.0
+offset_right = 140.0
+offset_bottom = 86.0
+color = Color(0.0588235, 0.133333, 0.160784, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Old-dark-castle-interior-background2/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = -20.0
+offset_right = 160.0
+offset_bottom = 6.0
+color = Color(0.0588235, 0.133333, 0.160784, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Old-dark-castle-interior-background2/ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -6.91325
+offset_right = -67.0
+offset_bottom = 19.0868
+color = Color(0.0588235, 0.133333, 0.160784, 1)
+
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 2.08165e-12)
@@ -56,4 +95,24 @@ script = SubResource("GDScript_v2i4f")
 
 [node name="Night-town-background-clouds2" type="Sprite2D" parent="ParallaxLayer"]
 position = Vector2(312, 96)
+texture = ExtResource("2_aiwyj")
+
+[node name="Old-dark-castle-interior-background3" type="Sprite2D" parent="."]
+position = Vector2(576, -552)
+scale = Vector2(1.2, 1.21053)
+texture = ExtResource("1_7pk3h")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+position = Vector2(0, -200)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(640, 2.08165e-12)
+script = SubResource("GDScript_8obj0")
+CLOUD_SPEED_1 = 20
+
+[node name="Night-town-background-clouds" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(160, 120)
+texture = ExtResource("2_aiwyj")
+
+[node name="Night-town-background-clouds2" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(544, 120)
 texture = ExtResource("2_aiwyj")
