@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var laser_names = ["Laser3"]  # Will look for this laser in the tree and disable it
+@export var laser_names = ["Laser"]  # Will look for this laser in the tree and disable it
 
 var can_interact = []  # All CharacterBody2Ds that are at the console
 
