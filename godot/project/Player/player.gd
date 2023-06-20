@@ -88,8 +88,8 @@ func push_barrels(delta: float) -> void:
 		var obj: Object = collision.get_collider()
 		if obj.has_method("slide") && (angle > 1.569 && angle < 1.571):
 			obj.slide(delta, 100 * face_direction)
-		elif obj is CharacterBody2D:
-			obj.move_and_slide(Vector2(100 * face_direction, 0))
+		elif obj is CharacterBody2D && (angle > 1.569 && angle < 1.571):
+			obj.move_and_collide(Vector2(face_direction, 0))
 
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
