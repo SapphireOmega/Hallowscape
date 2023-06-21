@@ -102,8 +102,8 @@ func adjust_cam_to_stage(stage):
 
 
 func kill_players():
-	$TextureRect.show()
-	$Anim.play("TransIn")
+	$TextureRect2.show()
+	$Anim.play("DeathIn")
 	await $Anim.animation_finished
 	
 	var players = find_players()
@@ -112,8 +112,8 @@ func kill_players():
 	fastMoveCam(getCam())
 	
 	
-	$Anim.play("TransOut")
+	$Anim.play("DeathOut")
 	await $Anim.animation_finished
-	$TextureRect.hide()
+	$TextureRect2.hide()
 
 

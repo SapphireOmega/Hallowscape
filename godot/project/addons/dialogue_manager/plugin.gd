@@ -88,9 +88,9 @@ func _edit(object) -> void:
 		main_view.open_resource(object)
 
 
-func _apply_changes() -> void:
-	if is_instance_valid(main_view):
-		main_view.apply_changes()
+#func _apply_changes() -> void:
+#	if is_instance_valid(main_view):
+#		main_view.apply_changes()
 
 
 func _build() -> bool:
