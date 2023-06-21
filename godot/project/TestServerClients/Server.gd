@@ -1,10 +1,15 @@
+# Note: comment the lines with --- to switch between TCP and UDP
+
 extends Node
 
 @export var PORT = 12983
 @export var RunOnLaunch = true
 
+# ---
 #var server : UDPServer
 var server : TCPServer
+# ---
+
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
@@ -25,8 +30,11 @@ func _ready():
 	var ip = get_ip_addr()
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
+	# ---
 #	server = UDPServer.new()
 	server = TCPServer.new()
+	# ---
+
 	ThreadsMutex = Mutex.new()
 	GeneralMutex = Mutex.new()
 
@@ -75,13 +83,19 @@ func processConnectionRequest():
 	$CanvasLayer.show()
 	
 	while GameRunning and n_players < MAX_PLAYERS:
+		# ---
 #		server.poll()
+		# ---
+
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
 		 														str(MAX_PLAYERS) + " connected"
 		if server.is_connection_available():
 			# Take the connection and set the TCP delay to false
 			var tcp = server.take_connection()
+
+			# ---
 			tcp.set_no_delay(true)
+			#---
 
 			# Combine the TCP stream to the player ID.
 			GeneralMutex.lock()
@@ -114,19 +128,17 @@ func processConnectionRequest():
 
 # Thread function for listening to client input
 func serveClient(SCThread, tcp):
-#	udp.bind(PORT, udp.get_packet_ip())
+	# ---
+#	tcp.bind(PORT, tcp.get_packet_ip())
 #	while GameRunning:
 #		server.poll()
-#		if udp.get_available_packet_count() > 0:
-#			var data = udp.get_packet().get_string_from_utf8()
-#			print(data)
-#			var command = JSON.parse_string(data)
-#			if command["type"] == "pressed":
-#				Input.action_press(command["action"])
-#			elif command["type"] == "released":
-#				Input.action_release(command["action"])
-#			else:
-#				pass
+#		if tcp.get_available_packet_count() > 0:
+#			var data = tcp.get_packet()
+#			var arguments = data.get_string_from_utf8().split(":")
+#			if arguments[0] == "p": # Client presses button
+#				Input.action_press(arguments[1]+players.find_key(tcp))
+#			elif arguments[0] == "r": # Client releases button
+#				Input.action_release(arguments[1]+players.find_key(tcp))
 
 	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
 		tcp.poll()
@@ -145,6 +157,7 @@ func serveClient(SCThread, tcp):
 				Input.action_press(arguments[1]+players.find_key(tcp))
 			elif arguments[0] == "r": # Client releases button
 				Input.action_release(arguments[1]+players.find_key(tcp))
+	# ---
 
 	# Here the client is no longer connected
 	print("client " + str(players.find_key(tcp)) + " disconnected")
@@ -156,7 +169,9 @@ func serveClient(SCThread, tcp):
 	GeneralMutex.unlock()
 	
 	# Close the connection
+	# ---
 	tcp.disconnect_from_host()
+	# ---
 	
 	# Remove the client serving thread from the running threads and queue
 	# it for deletion

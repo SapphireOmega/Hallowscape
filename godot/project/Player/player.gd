@@ -156,8 +156,6 @@ func jump_logic(_delta: float) -> void:
 	# The value added to the treshold is arbritary,
 	# But it solves a problem where jumping into 
 	if is_on_ceiling(): velocity.y = jump_hang_treshold + 10.0
-	if is_on_ceiling(): print("test") 
-
 
 func double_jump_logic(_delta: float) -> void:
 	if is_on_floor():
