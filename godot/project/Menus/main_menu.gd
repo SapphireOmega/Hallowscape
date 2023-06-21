@@ -5,7 +5,7 @@ extends Control
 # its already setup to switch scenes to the main scene
 
 func _ready():
-	$VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
+	$Menu/VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
 	MusicGallery.play_track_by_name("pengel") #main menu theme
 
 
@@ -17,11 +17,13 @@ func _on_start_button_up():
 
 
 
+func _on_credits_button_up():
+	$Menu.hide()
+	$Credits.show()
 
-#TODO: make options menu
-func _on_options_button_up():
-	pass
 
 #quits the game
 func _on_quit_button_up():
 	get_tree().quit()
+
+

@@ -6,7 +6,8 @@ extends CanvasLayer
 var is_paused = false : 
 	set(value):
 		is_paused = value
-		get_tree().paused = is_paused
+		if !(get_tree().paused and Server.server_paused):
+			get_tree().paused = is_paused
 		visible = is_paused
 
 #when esc is pressed and no other function uses that button press that frame

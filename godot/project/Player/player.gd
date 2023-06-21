@@ -6,7 +6,7 @@ extends CharacterBody2D
 var face_direction := 1
 var x_dir := 1
 
-@export var max_speed: float = 135
+@export var max_speed: float = 150
 @export var acceleration: float = 1440
 @export var turning_acceleration : float = 3600
 @export var deceleration: float = 2200
@@ -51,7 +51,7 @@ func _ready() -> void:
 
 #expects either no arg (set spawn to current loc) or a Vector2
 func set_spawn(point: Vector2 = self.spawn_point) -> void:
-	spawn_point = self.position
+	spawn_point = point
 	
 func die() -> void:
 	self.position = spawn_point
@@ -90,8 +90,10 @@ func push_barrels(delta: float) -> void:
 		var slide_collision: bool = angle > 1.569 && angle < 1.571 && (pos.x - position.x) * face_direction > 0
 		if obj.has_method("slide") && slide_collision:
 			obj.slide(delta, 100 * face_direction)
-		if obj.has_method("zipline") && slide_collision:
+		elif obj.has_method("zipline") && slide_collision:
 			obj.zipline(1000 * face_direction)
+		elif obj is CharacterBody2D && slide_collision:
+			obj.move_and_collide(Vector2(face_direction, 0))
 
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
@@ -158,8 +160,6 @@ func jump_logic(_delta: float) -> void:
 	# The value added to the treshold is arbritary,
 	# But it solves a problem where jumping into 
 	if is_on_ceiling(): velocity.y = jump_hang_treshold + 10.0
-	if is_on_ceiling(): print("test") 
-
 
 func double_jump_logic(_delta: float) -> void:
 	if is_on_floor():
