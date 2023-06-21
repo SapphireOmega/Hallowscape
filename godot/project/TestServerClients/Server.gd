@@ -68,17 +68,6 @@ func _process(_delta):
 		RunningThreads.append(PCRThread)
 		ThreadsMutex.unlock()
 
-# Helper function for obtaining the host IP address
-func get_ip_addr():
-	var ip
-	# Only return the last non-localhost IPv4 address in IP.get_local_addresses()
-	for address in IP.get_local_addresses():
-		if (address.split('.').size() == 4):
-			ip = address
-		else:
-			break
-	return ip
-
 # Thread function for accepting and handling incoming connection requests
 func processConnectionRequest():
 	# Pause the game and show the pause screen
@@ -190,6 +179,17 @@ func sendToPlayer(PlayerID, message):
 	var reciever = players[str(PlayerID)]
 	if reciever:
 		reciever.put_data(message.to_utf8_buffer())
+
+# Helper function for obtaining the host IP address
+func get_ip_addr():
+	var ip
+	# Only return the last non-localhost IPv4 address in IP.get_local_addresses()
+	for address in IP.get_local_addresses():
+		if (address.split('.').size() == 4):
+			ip = address
+		else:
+			break
+	return ip
 
 func _exit_tree():
 	# Clean up the threads when the game is exited
