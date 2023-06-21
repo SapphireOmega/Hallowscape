@@ -3,6 +3,7 @@ extends CanvasLayer
 # ---levels-------------- #
 #ADD LEVELS TO THIS LIST!
 const JORISLEVEL = preload("res://JorisLevel/joris_level.tscn")
+const JORISLEVEL2 = preload("res://JorisLevel2/joris_level2.tscn")
 const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
