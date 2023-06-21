@@ -83,11 +83,15 @@ func _physics_process(delta: float) -> void:
 
 func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var angle = collision.get_angle()
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var angle: float = collision.get_angle()
 		var obj: Object = collision.get_collider()
-		if obj.has_method("slide") && (angle > 1.569 && angle < 1.571):
+		var pos: Vector2 = collision.get_position()
+		var slide_collision: bool = angle > 1.569 && angle < 1.571 && (pos.x - position.x) * face_direction > 0
+		if obj.has_method("slide") && slide_collision:
 			obj.slide(delta, 100 * face_direction)
+		if obj.has_method("zipline") && slide_collision:
+			obj.zipline(1000 * face_direction)
 
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
