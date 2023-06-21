@@ -19,6 +19,7 @@ var RunningThreads = []
 var ClosingThreads = []
 var MAX_PLAYERS = 2
 var n_players = 0
+var server_paused = true
 
 func _ready():
 	# Does not run the server if this variable is turned off.
@@ -56,6 +57,8 @@ func _process(_delta):
 	
 	# Pause the game and create a new connection accepting thread 
 	if n_players < MAX_PLAYERS and !PCRThread.is_alive():
+		server_paused = true
+
 		# Start the new connection accepting thread
 		PCRThread = Thread.new()
 		PCRThread.start(processConnectionRequest)
@@ -118,6 +121,7 @@ func processConnectionRequest():
 	# Make the pause screen vanish
 	$CanvasLayer.hide()
 	get_tree().paused = false
+	server_paused = false
 
 	# Remove the connection accepting thread from the running threads and
 	# queue it for deletion
