@@ -13,7 +13,7 @@ func _ready():
 func _on_start_button_up():
 	MusicGallery.stop_track_by_name("pengel")
 	#add below whatever the start scene is
-	StageManager.changeStage(StageManager.TOWN, 50, 312)
+	StageManager.changeStage(StageManager.JORISLEVEL, 50, 312)
 
 
 
