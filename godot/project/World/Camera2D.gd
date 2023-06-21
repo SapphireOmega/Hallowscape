@@ -50,3 +50,15 @@ func shake(time: float, amount: float):
 func _on_timer_timeout():
 	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	shake_amount = 0
+
+
+func focus_cam_to_pos(pos, i):
+	if i == true:
+		$Camera2D.enabled = true
+		$Camera2D.offset.y = pos.y/3
+		self.enabled = false
+	else:
+		self.enabled = true
+		$Camera2D.enabled = false
+
+
