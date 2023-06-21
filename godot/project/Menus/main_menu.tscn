@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3m6x5g4aav3"]
+[gd_scene load_steps=6 format=3 uid="uid://d3m6x5g4aav3"]
 
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2j5sl"]
 [ext_resource type="Texture2D" uid="uid://3fcxqiato82w" path="res://Menus/Main_menu(placeholder).jpg" id="2_2yq6f"]
 
-[node name="Menu" type="Control"]
+[sub_resource type="Gradient" id="Gradient_folk3"]
+offsets = PackedFloat32Array(0, 0.00645161, 1)
+colors = PackedColorArray(0.133084, 0, 0.877055, 1, 0.529412, 0, 0.921569, 1, 0.627451, 0.635294, 0.933333, 0.988235)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oo78h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oioa0"]
+resource_local_to_scene = true
+as_normal_map = true
+bump_strength = 32.0
+color_ramp = SubResource("Gradient_folk3")
+noise = SubResource("FastNoiseLite_oo78h")
+
+[node name="Menu_screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +25,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2j5sl")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,38 +43,108 @@ grow_vertical = 2
 texture = ExtResource("2_2yq6f")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = 64.0
-offset_right = 77.0
-offset_bottom = 166.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -101.0
+offset_right = 45.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../Quit")
 text = "New game
 "
 
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Credits" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "Options"
+text = "Credits
+"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 focus_neighbor_bottom = NodePath("../Start")
 text = "Quit"
 
-[connection signal="button_up" from="VBoxContainer/Start" to="." method="_on_start_button_up"]
-[connection signal="button_up" from="VBoxContainer/Options" to="." method="_on_options_button_up"]
-[connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_oioa0")
+
+[node name="Panel" type="Panel" parent="Credits"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_right = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="VBoxContainer" parent="Credits/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label2" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Button" type="Button" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -31.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+text = "Main menu"
+
+[connection signal="button_up" from="Menu/VBoxContainer/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Menu/VBoxContainer/Quit" to="." method="_on_quit_button_up"]

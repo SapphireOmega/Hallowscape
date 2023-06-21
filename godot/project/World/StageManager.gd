@@ -47,8 +47,7 @@ func getCam():
 	return $"/root/Main".find_child("Player_data").get_child(0)
 
 func changeStage(stage_path, x=0, y=0):
-	$ColorRect.show()
-	$Loadingtext.show()
+	$TextureRect.show()
 	$Anim.play("TransIn")
 	await $Anim.animation_finished
 	
@@ -70,8 +69,7 @@ func changeStage(stage_path, x=0, y=0):
 	adjust_cam_to_stage(stage)
 	$Anim.play("TransOut")
 	await $Anim.animation_finished
-	$ColorRect.hide()
-	$Loadingtext.hide()
+	$TextureRect.hide()
 
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
