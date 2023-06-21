@@ -10,4 +10,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	players = StageManager.find_players()
-	self.offset.x = -players[0].position.x
+	if len(players) > 0:
+		self.offset.x = -players[0].position.x
