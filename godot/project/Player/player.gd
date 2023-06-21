@@ -51,7 +51,7 @@ func _ready() -> void:
 
 #expects either no arg (set spawn to current loc) or a Vector2
 func set_spawn(point: Vector2 = self.spawn_point) -> void:
-	spawn_point = self.position
+	spawn_point = point
 	
 func die() -> void:
 	self.position = spawn_point
