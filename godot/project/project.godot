@@ -20,14 +20,18 @@ config/icon="res://icon.svg"
 MusicGallery="*res://sounds/Music_Gallery.tscn"
 Server="*res://TestServerClients/Server.tscn"
 StageManager="*res://World/StageManager.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -97,6 +101,16 @@ interact2={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://NPCS/NPC1/test_dialogue.dialogue")
+
+[layer_names]
+
+2d_render/layer_1="1"
+2d_render/layer_2="2"
+2d_render/layer_3="3"
 
 [rendering]
 

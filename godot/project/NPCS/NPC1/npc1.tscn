@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq30p6n76h0es"]
+
+[ext_resource type="Texture2D" uid="uid://bx7m65xjhfkbq" path="res://Assets/GothicVania-town-files/PNG/sprites/hat-man-idle/hat-man-idle-1.png" id="1_l8u32"]
+[ext_resource type="Script" path="res://NPCS/NPC1/npc1.gd" id="1_oie5x"]
+[ext_resource type="Texture2D" uid="uid://bggnqud7rk4do" path="res://NPCS/Enemy1/pixil-frame-0.png" id="4_tvawq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4hv5"]
+size = Vector2(16, 45.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvric"]
+radius = 0.0
+
+[node name="npc1" type="CharacterBody2D"]
+light_mask = 4
+visibility_layer = 4
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_oie5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l8u32")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -27)
+texture = ExtResource("4_tvawq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = -2
+position = Vector2(0, 3.625)
+shape = SubResource("RectangleShape2D_g4hv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 29)
+shape = SubResource("CircleShape2D_yvric")

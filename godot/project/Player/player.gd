@@ -40,6 +40,9 @@ var double_jump_bypass := false
 # ----------------------------------- #
 @export var shake_duration = 0.1
 @export var shake_intensity = 3
+
+var npc_in_range = false
+var dialogue_active = false
 # ----------------------------------- #
 var spawn_point: Vector2
 
@@ -71,15 +74,17 @@ func get_input() -> Dictionary:
 
 
 func _physics_process(delta: float) -> void:
-	x_movement(delta)
-	double_jump_logic(delta)
-	jump_logic(delta)
-	apply_gravity(delta)
-	
-	timers(delta)
-	move_and_slide()
-	if self.is_on_floor: push_barrels(delta)
-	update_animation()
+	StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
+	if !DialogueManager.conversing:
+		x_movement(delta)
+		double_jump_logic(delta)
+		jump_logic(delta)
+		apply_gravity(delta)
+		activate_dialogue()
+		timers(delta)
+		move_and_slide()
+		if self.is_on_floor: push_barrels(delta)
+		update_animation()
 
 func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():
@@ -245,8 +250,6 @@ func _player_detected(body: CharacterBody2D):
 	self.add_child(t)
 	t.start()
 	await t.timeout
-	
-	
 
 	if body.is_in_group("hit"):
 		StageManager.getCam().shake(shake_duration, shake_intensity)
@@ -255,6 +258,22 @@ func _player_detected(body: CharacterBody2D):
 		pass
 
 
+func activate_dialogue():
+	if get_input()["interact"] and npc_in_range:
+		DialogueManager.conversing = true
+		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
+		npc_in_range = false
+		DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/test_dialogue.dialogue"))
+		
 
+func begin_dialog(body):
+	if body.has_method("npc1"):
+		body.interact_invis()
+		npc_in_range = true
+	if get_input()["interact"] and npc_in_range:
+		body.Sprite2D2.visible = false
 
-	
+func end_dialog(body):
+	if body.has_method("npc1"):
+		body.interact_invis()
+		npc_in_range = false

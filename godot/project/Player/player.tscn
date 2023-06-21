@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqxkshvxfx6je"]
+[gd_scene load_steps=13 format=3 uid="uid://dqxkshvxfx6je"]
 
 [ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://Player/AnimationSheet_Character.png" id="1_0nsmd"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_p1f8f"]
@@ -68,6 +68,9 @@ _data = {
 "run": SubResource("Animation_k8fpi")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhyv0"]
+radius = 30.0
+
 [node name="player" type="CharacterBody2D"]
 modulate = Color(1, 0.3, 0.3, 1)
 collision_layer = 3
@@ -75,6 +78,8 @@ collision_mask = 3
 script = ExtResource("1_p1f8f")
 
 [node name="Area2D" parent="." instance=ExtResource("2_2b3wm")]
+collision_layer = 0
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0nsmd")
@@ -90,4 +95,13 @@ libraries = {
 "": SubResource("AnimationLibrary_pbuc1")
 }
 
+[node name="npc_detect" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="npc_detect"]
+shape = SubResource("CircleShape2D_jhyv0")
+
 [connection signal="body_entered" from="Area2D" to="." method="_player_detected"]
+[connection signal="body_entered" from="npc_detect" to="." method="begin_dialog"]
+[connection signal="body_exited" from="npc_detect" to="." method="end_dialog"]
