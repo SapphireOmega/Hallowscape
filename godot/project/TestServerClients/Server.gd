@@ -25,6 +25,7 @@ func _ready():
 	# Does not run the server if this variable is turned off.
 	if !RunOnLaunch:
 		self.set_process(false)
+		server_paused = false
 		return
 	
 	# Displays the IP on the waiting screen.
