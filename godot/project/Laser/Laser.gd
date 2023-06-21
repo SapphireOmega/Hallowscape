@@ -20,7 +20,8 @@ func _physics_process(delta: float) -> void:
 	if is_casting && is_colliding():
 		var collider = get_collider()
 		if collider.has_method("die"):
-			collider.die()
+			for p in StageManager.find_players():
+				p.die()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

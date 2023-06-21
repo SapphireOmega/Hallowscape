@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+@export var player_id = 1
+
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var face_direction := 1
 var x_dir := 1
 
-@export var max_speed: float = 135
+@export var max_speed: float = 150
 @export var acceleration: float = 1440
 @export var turning_acceleration : float = 3600
 @export var deceleration: float = 2200
@@ -46,11 +48,13 @@ var spawn_point: Vector2
 
 func _ready() -> void:
 	spawn_point = self.position
+	if player_id == 2:
+		self.modulate = Color(0, 2, 4.5, 1)
 
 
 #expects either no arg (set spawn to current loc) or a Vector2
 func set_spawn(point: Vector2 = self.spawn_point) -> void:
-	spawn_point = self.position
+	spawn_point = point
 	
 func die() -> void:
 	self.position = spawn_point
@@ -58,14 +62,14 @@ func die() -> void:
 # All iputs we want to keep track of
 func get_input() -> Dictionary:
 	return {
-		"x": Input.get_axis("move_left", "move_right"),
+		"x": Input.get_axis("move_left"+str(player_id), "move_right"+str(player_id)),
 		"y": Input.get_axis("ui_down", "ui_up"),
-		"just_jump": Input.is_action_just_pressed("jump") == true,
-		"jump": Input.is_action_pressed("jump") == true,
-		"released_jump": Input.is_action_just_released("jump") == true,
-		"just_attack": Input.is_action_just_pressed("attack") == true,
-		"attack": Input.is_action_just_pressed("attack") == true,
-		"interact": Input.is_action_just_pressed("interact") == true
+		"just_jump": Input.is_action_just_pressed("jump"+str(player_id)) == true,
+		"jump": Input.is_action_pressed("jump"+str(player_id)) == true,
+		"released_jump": Input.is_action_just_released("jump"+str(player_id)) == true,
+		"just_attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
+		"attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
+		"interact": Input.is_action_just_pressed("interact"+str(player_id)) == true
 	}
 
 
@@ -89,6 +93,8 @@ func push_barrels(delta: float) -> void:
 		var obj: Object = collision.get_collider()
 		if obj.has_method("slide") && (angle > 1.569 && angle < 1.571):
 			obj.slide(delta, 100 * face_direction)
+		elif obj is CharacterBody2D && (angle > 1.569 && angle < 1.571):
+			obj.move_and_collide(Vector2(face_direction, 0))
 
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
@@ -119,7 +125,9 @@ func set_direction(hor_direction) -> void:
 	# To animate, only scale the sprite
 	if hor_direction == 0:
 		return
-	apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
+	
+	$Area2D.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
+	$Sprite2D.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
 
 
@@ -153,8 +161,6 @@ func jump_logic(_delta: float) -> void:
 	# The value added to the treshold is arbritary,
 	# But it solves a problem where jumping into 
 	if is_on_ceiling(): velocity.y = jump_hang_treshold + 10.0
-	if is_on_ceiling(): print("test") 
-
 
 func double_jump_logic(_delta: float) -> void:
 	if is_on_floor():

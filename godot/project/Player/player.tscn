@@ -72,8 +72,9 @@ _data = {
 radius = 30.0
 
 [node name="player" type="CharacterBody2D"]
-collision_layer = 7
-collision_mask = 7
+modulate = Color(1, 0.3, 0.3, 1)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_p1f8f")
 
 [node name="Area2D" parent="." instance=ExtResource("2_2b3wm")]
