@@ -188,10 +188,10 @@ default_color = Color(0.0941176, 0.0431373, 0.129412, 1)
 shape = SubResource("RectangleShape2D_swb7v")
 
 [node name="player" parent="." instance=ExtResource("3_6mqi6")]
-position = Vector2(278, 192)
+position = Vector2(42, 270)
 
 [node name="player2" parent="." instance=ExtResource("3_6mqi6")]
-position = Vector2(234, 191)
+position = Vector2(20, 270)
 player_id = 2
 
 [node name="OneWays" type="StaticBody2D" parent="."]

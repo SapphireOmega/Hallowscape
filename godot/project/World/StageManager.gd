@@ -3,6 +3,7 @@ extends CanvasLayer
 # ---levels-------------- #
 #ADD LEVELS TO THIS LIST!
 const JORISLEVEL = preload("res://JorisLevel/joris_level.tscn")
+const JORISLEVEL2 = preload("res://JorisLevel2/joris_level2.tscn")
 const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
@@ -50,7 +51,7 @@ func changeStage(stage_path, x=0, y=0):
 	$TextureRect.show()
 	$Anim.play("TransIn")
 	await $Anim.animation_finished
-	
+# ----------Do loading stuff here--------- #
 	
 	var stage = stage_path.instantiate()
 	
@@ -67,6 +68,7 @@ func changeStage(stage_path, x=0, y=0):
 	
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
+# -------------------------------------- #
 	$Anim.play("TransOut")
 	await $Anim.animation_finished
 	$TextureRect.hide()
@@ -98,10 +100,21 @@ func adjust_cam_to_stage(stage):
 	if stage.get("CAMLIMITS"):
 		var cl = stage.CAMLIMITS
 		getCam().setCamLimits(cl["top"], cl["bottom"], cl["left"], cl["right"])
-	
 
-func hideGui():
-	$GUI.hide()
-func showGui():
-	$GUI.show()
+
+func kill_players():
+	$TextureRect2.show()
+	$Anim.play("DeathIn")
+	await $Anim.animation_finished
+	
+	var players = find_players()
+	for player in players:
+		player.die()
+	fastMoveCam(getCam())
+	
+	
+	$Anim.play("DeathOut")
+	await $Anim.animation_finished
+	$TextureRect2.hide()
+
 

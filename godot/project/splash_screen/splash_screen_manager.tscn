@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://doliilysdvdif"]
+
+[ext_resource type="PackedScene" uid="uid://2co1ko3rv6yl" path="res://splash_screen/start1.tscn" id="1_amu0p"]
+[ext_resource type="Script" path="res://splash_screen/splash_screen_manager.gd" id="1_fblie"]
+[ext_resource type="PackedScene" uid="uid://kqvcy0xayjx8" path="res://splash_screen/start2.tscn" id="2_ac0ax"]
+
+[node name="SplashScreenManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fblie")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start1" parent="screen" instance=ExtResource("1_amu0p")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -128.0
+offset_right = 130.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start2" parent="screen" instance=ExtResource("2_ac0ax")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -172.0
+offset_right = 400.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
