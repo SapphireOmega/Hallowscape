@@ -121,6 +121,7 @@ func x_movement(delta: float) -> void:
 	# Except if we are turning
 	# (This keeps our momentum gained from outside or slopes)
 	if abs(velocity.x) >= max_speed and sign(velocity.x) == x_dir:
+		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
 		return
 	
 	# Are we turning?
