@@ -80,13 +80,13 @@ laser_names = ["Laser3", "Laser4"]
 
 [node name="Line2D" type="Line2D" parent="LaserConsole3&4"]
 position = Vector2(7.5, 7.5)
-points = PackedVector2Array(1, 0, 1, 52, 10, 52)
+points = PackedVector2Array(1, 0, 1, 19, 10, 19)
 width = 1.0
 default_color = Color(0.0980392, 0.0980392, 0.207843, 1)
 
 [node name="Line2D2" type="Line2D" parent="LaserConsole3&4"]
 position = Vector2(8.5, 58.5)
-points = PackedVector2Array(0, 1, 0, 47, 44, 47, 51, 40)
+points = PackedVector2Array(0, -32, 0, 47, 44, 47, 51, 40)
 width = 1.0
 default_color = Color(0.0980392, 0.0980392, 0.207843, 1)
 
@@ -102,7 +102,7 @@ rotation = 3.14159
 position = Vector2(1233, 325)
 
 [node name="Laser4" parent="." instance=ExtResource("5_hw5xv")]
-position = Vector2(1175, 288)
+position = Vector2(1176, 255)
 is_casting = false
 
 [node name="Barrel" parent="." instance=ExtResource("4_7oqf4")]
