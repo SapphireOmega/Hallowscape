@@ -71,10 +71,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_jhyv0"]
 radius = 30.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 modulate = Color(1, 0.3, 0.3, 1)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_p1f8f")
 
 [node name="Area2D" parent="." instance=ExtResource("2_2b3wm")]
@@ -100,6 +100,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="npc_detect"]
+visible = false
 shape = SubResource("CircleShape2D_jhyv0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_player_detected"]

@@ -82,6 +82,8 @@ _data = {
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["hit"]]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_nao3q")
 hitpoints = 1
 

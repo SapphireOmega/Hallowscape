@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3cbgyvp8plfo"]
+[gd_scene load_steps=2 format=3 uid="uid://b3cbgyvp8plfo"]
 
 [ext_resource type="Script" path="res://World/Camera2D.gd" id="1_4khoa"]
-[ext_resource type="Script" path="res://dialog_cam.gd" id="2_g61p4"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player_data" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="Player_data"]
+visible = false
 position = Vector2(49, 305)
 limit_left = 0
 limit_top = 0
@@ -18,12 +18,6 @@ drag_horizontal_enabled = true
 script = ExtResource("1_4khoa")
 
 [node name="Timer" type="Timer" parent="Player_data/Camera2D"]
-
-[node name="Camera2D" type="Camera2D" parent="Player_data/Camera2D"]
-position = Vector2(267, -121)
-enabled = false
-zoom = Vector2(1.3, 1.3)
-script = ExtResource("2_g61p4")
 
 [node name="Current_level" type="Node" parent="."]
 

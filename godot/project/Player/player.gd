@@ -75,6 +75,7 @@ func get_input() -> Dictionary:
 
 func _physics_process(delta: float) -> void:
 	StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
+	StageManager.dialcam(DialogueManager.conversing)
 	if !DialogueManager.conversing:
 		x_movement(delta)
 		double_jump_logic(delta)
@@ -97,7 +98,7 @@ func push_barrels(delta: float) -> void:
 			obj.slide(delta, 100 * face_direction)
 		elif obj.has_method("zipline") && slide_collision:
 			obj.zipline(1000 * face_direction)
-		elif obj is CharacterBody2D && slide_collision:
+		elif obj is CharacterBody2D && slide_collision && obj.has_method("die"):
 			obj.move_and_collide(Vector2(face_direction, 0))
 
 func x_movement(delta: float) -> void:
@@ -215,7 +216,7 @@ func timers(delta: float) -> void:
 
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
-		if !$AnimationPlayer.current_animation == "just_attack":
+		if !$AnimationPlayer.current_animation == "attack":
 			$Area2D/CollisionShape2D.disabled = false
 			$AnimationPlayer.play("attack")
 	else:
@@ -262,6 +263,7 @@ func activate_dialogue():
 	if get_input()["interact"] and npc_in_range:
 		DialogueManager.conversing = true
 		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
+		StageManager.dialcam(DialogueManager.conversing)
 		npc_in_range = false
 		DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/test_dialogue.dialogue"))
 		
@@ -273,7 +275,9 @@ func begin_dialog(body):
 	if get_input()["interact"] and npc_in_range:
 		body.Sprite2D2.visible = false
 
+
 func end_dialog(body):
 	if body.has_method("npc1"):
 		body.interact_invis()
 		npc_in_range = false
+

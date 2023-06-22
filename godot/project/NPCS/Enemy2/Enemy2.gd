@@ -91,8 +91,8 @@ func body_out_of_range(body: CharacterBody2D):
 	in_range = false
 
 func damage_player(body: CharacterBody2D):
-	if $Attack_player.monitoring == true:
-		print("player hit")
+	if $Attack_player.monitoring == true and body.is_in_group("player"):
+		body.die()
 
 func _on_animation_player_animation_finished(anim_name):
 	if in_range == false:
