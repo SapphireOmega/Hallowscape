@@ -24,10 +24,10 @@ func _process(_delta) -> void:
 		if !body.get_input()["interact"]: return
 		if !activated:
 			activated = true
-			$Sprite2D.region_rect.position.x += 25
+			$Sprite2D.region_rect.position.x += 50
 		else:
-			$Sprite2D.region_rect.position.x += (-1 if lever_down else 1) * 25
+			$Sprite2D.region_rect.position.x += (1 if lever_down else -1) * 25
 			lever_down = !lever_down
-			for laser_name in laser_names:
-				var laser: Object = self.get_parent().get_node(laser_name)
-				laser.set_is_casting(!laser.get_is_casting())
+		for laser_name in laser_names:
+			var laser: Object = self.get_parent().get_node(laser_name)
+			laser.set_is_casting(!laser.get_is_casting())
