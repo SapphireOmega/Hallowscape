@@ -27,10 +27,9 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_skip"):
 		_skip()
 
-
 func _start_splash_screen() -> void:
 	if _splash_screens.size() == 0:
-		get_tree().quit()
+		$"/root".get_children()
 	else:
 		var splash_screen = _splash_screens.pop_front()
 		splash_screen.start()
