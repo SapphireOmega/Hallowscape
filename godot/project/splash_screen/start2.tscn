@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://kqvcy0xayjx8"]
+
+[ext_resource type="Script" path="res://splash_screen/start2.gd" id="1_4tbmk"]
+[ext_resource type="Texture2D" uid="uid://bpy1pcxdmdk3t" path="res://splash_screen/wifi_remote-control.png" id="2_xqcxs"]
+
+[node name="start2" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -172.0
+offset_right = 400.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4tbmk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("2_xqcxs")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Connect your phone and laptop to same wifi"
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=3 uid="uid://2co1ko3rv6yl"]
+
+[ext_resource type="Script" path="res://splash_screen/start1.gd" id="1_c70nk"]
+[ext_resource type="Script" path="res://splash_screen/start1_player.gd" id="2_kl7qm"]
+[ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://Player/AnimationSheet_Character.png" id="2_s33k4"]
+[ext_resource type="Animation" uid="uid://b8lvwn14qu3sa" path="res://Player/animations/fall.res" id="3_76let"]
+[ext_resource type="Animation" uid="uid://cqa7bbboo4hwd" path="res://Player/animations/idle.res" id="4_7pdmt"]
+[ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://Player/animations/jump.res" id="5_lfolc"]
+[ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://Player/animations/landing.res" id="6_mae7d"]
+
+[sub_resource type="Animation" id="Animation_ffvq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0u2d6"]
+resource_name = "attack"
+length = 0.28
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.08, 0.12, 0.22, 0.24, 0.26),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [64, 65, 66, 67, 68, 69, 70, 71]
+}
+
+[sub_resource type="Animation" id="Animation_k8fpi"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbuc1"]
+_data = {
+"RESET": SubResource("Animation_ffvq5"),
+"attack": SubResource("Animation_0u2d6"),
+"fall": ExtResource("3_76let"),
+"idle": ExtResource("4_7pdmt"),
+"jump": ExtResource("5_lfolc"),
+"land": ExtResource("6_mae7d"),
+"run": SubResource("Animation_k8fpi")
+}
+
+[node name="start1" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -128.0
+offset_right = 130.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c70nk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("2_kl7qm")
+
+[node name="player1" type="CharacterBody2D" parent="TextureRect"]
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect/player1"]
+modulate = Color(1, 0.3, 0.3, 1)
+position = Vector2(2.00001, 1.99996)
+scale = Vector2(5.54688, 5.01563)
+texture = ExtResource("2_s33k4")
+offset = Vector2(10, 15)
+hframes = 8
+vframes = 9
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="TextureRect/player1"]
+position = Vector2(45.3958, 80.6635)
+scale = Vector2(7.60417, 5.33654)
+polygon = PackedVector2Array(-5, -12, 7, -12, 7, 10, 4, 13, 1, 14, -2, 13, -5, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect/player1"]
+libraries = {
+"": SubResource("AnimationLibrary_pbuc1")
+}
+
+[node name="player2" type="CharacterBody2D" parent="TextureRect"]
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect/player2"]
+modulate = Color(0, 2, 4.5, 1)
+position = Vector2(3.00003, 1.99996)
+scale = Vector2(5.54688, 5.01563)
+texture = ExtResource("2_s33k4")
+offset = Vector2(35, 15)
+hframes = 8
+vframes = 9
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="TextureRect/player2"]
+position = Vector2(186.052, 80.0913)
+scale = Vector2(7.44792, 5.40865)
+polygon = PackedVector2Array(-5, -12, 7, -12, 7, 10, 4, 13, 1, 14, -2, 13, -5, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect/player2"]
+libraries = {
+"": SubResource("AnimationLibrary_pbuc1")
+}
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 187.0
+offset_right = 250.0
+offset_bottom = 213.0
+text = "    Game designed by \"name\""

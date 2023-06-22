@@ -3,6 +3,7 @@ extends CanvasLayer
 # ---levels-------------- #
 #ADD LEVELS TO THIS LIST!
 const JORISLEVEL = preload("res://JorisLevel/joris_level.tscn")
+const JORISLEVEL2 = preload("res://JorisLevel2/joris_level2.tscn")
 const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
@@ -101,6 +102,7 @@ func adjust_cam_to_stage(stage):
 		getCam().setCamLimits(cl["top"], cl["bottom"], cl["left"], cl["right"])
 
 
+var is_killing = false
 func kill_players():
 	$TextureRect2.show()
 	$Anim.play("DeathIn")
@@ -110,11 +112,10 @@ func kill_players():
 	for player in players:
 		player.die()
 	fastMoveCam(getCam())
-	
-	
 	$Anim.play("DeathOut")
 	await $Anim.animation_finished
 	$TextureRect2.hide()
+	is_killing = false
 
 
 func dialcam(conversing):
