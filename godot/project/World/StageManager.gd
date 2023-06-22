@@ -55,10 +55,11 @@ func curStage():
 func getCam():
 	return $"/root/Main".find_child("Player_data").get_child(0)
 
-func changeStage(stage_path, x=0, y=0):
-	$TextureRect.show()
-	$Anim.play("TransIn")
-	await $Anim.animation_finished
+func changeStage(stage_path, x=0, y=0, with_screen = true):
+	if with_screen:
+		$TextureRect.show()
+		$Anim.play("TransIn")
+		await $Anim.animation_finished
 # ----------Do loading stuff here--------- #
 	
 	var stage = stage_path.instantiate()
@@ -77,9 +78,10 @@ func changeStage(stage_path, x=0, y=0):
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
 # -------------------------------------- #
-	$Anim.play("TransOut")
-	await $Anim.animation_finished
-	$TextureRect.hide()
+	if with_screen:
+		$Anim.play("TransOut")
+		await $Anim.animation_finished
+		$TextureRect.hide()
 
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
