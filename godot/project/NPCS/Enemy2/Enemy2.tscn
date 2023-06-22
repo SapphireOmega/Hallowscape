@@ -161,6 +161,8 @@ graph_offset = Vector2(-203.428, -30.4905)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_o0deo"]
 
 [node name="CharacterBody2D2" type="CharacterBody2D" groups=["hit"]]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_2fgon")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["hit"]]
