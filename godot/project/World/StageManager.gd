@@ -96,12 +96,13 @@ func fastMoveCam(cam):
 
 func find_players():
 	var players = []
-	var stage = curStagePath().get_child(0)
-	if stage != null:
-		for node in stage.get_children():
-			if node.has_method("set_spawn"):
-				players.append(node)
-		return players
+	if curStagePath().get_child_count() > 0:
+		var stage = curStagePath().get_child(0)
+		if stage != null:
+			for node in stage.get_children():
+				if node.has_method("set_spawn"):
+					players.append(node)
+			return players
 	return []
 
 
