@@ -52,13 +52,10 @@ func _on_timer_timeout():
 	shake_amount = 0
 
 
-func focus_cam_to_pos(pos, i):
-	if i == true:
-		$Camera2D.enabled = true
-		$Camera2D.offset.y = pos.y/3
+func focus_cam_to_pos(pos, conversing):
+	if conversing == true:
 		self.enabled = false
 	else:
 		self.enabled = true
-		$Camera2D.enabled = false
 
 

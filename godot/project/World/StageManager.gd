@@ -8,7 +8,7 @@ const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
 const MAIN = preload("res://main.tscn")
 # ---------------------- #
-
+var NPC1 = preload("res://NPCS/NPC1/npc1.tscn")
 
 const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main scene and moved current_scene
 		into Main/current_level. Check 'remote' for the exact hierarchy"
@@ -117,3 +117,14 @@ func kill_players():
 	$TextureRect2.hide()
 
 
+func dialcam(conversing):
+	if conversing:
+		var curr = curStage()
+		if curr.has_node("npc1"):
+			var cam = curr.get_node("npc1").get_node("dialogue_cam")
+			cam.enabled = true
+	else:
+		var curr = curStage()
+		if curr.has_node("npc1"):
+			var cam = curr.get_node("npc1").get_node("dialogue_cam")
+			cam.enabled = false
