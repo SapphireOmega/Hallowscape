@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="7_qwowr"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="7_vaasb"]
 [ext_resource type="PackedScene" uid="uid://bprfunevs3ysu" path="res://checkpoint/checkpoint.tscn" id="9_unso7"]
-[ext_resource type="Script" path="res://Town/Area2D.gd" id="10_iqyw4"]
+[ext_resource type="Script" path="res://Church/Area2D3.gd" id="10_tfsxp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_osvp7"]
 a = Vector2(0.94873, -18.8857)
@@ -945,7 +945,7 @@ target_position = Vector2(361, 0)
 
 [node name="Area2D3" type="Area2D" parent="."]
 position = Vector2(13, -34)
-script = ExtResource("10_iqyw4")
+script = ExtResource("10_tfsxp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 position = Vector2(790, -334)
