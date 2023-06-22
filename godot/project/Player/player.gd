@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player_id = 1
 
+
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var face_direction := 1
 var x_dir := 1
@@ -45,6 +46,8 @@ var npc_in_range = false
 var dialogue_active = false
 # ----------------------------------- #
 var spawn_point: Vector2
+#var puzzles = ["tap", "holes", "shapeSequence", "memory", "lock", "coin"]
+var puzzles = ["shapeSequence"]
 
 func _ready() -> void:
 	spawn_point = self.position
@@ -86,6 +89,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		if self.is_on_floor: push_barrels(delta)
 		update_animation()
+		
+	if get_input()["interact"]:
+		var randomPuzzle = puzzles[randi() % puzzles.size()]
+		Server.sendPuzzle(player_id, randomPuzzle)
 
 func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():

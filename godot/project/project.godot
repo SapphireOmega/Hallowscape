@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicGallery="*res://sounds/Music_Gallery.tscn"
-Server="*res://TestServerClients/Server.tscn"
 StageManager="*res://World/StageManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
