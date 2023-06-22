@@ -2,7 +2,7 @@
 
 extends Node
 
-@export var PORT = 12983
+@export var PORT = 8080
 @export var RunOnLaunch = true
 
 # ---
@@ -58,8 +58,6 @@ func _process(_delta):
 	
 	# Pause the game and create a new connection accepting thread 
 	if n_players < MAX_PLAYERS and !PCRThread.is_alive():
-		server_paused = true
-
 		# Start the new connection accepting thread
 		PCRThread = Thread.new()
 		PCRThread.start(processConnectionRequest)
@@ -73,6 +71,7 @@ func _process(_delta):
 func processConnectionRequest():
 	# Pause the game and show the pause screen
 	get_tree().paused = true
+	server_paused = true
 	$CanvasLayer.show()
 	
 	while GameRunning and n_players < MAX_PLAYERS:
@@ -174,12 +173,13 @@ func serveClient(SCThread, tcp):
 	ClosingThreads.append(SCThread)
 	ThreadsMutex.unlock()
 
-# Function to set a string to a player (this method can be called
+# Function to send a puzzle to a player (this method can be called
 # from other nodes)
-func sendToPlayer(PlayerID, message):
+func sendPuzzle(PlayerID, PuzzleName):
 	var reciever = players[str(PlayerID)]
 	if reciever:
-		reciever.put_data(message.to_utf8_buffer())
+		var dict = {"action" : "puzzle", "type" : PuzzleName}
+		reciever.put_data(dict.stringify().to_utf8_buffer())
 
 # Helper function for obtaining the host IP address
 func get_ip_addr():

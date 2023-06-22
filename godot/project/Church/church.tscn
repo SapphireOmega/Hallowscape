@@ -941,7 +941,6 @@ is_casting = false
 [node name="Laser10" parent="Lasers" instance=ExtResource("7_vaasb")]
 position = Vector2(513, -316)
 rotation = -0.00174533
-scale = Vector2(1, 1)
 target_position = Vector2(361, 0)
 
 [node name="Area2D3" type="Area2D" parent="."]

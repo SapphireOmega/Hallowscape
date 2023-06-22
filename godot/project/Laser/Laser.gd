@@ -20,9 +20,9 @@ func _physics_process(delta: float) -> void:
 	if is_casting && is_colliding():
 		var collider = get_collider()
 		if collider.has_method("die"):
-			StageManager.kill_players()
-			
-
+			if StageManager.is_killing == false:
+				StageManager.is_killing = true
+				StageManager.kill_players()
 
 
 
