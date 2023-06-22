@@ -7,6 +7,9 @@ var can_interact = []  # All CharacterBody2Ds that are at the console
 var activated: bool = false
 var lever_down: bool = false
 
+#var puzzles = ["tap", "holes", "shapeSequence", "memory", "lock", "coin"]
+var puzzles = ["shapeSequence"]
+
 func _on_body_entered(body: CharacterBody2D) -> void:
 	can_interact.append(body)
 
@@ -23,6 +26,10 @@ func _process(_delta) -> void:
 	for body in can_interact.filter(func(body): return body.has_method("get_input") && body.is_on_floor()):
 		if !body.get_input()["interact"]: return
 		if !activated:
+			var randomPuzzle = puzzles[randi() % puzzles.size()]
+			var server = $"/root/Server"
+			if server:
+				server.sendPuzzle(body.player_id, randomPuzzle)
 			activated = true
 			$Sprite2D.region_rect.position.x += 50
 		else:
