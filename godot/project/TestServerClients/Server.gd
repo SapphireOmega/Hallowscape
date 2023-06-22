@@ -17,7 +17,7 @@ var players = {"1":null, "2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
-var MAX_PLAYERS = 2
+var MAX_PLAYERS = 1
 var n_players = 0
 var server_paused = true
 
@@ -176,10 +176,11 @@ func serveClient(SCThread, tcp):
 
 # Function to set a string to a player (this method can be called
 # from other nodes)
-func sendToPlayer(PlayerID, message):
-	var reciever = players[str(PlayerID)]
-	if reciever:
-		reciever.put_data(message.to_utf8_buffer())
+func sendPuzzle(PlayerID, PuzzleName):     
+	var reciever = players[str(PlayerID)]     
+	if reciever:        
+		var dict = {"action" : "puzzle", "type" : PuzzleName}         
+		reciever.put_data(JSON.stringify(dict).to_utf8_buffer())
 
 # Helper function for obtaining the host IP address
 func get_ip_addr():
