@@ -855,7 +855,7 @@ layer_2/tile_data = PackedInt32Array(1310725, 2293760, 9, 1376261, 2293760, 10, 
 position = Vector2(67, 302)
 
 [node name="player2" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(34, 303)
+position = Vector2(39, 303)
 player_id = 2
 
 [node name="Area2D2" parent="." instance=ExtResource("9_unso7")]
