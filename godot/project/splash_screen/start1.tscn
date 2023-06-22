@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2co1ko3rv6yl"]
+[gd_scene load_steps=13 format=3 uid="uid://2co1ko3rv6yl"]
 
 [ext_resource type="Script" path="res://splash_screen/start1.gd" id="1_c70nk"]
 [ext_resource type="Script" path="res://splash_screen/start1_player.gd" id="2_kl7qm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://cqa7bbboo4hwd" path="res://Player/animations/idle.res" id="4_7pdmt"]
 [ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://Player/animations/jump.res" id="5_lfolc"]
 [ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://Player/animations/landing.res" id="6_mae7d"]
+[ext_resource type="Texture2D" uid="uid://cflyhgy8k604d" path="res://Assets/Inhouse/designed_by.png" id="8_kjqax"]
 
 [sub_resource type="Animation" id="Animation_ffvq5"]
 length = 0.001
@@ -131,10 +132,11 @@ libraries = {
 "": SubResource("AnimationLibrary_pbuc1")
 }
 
-[node name="Label" type="Label" parent="TextureRect"]
+[node name="Label" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 187.0
-offset_right = 250.0
-offset_bottom = 213.0
-text = "    Game designed by \"name\""
+offset_left = -98.0
+offset_top = 13.0
+offset_right = 349.0
+offset_bottom = 267.0
+texture = ExtResource("8_kjqax")
+expand_mode = 5

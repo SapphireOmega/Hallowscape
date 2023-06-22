@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3m6x5g4aav3"]
+[gd_scene load_steps=12 format=3 uid="uid://d3m6x5g4aav3"]
 
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2j5sl"]
-[ext_resource type="Texture2D" uid="uid://3fcxqiato82w" path="res://Menus/Main_menu(placeholder).jpg" id="2_2yq6f"]
+[ext_resource type="PackedScene" uid="uid://dn38ugqpya8tp" path="res://Menus/parallax_background.tscn" id="2_wajao"]
+[ext_resource type="Texture2D" uid="uid://cv6513mwkr37m" path="res://Assets/Inhouse/UI elements/start.png" id="3_g1rop"]
+[ext_resource type="Texture2D" uid="uid://c1emplayetpcj" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="4_33qoh"]
+[ext_resource type="Texture2D" uid="uid://ccecpshrswtrk" path="res://Assets/Inhouse/UI elements/credits.png" id="5_0b0ux"]
+[ext_resource type="Texture2D" uid="uid://ckonx5qeey4qi" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="6_ocvdt"]
+[ext_resource type="Texture2D" uid="uid://cg3s6416krlbt" path="res://Assets/Inhouse/UI elements/quit.png" id="7_rkjp6"]
+[ext_resource type="Texture2D" uid="uid://cnwv8dtih2pqc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="8_nx2j7"]
 
 [sub_resource type="Gradient" id="Gradient_folk3"]
 offsets = PackedFloat32Array(0, 0.00645161, 1)
@@ -33,15 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2yq6f")
-expand_mode = 1
+[node name="title_background" parent="Menu" instance=ExtResource("2_wajao")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 custom_minimum_size = Vector2(0, 150)
@@ -57,24 +55,20 @@ offset_right = 45.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Start" type="Button" parent="Menu/VBoxContainer"]
+[node name="Start" type="TextureButton" parent="Menu/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../Quit")
-text = "New game
-"
+texture_normal = ExtResource("3_g1rop")
+texture_pressed = ExtResource("4_33qoh")
 
-[node name="Credits" type="Button" parent="Menu/VBoxContainer"]
+[node name="Credits" type="TextureButton" parent="Menu/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-text = "Credits
-"
+texture_normal = ExtResource("5_0b0ux")
+texture_pressed = ExtResource("6_ocvdt")
 
-[node name="Quit" type="Button" parent="Menu/VBoxContainer"]
+[node name="Quit" type="TextureButton" parent="Menu/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../Start")
-text = "Quit"
+texture_normal = ExtResource("7_rkjp6")
+texture_pressed = ExtResource("8_nx2j7")
 
 [node name="Credits" type="Control" parent="."]
 visible = false

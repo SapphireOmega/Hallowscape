@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kqvcy0xayjx8"]
 
 [ext_resource type="Script" path="res://splash_screen/start2.gd" id="1_4tbmk"]
-[ext_resource type="Texture2D" uid="uid://bpy1pcxdmdk3t" path="res://splash_screen/wifi_remote-control.png" id="2_xqcxs"]
+[ext_resource type="Texture2D" uid="uid://dvcqxpv35njn" path="res://Assets/Inhouse/connect_devices.png" id="2_vvg4o"]
 
 [node name="start2" type="VBoxContainer"]
 anchors_preset = 8
@@ -20,14 +20,5 @@ script = ExtResource("1_4tbmk")
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-texture = ExtResource("2_xqcxs")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(800, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Connect your phone and laptop to same wifi"
-horizontal_alignment = 1
-autowrap_mode = 2
+texture = ExtResource("2_vvg4o")
+expand_mode = 5

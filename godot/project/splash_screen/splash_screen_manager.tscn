@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://doliilysdvdif"]
+[gd_scene load_steps=5 format=3 uid="uid://doliilysdvdif"]
 
 [ext_resource type="PackedScene" uid="uid://2co1ko3rv6yl" path="res://splash_screen/start1.tscn" id="1_amu0p"]
 [ext_resource type="Script" path="res://splash_screen/splash_screen_manager.gd" id="1_fblie"]
+[ext_resource type="Texture2D" uid="uid://bswnpojpvxhqq" path="res://Assets/Inhouse/background_flash.png" id="2_07dhl"]
 [ext_resource type="PackedScene" uid="uid://kqvcy0xayjx8" path="res://splash_screen/start2.tscn" id="2_ac0ax"]
 
 [node name="SplashScreenManager" type="Control"]
@@ -13,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fblie")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +22,8 @@ anchor_bottom = 1.0
 offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("2_07dhl")
+expand_mode = 2
 
 [node name="screen" type="Control" parent="."]
 layout_mode = 1
@@ -38,3 +40,7 @@ offset_right = 897.0
 
 [node name="start2" parent="screen" instance=ExtResource("2_ac0ax")]
 layout_mode = 1
+offset_left = -321.0
+offset_top = -178.0
+offset_right = 317.0
+offset_bottom = 180.0
