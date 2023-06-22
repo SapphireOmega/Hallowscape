@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbswf22qdsmbk"]
+[gd_scene load_steps=20 format=3 uid="uid://cbswf22qdsmbk"]
 
+[ext_resource type="Script" path="res://JorisLevel2/joris_level2.gd" id="1_jrl34"]
 [ext_resource type="TileSet" uid="uid://djaljh0r6n1qo" path="res://JorisLevel2/joris_level2.tres" id="1_ulaec"]
 [ext_resource type="PackedScene" uid="uid://deng5iavg2kkv" path="res://parallax_background2.tscn" id="2_25ycy"]
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_6mqi6"]
@@ -40,6 +41,7 @@ size = Vector2(32, 13)
 size = Vector2(128, 10)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_jrl34")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ulaec")
