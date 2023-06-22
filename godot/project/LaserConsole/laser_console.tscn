@@ -1,18 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp8xkbkplcbyr"]
 
 [ext_resource type="Script" path="res://LaserConsole/laser_console.gd" id="1_jx1q1"]
-[ext_resource type="Texture2D" uid="uid://btosxxqr6j6a7" path="res://Assets/laser_asserts.png" id="2_23v4e"]
+[ext_resource type="Texture2D" uid="uid://cdq1jvwqxfoub" path="res://Assets/levers.png" id="2_8awpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utnwb"]
-size = Vector2(16, 16)
+size = Vector2(23, 33)
 
 [node name="LaserConsole" type="Area2D"]
 script = ExtResource("1_jx1q1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -8.5)
 shape = SubResource("RectangleShape2D_utnwb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_23v4e")
+position = Vector2(0.5, -12.5)
+texture = ExtResource("2_8awpk")
 region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
+region_rect = Rect2(93, 42, 23, 41)
+region_filter_clip_enabled = true
