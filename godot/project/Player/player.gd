@@ -92,7 +92,9 @@ func _physics_process(delta: float) -> void:
 		
 	if get_input()["interact"]:
 		var randomPuzzle = puzzles[randi() % puzzles.size()]
-		Server.sendPuzzle(player_id, randomPuzzle)
+		var server = $"/root/Server"
+		if server:
+			server.sendPuzzle(player_id, randomPuzzle)
 
 func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():
