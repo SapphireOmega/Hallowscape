@@ -39,7 +39,15 @@ func _on_ready():
 
 func curStagePath():
 	return $"/root/Main".find_child("Current_level")
-	
+
+
+func curServer():
+	return $"/root/Main".find_child("Server")
+
+
+
+
+
 func curStage():
 	return $"/root/Main".find_child("Current_level").get_child(0)
 
@@ -100,6 +108,9 @@ func adjust_cam_to_stage(stage):
 	if stage.get("CAMLIMITS"):
 		var cl = stage.CAMLIMITS
 		getCam().setCamLimits(cl["top"], cl["bottom"], cl["left"], cl["right"])
+
+
+
 
 
 var is_killing = false
