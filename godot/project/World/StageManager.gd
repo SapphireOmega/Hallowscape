@@ -22,6 +22,7 @@ const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main sce
 func _on_ready():
 	var root = get_tree().get_root()
 	var last_child = root.get_child(root.get_child_count()-1)
+	swap_fullscreen_mode()
 	await root.ready
 	if last_child.name != "Main" && last_child.name != self.name:
 		var newstage = MAIN.instantiate()
@@ -44,7 +45,11 @@ func curStagePath():
 func curServer():
 	return $"/root/Main".find_child("Server")
 
-
+func swap_fullscreen_mode():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
 
