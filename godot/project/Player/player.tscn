@@ -76,6 +76,8 @@ modulate = Color(1, 0.3, 0.3, 1)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_p1f8f")
+max_speed = 160.0
+jump_force = 335.0
 
 [node name="Area2D" parent="." instance=ExtResource("2_2b3wm")]
 collision_layer = 0
