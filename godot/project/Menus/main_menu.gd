@@ -12,7 +12,7 @@ func _on_credits_button_up():
 	$Menu/VBoxContainer.hide()
 	$title_background/Title.hide()
 	$Credits.show()
-	$Credits/Panel/Main_menu.grab_focus()
+	$Credits/PanelContainer/VBoxContainer/Main_menu.grab_focus()
 
 
 #quits the game

@@ -66,88 +66,171 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Credits"]
-custom_minimum_size = Vector2(200, 0)
+[node name="PanelContainer" type="PanelContainer" parent="Credits"]
+layout_direction = 1
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -140.0
+offset_right = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Credits/Panel"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -70.0
-offset_right = 70.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Panel" type="Panel" parent="Credits/PanelContainer"]
+layout_mode = 2
 
-[node name="HFlowContainer" type="VBoxContainer" parent="Credits/Panel/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Names" type="VBoxContainer" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Kieran" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Amber" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Amber Stoevelaar"
 
-[node name="Label2" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Andrea" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Andrea"
 
-[node name="Label3" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Daan" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Daan"
 
-[node name="Label4" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Joris" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Joris"
 
-[node name="Label5" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Kai" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Kai Pinas"
 
-[node name="Label6" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Kieran" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Kieran van Gelder"
 
-[node name="Label7" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Montijn" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Montijn"
 
-[node name="Label8" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Rover" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Rover"
 
-[node name="Label9" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Sven" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Sven"
 
-[node name="Label10" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Teun" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
-text = "developer 1 - stuff"
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Teun"
 
-[node name="Main_menu" type="Button" parent="Credits/Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -31.0
-offset_right = 48.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Jobs" type="VBoxContainer" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Amber" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Puzzles"
+
+[node name="Andrea" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Server stuff"
+
+[node name="Daan" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "programming"
+
+[node name="Joris" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Level design, team co-lead"
+
+[node name="Kai" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Enemy logic"
+
+[node name="Kieran" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "programming"
+
+[node name="Montijn" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Controller App"
+
+[node name="Rover" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Server stuff"
+
+[node name="Sven" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Server stuff"
+
+[node name="Teun" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Art, team co-lead"
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Main_menu" type="Button" parent="Credits/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Main menu"
 
 [connection signal="button_up" from="Menu/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
-[connection signal="button_up" from="Credits/Panel/Main_menu" to="." method="_on_main_menu_button_up"]
+[connection signal="button_up" from="Credits/PanelContainer/VBoxContainer/Main_menu" to="." method="_on_main_menu_button_up"]
