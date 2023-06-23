@@ -1,26 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3m6x5g4aav3"]
+[gd_scene load_steps=9 format=3 uid="uid://d3m6x5g4aav3"]
 
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2j5sl"]
 [ext_resource type="PackedScene" uid="uid://dn38ugqpya8tp" path="res://Menus/parallax_background.tscn" id="2_wajao"]
-[ext_resource type="Texture2D" uid="uid://cv6513mwkr37m" path="res://Assets/Inhouse/UI elements/start.png" id="3_g1rop"]
-[ext_resource type="Texture2D" uid="uid://c1emplayetpcj" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="4_33qoh"]
-[ext_resource type="Texture2D" uid="uid://ccecpshrswtrk" path="res://Assets/Inhouse/UI elements/credits.png" id="5_0b0ux"]
-[ext_resource type="Texture2D" uid="uid://ckonx5qeey4qi" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="6_ocvdt"]
-[ext_resource type="Texture2D" uid="uid://cg3s6416krlbt" path="res://Assets/Inhouse/UI elements/quit.png" id="7_rkjp6"]
-[ext_resource type="Texture2D" uid="uid://cnwv8dtih2pqc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="8_nx2j7"]
-
-[sub_resource type="Gradient" id="Gradient_folk3"]
-offsets = PackedFloat32Array(0, 0.00645161, 1)
-colors = PackedColorArray(0.133084, 0, 0.877055, 1, 0.529412, 0, 0.921569, 1, 0.627451, 0.635294, 0.933333, 0.988235)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oo78h"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oioa0"]
-resource_local_to_scene = true
-as_normal_map = true
-bump_strength = 32.0
-color_ramp = SubResource("Gradient_folk3")
-noise = SubResource("FastNoiseLite_oo78h")
+[ext_resource type="Texture2D" uid="uid://qh3fuu56suky" path="res://Assets/Inhouse/UI elements/start.png" id="3_g1rop"]
+[ext_resource type="Texture2D" uid="uid://b14kdp4ahab8n" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="4_33qoh"]
+[ext_resource type="Texture2D" uid="uid://cxd3bajtlrgpi" path="res://Assets/Inhouse/UI elements/credits.png" id="5_0b0ux"]
+[ext_resource type="Texture2D" uid="uid://kubhos2gtp31" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="6_ocvdt"]
+[ext_resource type="Texture2D" uid="uid://cx83pukdxdpbb" path="res://Assets/Inhouse/UI elements/quit.png" id="7_rkjp6"]
+[ext_resource type="Texture2D" uid="uid://bxamhi7jv3klc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="8_nx2j7"]
 
 [node name="Menu_screen" type="Control"]
 layout_mode = 3
@@ -31,6 +18,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2j5sl")
 
+[node name="title_background" parent="." instance=ExtResource("2_wajao")]
+
 [node name="Menu" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -38,8 +27,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="title_background" parent="Menu" instance=ExtResource("2_wajao")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 custom_minimum_size = Vector2(0, 150)
@@ -79,17 +66,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Credits"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -136.0
-offset_bottom = 76.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("NoiseTexture2D_oioa0")
-
 [node name="Panel" type="Panel" parent="Credits"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
@@ -116,7 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+[node name="Kieran" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
 layout_mode = 2
 text = "developer 1 - stuff"
 
@@ -124,7 +100,39 @@ text = "developer 1 - stuff"
 layout_mode = 2
 text = "developer 1 - stuff"
 
-[node name="Button" type="Button" parent="Credits/Panel"]
+[node name="Label3" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label4" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label5" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label6" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label7" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label8" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label9" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Label10" type="Label" parent="Credits/Panel/HBoxContainer/HFlowContainer"]
+layout_mode = 2
+text = "developer 1 - stuff"
+
+[node name="Main_menu" type="Button" parent="Credits/Panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -142,3 +150,4 @@ text = "Main menu"
 [connection signal="button_up" from="Menu/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="Credits/Panel/Main_menu" to="." method="_on_main_menu_button_up"]
