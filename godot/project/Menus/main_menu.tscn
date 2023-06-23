@@ -69,14 +69,15 @@ grow_vertical = 2
 [node name="PanelContainer" type="PanelContainer" parent="Credits"]
 layout_direction = 1
 layout_mode = 1
-anchors_preset = 13
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
 offset_left = -140.0
 offset_right = 140.0
+offset_bottom = 361.0
 grow_horizontal = 2
-grow_vertical = 2
+scale = Vector2(0.95, 0.95)
+pivot_offset = Vector2(56, 0)
 
 [node name="Panel" type="Panel" parent="Credits/PanelContainer"]
 layout_mode = 2
@@ -84,11 +85,17 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Credits/PanelContainer"]
 layout_mode = 2
 
+[node name="The team" type="Label" parent="Credits/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "The Team:"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Credits/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ReferenceRect" type="ReferenceRect" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Padding" type="ReferenceRect" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="Names" type="VBoxContainer" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
@@ -154,9 +161,10 @@ text = "Sven"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Teun"
+text = "Teun Sprikkelman"
 
 [node name="Jobs" type="VBoxContainer" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -220,9 +228,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Art, team co-lead"
-
-[node name="ReferenceRect2" type="ReferenceRect" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
 
 [node name="Main_menu" type="Button" parent="Credits/PanelContainer/VBoxContainer"]
 layout_mode = 2
