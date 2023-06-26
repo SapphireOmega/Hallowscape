@@ -68,55 +68,6 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(1179684, 65538, 2, 1245220, 65538, 3, 1310756, 65538, 4, 1048613, 131074, 0, 1114149, 131074, 1, 1179685, 131074, 2, 1245221, 131074, 3, 1310757, 131074, 4, 1048614, 196610, 0, 1114150, 196610, 1, 1179686, 196610, 2, 1048615, 262146, 0, 786460, 655360, 6, 786461, 720896, 6, 786462, 786432, 6, 851996, 655360, 7, 851997, 720896, 7, 851998, 786432, 7, 589853, 393216, 0, 589854, 393216, 0, 589855, 524288, 0, 655392, 589824, 2, 786456, 393216, 0, 786457, 393216, 0, 589852, 393216, 0, 786459, 262144, 6, 851995, 262144, 7, 917531, 262144, 7, 917532, 458752, 6, 917533, 458752, 6, 917534, 458752, 6, 917535, 917504, 7, 851999, 917504, 7, 786463, 917504, 6, 589851, 262144, 0, 851994, 196608, 7, 917530, 196608, 7, 786458, 196608, 6, 1245222, 196610, 3, 1310758, 196610, 4, 1114151, 262146, 1, 1179687, 262146, 2, 1245223, 262146, 3, 1310759, 262146, 4, 1179688, 327682, 2, 1245224, 327682, 3, 1310760, 327682, 4, 917505, 917506, 3, 983041, 917506, 4, 1048577, 917506, 5, 1114113, 917506, 6, 1179649, 917506, 7, 1245185, 917506, 8, 1310721, 917506, 9, 917506, 983042, 3, 983042, 983042, 4, 1048578, 983042, 5, 1114114, 983042, 6, 1179650, 983042, 7, 1245186, 983042, 8, 1310722, 983042, 9, 1114157, 1179650, 6, 1179693, 1179650, 7, 1245229, 1179650, 8, 1310765, 1179650, 9, 1114158, 1245186, 6, 1179694, 1245186, 7, 1245230, 1245186, 8, 1310766, 1245186, 9, 1114159, 1310722, 6, 1179695, 1310722, 7, 1245231, 1310722, 8, 1310767, 1310722, 9, 1114155, 1048578, 6, 1179691, 1048578, 7, 1245227, 1048578, 8, 1310763, 1048578, 9, 1114156, 1114114, 6, 1179692, 1114114, 7, 1245228, 1114114, 8, 1310764, 1114114, 9, 1179719, 65538, 8, 1245255, 65538, 7, 1310791, 65538, 8, 1179720, 131074, 8, 1245256, 131074, 7, 1310792, 131074, 8, 1179721, 196610, 8, 1245257, 196610, 7, 1310793, 196610, 8, 1048647, 65538, 8, 1114183, 65538, 7, 1048648, 131074, 8, 1114184, 131074, 7, 1048649, 196610, 8, 1114185, 196610, 7, 917575, 65538, 6, 983111, 65538, 7, 917576, 131074, 6, 983112, 131074, 7, 917577, 196610, 6, 983113, 196610, 7, 1179736, 65538, 8, 1245272, 65538, 7, 1310808, 65538, 8, 1179737, 131074, 8, 1245273, 131074, 7, 1310809, 131074, 8, 1179738, 196610, 8, 1245274, 196610, 7, 1310810, 196610, 8, 1048664, 65538, 8, 1114200, 65538, 7, 1048665, 131074, 8, 1114201, 131074, 7, 1048666, 196610, 8, 1114202, 196610, 7, 917592, 65538, 6, 983128, 65538, 7, 917593, 131074, 6, 983129, 131074, 7, 917594, 196610, 6, 983130, 196610, 7, 1179742, 458754, 7, 1245278, 458754, 8, 1310814, 458754, 9, 1179743, 524290, 7, 1245279, 524290, 8, 1310815, 524290, 9, 1179744, 589826, 7, 1245280, 589826, 8, 1310816, 589826, 9, 1179745, 655362, 7, 1245281, 655362, 8, 1310817, 655362, 9, 1179746, 720898, 7, 1245282, 720898, 8, 1310818, 720898, 9, 1179747, 786434, 7, 1245283, 786434, 8, 1310819, 786434, 9, 983154, 458754, 1, 1048690, 458754, 2, 983155, 524290, 1, 1048691, 524290, 2, 1114227, 524290, 3, 983156, 589826, 1, 1048692, 589826, 2, 1114228, 589826, 3, 1310796, 1310720, 8, 1245301, 1769472, 3, 1310837, 1769472, 4, 1179766, 1769472, 3, 1245302, 1769472, 4, 1114231, 1769472, 3, 1179767, 1769472, 4, 1048696, 1769472, 3, 1114232, 1769472, 4, 983161, 1769472, 3, 1048697, 1769472, 4, 1310838, 1179648, 10, 1310840, 1179648, 10, 1310842, 1179648, 10, 917626, 1900544, 2, 983162, 1900544, 3, 1245304, 1179648, 8, 1179768, 1179648, 8, 1245306, 1179648, 8, 1179770, 1179648, 8, 1114234, 1179648, 8, 1048698, 1179648, 8, 1310836, 1638400, 4, 1310726, 1310720, 8, 1310727, 1376256, 8, 1310761, 1310720, 8)
 
-[node name="TutorialLabel1" type="Area2D" parent="."]
-position = Vector2(109, 264)
-script = ExtResource("4_ouo15")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel1"]
-position = Vector2(3.5, -79)
-shape = SubResource("RectangleShape2D_6wues")
-
-[node name="Label" type="Label" parent="TutorialLabel1"]
-modulate = Color(1, 1, 1, 0)
-offset_left = 21.0
-offset_top = -11.0
-offset_right = 134.0
-offset_bottom = 15.0
-text = "Push the barrel"
-label_settings = SubResource("LabelSettings_6w5o4")
-
-[node name="TutorialLabel2" type="Area2D" parent="."]
-script = ExtResource("4_ouo15")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel2"]
-position = Vector2(400, 258.5)
-shape = SubResource("RectangleShape2D_570th")
-
-[node name="Label" type="Label" parent="TutorialLabel2"]
-modulate = Color(1, 1, 1, 0)
-offset_left = 416.0
-offset_top = 244.0
-offset_right = 529.0
-offset_bottom = 270.0
-text = "You can double jump"
-label_settings = SubResource("LabelSettings_6w5o4")
-
-[node name="TutorialLabel3" type="Area2D" parent="."]
-script = ExtResource("4_ouo15")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3"]
-position = Vector2(394, 134)
-shape = SubResource("RectangleShape2D_tl1vy")
-
-[node name="Label" type="Label" parent="TutorialLabel3"]
-modulate = Color(1, 1, 1, 0)
-offset_left = 316.0
-offset_top = 110.0
-offset_right = 415.0
-offset_bottom = 136.0
-text = "E to interact"
-label_settings = SubResource("LabelSettings_6w5o4")
-
 [node name="LaserConsole" parent="." instance=ExtResource("6_e85t3")]
 position = Vector2(350, 156)
 
@@ -172,6 +123,55 @@ collide_with_areas = false
 position = Vector2(1176, 255)
 collide_with_areas = false
 is_casting = false
+
+[node name="TutorialLabel1" type="Area2D" parent="."]
+position = Vector2(109, 264)
+script = ExtResource("4_ouo15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel1"]
+position = Vector2(3.5, -79)
+shape = SubResource("RectangleShape2D_6wues")
+
+[node name="Label" type="Label" parent="TutorialLabel1"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 21.0
+offset_top = -11.0
+offset_right = 134.0
+offset_bottom = 15.0
+text = "Push the barrel"
+label_settings = SubResource("LabelSettings_6w5o4")
+
+[node name="TutorialLabel2" type="Area2D" parent="."]
+script = ExtResource("4_ouo15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel2"]
+position = Vector2(400, 258.5)
+shape = SubResource("RectangleShape2D_570th")
+
+[node name="Label" type="Label" parent="TutorialLabel2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 416.0
+offset_top = 244.0
+offset_right = 529.0
+offset_bottom = 270.0
+text = "You can double jump"
+label_settings = SubResource("LabelSettings_6w5o4")
+
+[node name="TutorialLabel3" type="Area2D" parent="."]
+script = ExtResource("4_ouo15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3"]
+position = Vector2(394, 134)
+shape = SubResource("RectangleShape2D_tl1vy")
+
+[node name="Label" type="Label" parent="TutorialLabel3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 316.0
+offset_top = 110.0
+offset_right = 415.0
+offset_bottom = 136.0
+text = "E to interact"
+label_settings = SubResource("LabelSettings_6w5o4")
 
 [node name="Barrel" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(164, 311)
