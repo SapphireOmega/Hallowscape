@@ -123,6 +123,7 @@ func adjust_cam_to_stage(stage):
 
 var is_killing = false
 func kill_players():
+	get_tree().paused = true
 	$TextureRect2.show()
 	$Anim.play("DeathIn")
 	await $Anim.animation_finished
@@ -132,6 +133,7 @@ func kill_players():
 		player.die()
 	fastMoveCam(getCam())
 	$Anim.play("DeathOut")
+	get_tree().paused = false
 	await $Anim.animation_finished
 	$TextureRect2.hide()
 	is_killing = false
