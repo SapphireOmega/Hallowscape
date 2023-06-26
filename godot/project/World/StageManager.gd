@@ -8,6 +8,7 @@ const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
 const MAIN = preload("res://main.tscn")
+const WIN = preload("res://Menus/win_screen.tscn")
 # ---------------------- #
 var NPC1 = preload("res://NPCS/NPC1/npc1.tscn")
 
