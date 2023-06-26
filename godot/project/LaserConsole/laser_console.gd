@@ -4,7 +4,6 @@ extends Area2D
 
 var can_interact = []  # All CharacterBody2Ds that are at the console
 
-var activated: bool = false
 var puzzle_solved: bool = false
 var lever_down: bool = false
 
@@ -25,7 +24,6 @@ func _ready() -> void:
 
 func when_puzzle_solved():
 	puzzle_solved = true
-	print("uitzetten")
 	$Sprite2D.region_rect.position.x += 50
 	laser()
 	
@@ -42,7 +40,6 @@ func _process(_delta) -> void:
 		Input.action_release("interact"+str(body.player_id))
 		
 		if !puzzle_solved:
-			print("hoi in activated")
 			var randomPuzzle = puzzles[randi() % puzzles.size()]
 			var server = $"/root/Server"
 			if server:
