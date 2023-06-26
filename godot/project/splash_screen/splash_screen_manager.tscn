@@ -45,7 +45,6 @@ offset_right = 333.913
 expand_mode = 3
 
 [node name="start2" parent="screen" instance=ExtResource("2_ac0ax")]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_top = 0.0
