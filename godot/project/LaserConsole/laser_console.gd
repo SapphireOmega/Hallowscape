@@ -36,7 +36,7 @@ func laser():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
 	for body in can_interact.filter(func(body): return body.has_method("get_input") && body.is_on_floor()):
-		if !body.get_input()["interact"]: return
+		if !body.get_input()["interact"]: continue
 		Input.action_release("interact"+str(body.player_id))
 		
 		if !puzzle_solved:
