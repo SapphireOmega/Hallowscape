@@ -30,8 +30,8 @@ func when_puzzle_solved():
 	
 func laser():
 	for laser_name in laser_names:
-		var laser: Object = self.get_parent().get_node(laser_name)
-		laser.set_is_casting(!laser.get_is_casting())	
+		var l: Object = self.get_parent().get_node(laser_name)
+		l.set_is_casting(!l.get_is_casting())	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:

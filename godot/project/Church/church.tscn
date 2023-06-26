@@ -858,6 +858,7 @@ laser_names = ["Laser3"]
 
 [node name="Line2D" type="Line2D" parent="Lasers/LaserConsole"]
 position = Vector2(0.5, 0.5)
+scale = Vector2(-1, 1)
 points = PackedVector2Array(4.5, 6.5, 95.5, 6.5, 95.5, -212.5, -262, -213, -262, -205)
 width = 2.0
 default_color = Color(0.101961, 0.360784, 0.0823529, 1)
@@ -941,10 +942,10 @@ target_position = Vector2(361, 0)
 [node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
 
 [node name="player" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(67, 302)
+position = Vector2(81, 302)
 
 [node name="player2" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(39, 303)
+position = Vector2(40, 301)
 player_id = 2
 
 [node name="Area2D4" parent="." instance=ExtResource("9_unso7")]

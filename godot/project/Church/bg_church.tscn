@@ -89,6 +89,7 @@ rotation = 1.5727
 texture = SubResource("GradientTexture1D_cq3vh")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 2.08165e-12)
 script = SubResource("GDScript_8obj0")
@@ -103,6 +104,7 @@ position = Vector2(544, 120)
 texture = ExtResource("2_aiwyj")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(640, 2.08165e-12)
 script = SubResource("GDScript_v2i4f")
@@ -112,6 +114,7 @@ position = Vector2(312, 96)
 texture = ExtResource("2_aiwyj")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+visible = false
 position = Vector2(0, -200)
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 2.08165e-12)
