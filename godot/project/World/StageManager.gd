@@ -60,6 +60,7 @@ func getCam():
 
 func changeStage(stage_path, x=0, y=0, with_screen = true):
 	if with_screen:
+		$TextureRect.modulate.a = 0
 		$TextureRect.show()
 		$Anim.play("TransIn")
 		await $Anim.animation_finished
@@ -67,8 +68,8 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 	
 	var stage = stage_path.instantiate()
 	
-	if curStagePath().get_child(0) != null:
-		curStagePath().get_child(0).free()
+	if curStagePath().get_child_count() > 0 and curStagePath().get_child(0) != null:
+		curStagePath().get_child(0).queue_free()
 	curStagePath().add_child(stage)
 	
 	
@@ -123,6 +124,7 @@ var is_killing = false
 func kill_players():
 	get_tree().paused = true
 	await get_tree().create_timer(1).timeout
+	$TextureRect2.modulate.a = 0
 	$TextureRect2.show()
 	$Anim.play("DeathIn")
 	await $Anim.animation_finished
