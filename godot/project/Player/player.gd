@@ -71,7 +71,7 @@ func get_input() -> Dictionary:
 		"released_jump": Input.is_action_just_released("jump"+str(player_id)) == true,
 		"just_attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
 		"attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
-		"interact": Input.is_action_just_pressed("interact"+str(player_id)) == true
+		"interact": Input.is_action_pressed("interact"+str(player_id)) == true
 	}
 
 
