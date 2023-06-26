@@ -52,6 +52,8 @@ func swap_fullscreen_mode():
 
 
 func curStage():
+	if $"/root/Main".find_child("Current_level").get_child_count() == 0:
+		return null
 	return $"/root/Main".find_child("Current_level").get_child(0)
 
 
@@ -68,7 +70,7 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 	
 	var stage = stage_path.instantiate()
 	
-	if curStagePath().get_child_count() > 0 and curStagePath().get_child(0) != null:
+	if curStagePath().get_child_count() > 0 and curStagePath().get_child_count() != 0:
 		curStagePath().get_child(0).queue_free()
 	curStagePath().add_child(stage)
 	
