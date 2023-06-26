@@ -29,8 +29,8 @@ func _ready():
 		return
 
 	# Displays the IP on the waiting screen.
-#	var ip = get_ip_addr()
-	var ip = "145.109.8.16"
+	var ip = get_ip_addr()
+#	var ip = "145.109.8.16"
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
 	# ---
@@ -144,7 +144,7 @@ func serveClient(SCThread, tcp):
 		if bytes > 0:
 			# Get available data
 			var data = tcp.get_partial_data(bytes)
-			print(data[1].get_string_from_utf8())
+#			print(data[1].get_string_from_utf8())
 			# Split the incoming string into the arguments
 			var arguments = data[1].get_string_from_utf8().split(":")
 			if arguments[0] == "p": # Client presses button
@@ -152,7 +152,6 @@ func serveClient(SCThread, tcp):
 			elif arguments[0] == "r": # Client releases button
 				Input.action_release(arguments[1]+players.find_key(tcp))
 			elif arguments[0] == "puzzle":
-				print(instance_from_id(int(arguments[1])))
 				instance_from_id(int(arguments[1])).when_puzzle_solved()
 				
 
@@ -181,7 +180,6 @@ func serveClient(SCThread, tcp):
 # from other nodes)
 func sendPuzzle(PlayerID, PuzzleName, ObjectID):
 	var reciever = players[str(PlayerID)]
-	print("object" + str(ObjectID))
 	if reciever:
 		var dict = {"action" : "puzzle", "type" : PuzzleName, "object" : ObjectID}
 		reciever.put_data(JSON.stringify(dict).to_utf8_buffer())
