@@ -113,19 +113,19 @@ text = "Amber Stoevelaar"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Andrea"
+text = "Andrea Li"
 
 [node name="Daan" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Daan"
+text = "Daan Stenekes"
 
 [node name="Joris" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Joris"
+text = "Joris Klaasse Bos"
 
 [node name="Kai" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
@@ -143,19 +143,19 @@ text = "Kieran van Gelder"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Montijn"
+text = "Montijn van den Beukel"
 
 [node name="Rover" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Rover"
+text = "Rover Hofman"
 
 [node name="Sven" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Sven"
+text = "Sven Roozendaal"
 
 [node name="Teun" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
