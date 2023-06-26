@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://deng5iavg2kkv"]
+[gd_scene load_steps=5 format=3 uid="uid://1q6wmjrrrm4f"]
 
 [ext_resource type="Texture2D" uid="uid://d3nrcs7d3tfik" path="res://Assets/Fort of Illusion Files/Layers/back.png" id="1_8yqdd"]
 [ext_resource type="Texture2D" uid="uid://xudaix8f5fag" path="res://Assets/Fort of Illusion Files/Layers/mountains.png" id="2_kbpka"]
@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 "
 

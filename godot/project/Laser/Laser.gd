@@ -12,7 +12,7 @@ func get_is_casting() -> bool:
 func _ready() -> void:
 	pass
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	force_raycast_update()
 	$Line2D.points[1] = Vector2.ZERO     if !is_casting \
 				   else Vector2(1000, 0) if !is_colliding() \
@@ -28,5 +28,5 @@ func _physics_process(delta: float) -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
