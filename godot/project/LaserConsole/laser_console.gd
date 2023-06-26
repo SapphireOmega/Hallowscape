@@ -45,8 +45,8 @@ func _process(_delta) -> void:
 			print("hoi in activated")
 			var randomPuzzle = puzzles[randi() % puzzles.size()]
 			var server = $"/root/Server"
-			if server:
-				server.sendPuzzle(body.player_id, randomPuzzle, self.get_instance_id())
+			if server: server.sendPuzzle(body.player_id, randomPuzzle, self.get_instance_id())
+			if !server || !server.RunOnLaunch: when_puzzle_solved()
 		else:
 			$Sprite2D.region_rect.position.x += (1 if lever_down else -1) * 25
 			lever_down = !lever_down
