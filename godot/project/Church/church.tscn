@@ -796,9 +796,8 @@ size = Vector2(48, 4)
 size = Vector2(64, 53.625)
 
 [node name="Church" type="Node2D"]
+position = Vector2(1, 0)
 script = ExtResource("1_mo6it")
-
-[node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -855,12 +854,15 @@ layer_2/tile_data = PackedInt32Array(1310725, 2293760, 9, 1376261, 2293760, 10, 
 
 [node name="LaserConsole" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(1046, 82)
+scale = Vector2(-1, 1)
 laser_names = ["Laser3"]
 
 [node name="Line2D" type="Line2D" parent="Lasers/LaserConsole"]
-points = PackedVector2Array(-2, -24, 95, -24, 94, -213, -262, -213, -262, -205)
+position = Vector2(0.5, 0.5)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(4.5, 6.5, 95.5, 6.5, 95.5, -212.5, -262, -213, -262, -205)
 width = 2.0
-default_color = Color(0.14902, 0.180392, 0.521569, 1)
+default_color = Color(0.101961, 0.360784, 0.0823529, 1)
 
 [node name="LaserConsole4" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(465, -361)
@@ -875,20 +877,21 @@ position = Vector2(767, -143)
 laser_names = ["Laser5", "Laser7"]
 
 [node name="Line2D" type="Line2D" parent="Lasers/LaserConsole2"]
+position = Vector2(0.5, 0.5)
 points = PackedVector2Array(0, -26, 0, -137, -555, -137, -508, -136, -509, 107, -475, 107)
 width = 2.0
-default_color = Color(0.45098, 0, 0.564706, 1)
+default_color = Color(0.360784, 0, 0.454902, 1)
 
 [node name="LaserConsole3" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(15, -138)
 laser_names = ["Laser4"]
 
 [node name="Line2D" type="Line2D" parent="Lasers/LaserConsole3"]
-position = Vector2(-5, -11)
+position = Vector2(-5.5, -11.5)
 scale = Vector2(0.2, 0.265)
 points = PackedVector2Array(0, 7.54718, 0, 618.868, 2790, 618.868, 2790, 603.774, 3095, 603.774, 3095, 573.585, 3725, 573.585, 3725, 588.679, 3945, 588.679, 3960, 581.132)
 width = 4.0
-default_color = Color(1, 0.392157, 0, 1)
+default_color = Color(0.615686, 0.231373, 0, 1)
 
 [node name="Laser" parent="Lasers" instance=ExtResource("7_vaasb")]
 position = Vector2(953, -95)
@@ -937,11 +940,13 @@ position = Vector2(513, -316)
 rotation = -0.00174533
 target_position = Vector2(361, 0)
 
+[node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
+
 [node name="player" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(67, 302)
+position = Vector2(81, 302)
 
 [node name="player2" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(39, 303)
+position = Vector2(40, 301)
 player_id = 2
 
 [node name="Area2D4" parent="." instance=ExtResource("9_unso7")]

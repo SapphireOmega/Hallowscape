@@ -8,6 +8,7 @@ const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
 const MAIN = preload("res://main.tscn")
+const WIN = preload("res://Menus/win_screen.tscn")
 # ---------------------- #
 var NPC1 = preload("res://NPCS/NPC1/npc1.tscn")
 
@@ -33,7 +34,7 @@ func _on_ready():
 		print(f6_error_msg)
 	elif last_child.name == self.name:
 		self.queue_free()
-	if curStagePath().get_child(0) == null:
+	if curStagePath().get_child_count() == 0:
 		print("Stage Manager: No self-chosen stage found, selecting the default stage instead")
 		curStagePath().add_child(default_scene.instantiate())
 	adjust_cam_to_stage(curStage())
