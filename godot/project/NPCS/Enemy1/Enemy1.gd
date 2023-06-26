@@ -48,7 +48,7 @@ func take_damage():
 		queue_free()
 
 
-func _on_detect_player_body_exited(body: CharacterBody2D):
+func _on_detect_player_body_exited(_body: CharacterBody2D):
 	if $Sprite2D.scale.x == 1 or $Sprite2D2.scale.x == 1 and facing_right:
 		velocity.x = 50
 	elif $Sprite2D.scale.x == -1 or $Sprite2D2.scale.x == -1 and facing_right:
@@ -62,7 +62,7 @@ func _on_detect_player_body_exited(body: CharacterBody2D):
 	$AnimationPlayer.play("walk")
 
 
-func _on_detect_player_body_entered(body: CharacterBody2D):
+func _on_detect_player_body_entered(_body: CharacterBody2D):
 	$Sprite2D.visible = false
 	$Sprite2D2.visible = true
 	velocity.x = 0

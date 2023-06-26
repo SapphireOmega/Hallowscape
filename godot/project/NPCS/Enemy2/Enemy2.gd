@@ -26,7 +26,7 @@ func _ready():
 	$IdleSprite.visible = true
 	animation.queue("idle")
 
-func _process(delta):
+func _process(_delta):
 	# Move towards the player if the player is within a certain area.
 	if abs(player.position.x - position.x) > vision:
 		velocity.x = 0
@@ -82,19 +82,19 @@ func take_damage():
 		## Death animation ##
 		queue_free()
 
-func body_enter_attack(body: CharacterBody2D):
+func body_enter_attack(_body: CharacterBody2D):
 	$AttackSprite.visible = true
 	$IdleSprite.visible = false
 	in_range = true
 
-func body_out_of_range(body: CharacterBody2D):
+func body_out_of_range(_body: CharacterBody2D):
 	in_range = false
 
 func damage_player(body: CharacterBody2D):
 	if $Attack_player.monitoring == true and body.is_in_group("player"):
 		body.die()
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	if in_range == false:
 		$Attack_player.visible = false
 		$AttackSprite.visible = false
