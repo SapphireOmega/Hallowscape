@@ -26,7 +26,7 @@ offset_right = 444.0
 offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.0980392, 0.137255, 0.160784, 1)
 
 [node name="screen" type="Control" parent="."]
 layout_mode = 1
