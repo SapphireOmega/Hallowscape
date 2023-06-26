@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Control
 
 @export var _time: float = 2
 @export var _fade_time: float = 1

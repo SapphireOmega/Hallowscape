@@ -48,11 +48,11 @@ func shake(time: float, amount: float):
 
 
 func _on_timer_timeout():
-	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	Tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	shake_amount = 0
 
 
-func focus_cam_to_pos(pos, conversing):
+func focus_cam_to_pos(_pos, conversing):
 	if conversing == true:
 		self.enabled = false
 	else:

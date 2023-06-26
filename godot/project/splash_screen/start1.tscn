@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://2co1ko3rv6yl"]
+[gd_scene load_steps=15 format=3 uid="uid://2co1ko3rv6yl"]
 
 [ext_resource type="Script" path="res://splash_screen/start1.gd" id="1_c70nk"]
-[ext_resource type="Script" path="res://splash_screen/start1_player.gd" id="2_kl7qm"]
+[ext_resource type="Script" path="res://splash_screen/player1.gd" id="2_d3l0e"]
 [ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://Player/AnimationSheet_Character.png" id="2_s33k4"]
 [ext_resource type="Animation" uid="uid://b8lvwn14qu3sa" path="res://Player/animations/fall.res" id="3_76let"]
+[ext_resource type="Texture2D" uid="uid://mxs1my3gtl77" path="res://Assets/Inhouse/background_flash.png" id="3_wpnk4"]
 [ext_resource type="Animation" uid="uid://cqa7bbboo4hwd" path="res://Player/animations/idle.res" id="4_7pdmt"]
 [ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://Player/animations/jump.res" id="5_lfolc"]
 [ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://Player/animations/landing.res" id="6_mae7d"]
-[ext_resource type="Texture2D" uid="uid://cflyhgy8k604d" path="res://Assets/Inhouse/designed_by.png" id="8_kjqax"]
+[ext_resource type="Texture2D" uid="uid://b5hyhkfutljk" path="res://Assets/Inhouse/designed_by.png" id="8_kjqax"]
+[ext_resource type="Script" path="res://splash_screen/player2.gd" id="8_w10qi"]
 
 [sub_resource type="Animation" id="Animation_ffvq5"]
 length = 0.001
@@ -69,30 +71,27 @@ _data = {
 "run": SubResource("Animation_k8fpi")
 }
 
-[node name="start1" type="VBoxContainer"]
+[node name="start1" type="TextureRect"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.0
-offset_top = -128.0
-offset_right = 130.0
-offset_bottom = 128.0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_wpnk4")
+expand_mode = 1
 script = ExtResource("1_c70nk")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
-script = ExtResource("2_kl7qm")
+[node name="player1" type="CharacterBody2D" parent="."]
+position = Vector2(200, 50)
+script = ExtResource("2_d3l0e")
 
-[node name="player1" type="CharacterBody2D" parent="TextureRect"]
-
-[node name="Sprite2D" type="Sprite2D" parent="TextureRect/player1"]
+[node name="Sprite2D" type="Sprite2D" parent="player1"]
 modulate = Color(1, 0.3, 0.3, 1)
 position = Vector2(2.00001, 1.99996)
 scale = Vector2(5.54688, 5.01563)
@@ -101,19 +100,21 @@ offset = Vector2(10, 15)
 hframes = 8
 vframes = 9
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="TextureRect/player1"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="player1"]
 position = Vector2(45.3958, 80.6635)
 scale = Vector2(7.60417, 5.33654)
 polygon = PackedVector2Array(-5, -12, 7, -12, 7, 10, 4, 13, 1, 14, -2, 13, -5, 10)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect/player1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player1"]
 libraries = {
 "": SubResource("AnimationLibrary_pbuc1")
 }
 
-[node name="player2" type="CharacterBody2D" parent="TextureRect"]
+[node name="player2" type="CharacterBody2D" parent="."]
+position = Vector2(200, 50)
+script = ExtResource("8_w10qi")
 
-[node name="Sprite2D" type="Sprite2D" parent="TextureRect/player2"]
+[node name="Sprite2D" type="Sprite2D" parent="player2"]
 modulate = Color(0, 2, 4.5, 1)
 position = Vector2(3.00003, 1.99996)
 scale = Vector2(5.54688, 5.01563)
@@ -122,21 +123,19 @@ offset = Vector2(35, 15)
 hframes = 8
 vframes = 9
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="TextureRect/player2"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="player2"]
 position = Vector2(186.052, 80.0913)
 scale = Vector2(7.44792, 5.40865)
 polygon = PackedVector2Array(-5, -12, 7, -12, 7, 10, 4, 13, 1, 14, -2, 13, -5, 10)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect/player2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player2"]
 libraries = {
 "": SubResource("AnimationLibrary_pbuc1")
 }
 
-[node name="Label" type="TextureRect" parent="TextureRect"]
-layout_mode = 0
-offset_left = -98.0
-offset_top = 13.0
-offset_right = 349.0
-offset_bottom = 267.0
+[node name="Label" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 345.0
 texture = ExtResource("8_kjqax")
 expand_mode = 5
