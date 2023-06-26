@@ -28,7 +28,7 @@ func _input(_event: InputEvent) -> void:
 func _start_splash_screen() -> void:
 	if _splash_screens.size() == 0:
 		queue_free()
-		StageManager.changeStage(StageManager.MAINMENU)
+		StageManager.changeStage(StageManager.MAINMENU,0,0,false)
 	else:
 		var splash_screen = _splash_screens.pop_front()
 		splash_screen.start()

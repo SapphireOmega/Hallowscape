@@ -67,8 +67,8 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 	
 	var stage = stage_path.instantiate()
 	
-	if curStagePath().get_child(0) != null:
-		curStagePath().get_child(0).free()
+	if curStagePath().get_child_count() > 0 and curStagePath().get_child(0) != null:
+		curStagePath().get_child(0).queue_free()
 	curStagePath().add_child(stage)
 	
 	
