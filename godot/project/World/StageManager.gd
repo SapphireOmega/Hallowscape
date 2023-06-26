@@ -46,10 +46,7 @@ func curServer():
 	return $"/root/Main".find_child("Server")
 
 func swap_fullscreen_mode():
-	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
 
 

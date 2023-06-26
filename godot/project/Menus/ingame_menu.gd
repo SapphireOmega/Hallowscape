@@ -21,12 +21,13 @@ func _unhandled_input(event):
 	var cl = cs.find_child("Current_level")
 	if cl.get_child_count() != 0 && cl.get_child(0).name != "Menu":
 		if event.is_action_released("ui_cancel"):
-			self.is_paused = !is_paused
-			if self.is_paused:
-				$"/root/Server/CanvasLayer".hide()
-			else:
-				if server.server_paused:
-					$"/root/Server/CanvasLayer".show()
+			if $"/root/Server" != null:
+				self.is_paused = !is_paused
+				if self.is_paused:
+					$"/root/Server/CanvasLayer".hide()
+				else:
+					if server.server_paused:
+						$"/root/Server/CanvasLayer".show()
 
 
 #resume the game button
