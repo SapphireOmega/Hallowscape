@@ -41,7 +41,7 @@ var is_double_jumping := false
 var double_jump_bypass := false
 # ----------------------------------- #
 @export var shake_duration = 0.1
-@export var shake_intensity = 3
+@export var shake_intensity = 2
 
 @onready var npc_in_range = 0
 var dialogue_active = false
@@ -53,6 +53,8 @@ var spawn_point: Vector2
 func _ready() -> void:
 	$Sprite2D.visible = true
 	$Sprite2D2.visible = false
+	$Area2D.monitoring = false
+	$Area2D/CollisionShape2D.disabled = true
 	spawn_point = self.position
 	if player_id == 2:
 		self.modulate = Color(0, 2, 4.5, 1)
@@ -129,7 +131,7 @@ func x_movement(delta: float) -> void:
 	# Accelerate
 	velocity.x += x_dir * accel_rate * delta
 	#play waling sound
-	if !is_double_jumping and !is_jumping:
+	if is_on_floor():
 		MusicGallery.sound_effect("Walk", false)
 	set_direction(x_dir) # This is purely for visuals
 
@@ -166,7 +168,7 @@ func jump_logic(_delta: float) -> void:
 			jump_coyote_timer = 0
 			jump_buffer_timer = 0
 			velocity.y = -jump_force
-			#MusicGallery.sound_effect("Jump")
+			MusicGallery.sound_effect("Jump")
 	
 	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
 	# This should only happen when moving upwards, as doing this while falling would lead to
@@ -236,6 +238,7 @@ func update_animation():
 				$AnimationPlayer.play("damage")
 				damaged = false
 			else:
+				$Area2D.monitoring = true
 				$Area2D/CollisionShape2D.disabled = false
 				$AnimationPlayer.play("attack")
 	else:
@@ -283,7 +286,6 @@ func take_damage():
 #------------ interactables --- #
 
 func _player_detected(body):
-	print("yo")
 	var t = Timer.new()
 	# Waits for exact frame where the player hits.
 	t.set_wait_time(0.2)
@@ -292,8 +294,7 @@ func _player_detected(body):
 	t.start()
 	await t.timeout
 
-	if body.is_in_group("hit"):
-		print("hit")
+	if body.has_method("makepath"):
 		StageManager.getCam().shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
