@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=23 format=3 uid="uid://cx81owv8k5jdj"]
+=======
+[gd_scene load_steps=27 format=3 uid="uid://cx81owv8k5jdj"]
+>>>>>>> c2a669976084c1b57620fc4f8b4696c7f4e842b2
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -9,8 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="7_bxhqr"]
+<<<<<<< HEAD
+=======
+[ext_resource type="PackedScene" uid="uid://ch422r8ofcrul" path="res://NPCS/Enemy1/enemy1_walls.tscn" id="7_c258x"]
+[ext_resource type="Texture2D" uid="uid://t2ybsneyjewv" path="res://Assets/Inhouse/arrow.png" id="8_cikgh"]
+>>>>>>> c2a669976084c1b57620fc4f8b4696c7f4e842b2
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
+[ext_resource type="Texture2D" uid="uid://b6qcgew6uc4ma" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wues"]
 size = Vector2(33, 260)
@@ -26,7 +36,7 @@ shadow_color = Color(0, 0, 0, 0.301961)
 size = Vector2(72, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl1vy"]
-size = Vector2(128, 104)
+size = Vector2(166, 126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -158,11 +168,27 @@ offset_bottom = 270.0
 text = "You can double jump"
 label_settings = SubResource("LabelSettings_6w5o4")
 
+[node name="TextureRect2" type="TextureRect" parent="TutorialLabel2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 251.0
+offset_top = 258.0
+offset_right = 507.0
+offset_bottom = 396.0
+texture = ExtResource("9_svuyy")
+
+[node name="TextureRect3" type="TextureRect" parent="TutorialLabel2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 312.0
+offset_top = 258.0
+offset_right = 568.0
+offset_bottom = 396.0
+texture = ExtResource("9_svuyy")
+
 [node name="TutorialLabel3" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3"]
-position = Vector2(394, 134)
+position = Vector2(413, 145)
 shape = SubResource("RectangleShape2D_tl1vy")
 
 [node name="Label" type="Label" parent="TutorialLabel3"]
@@ -173,6 +199,14 @@ offset_right = 415.0
 offset_bottom = 136.0
 text = "E to interact"
 label_settings = SubResource("LabelSettings_6w5o4")
+
+[node name="TextureRect" type="TextureRect" parent="TutorialLabel3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 246.0
+offset_top = 149.0
+offset_right = 502.0
+offset_bottom = 287.0
+texture = ExtResource("8_cikgh")
 
 [node name="Barrel" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(164, 311)
