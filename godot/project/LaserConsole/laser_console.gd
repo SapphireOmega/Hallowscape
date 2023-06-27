@@ -10,10 +10,10 @@ var lever_down: bool = false
 #var puzzles = ["tap", "holes", "shapeSequence", "memory", "lock", "coin"]
 var puzzles = ["shapeSequence"]
 
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body) -> void:
 	can_interact.append(body)
 
-func _on_body_exited(body: CharacterBody2D) -> void:
+func _on_body_exited(body) -> void:
 	can_interact.erase(body)
 
 # Called when the node enters the scene tree for the first time.
