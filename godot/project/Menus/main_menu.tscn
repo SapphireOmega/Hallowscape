@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3m6x5g4aav3"]
+[gd_scene load_steps=10 format=3 uid="uid://d3m6x5g4aav3"]
 
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2j5sl"]
 [ext_resource type="PackedScene" uid="uid://dn38ugqpya8tp" path="res://Menus/parallax_background.tscn" id="2_wajao"]
 [ext_resource type="Texture2D" uid="uid://qh3fuu56suky" path="res://Assets/Inhouse/UI elements/start.png" id="3_g1rop"]
 [ext_resource type="Texture2D" uid="uid://b14kdp4ahab8n" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="4_33qoh"]
 [ext_resource type="Texture2D" uid="uid://cxd3bajtlrgpi" path="res://Assets/Inhouse/UI elements/credits.png" id="5_0b0ux"]
+[ext_resource type="Script" path="res://Menus/Start_button.gd" id="5_jw7o6"]
 [ext_resource type="Texture2D" uid="uid://kubhos2gtp31" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="6_ocvdt"]
 [ext_resource type="Texture2D" uid="uid://cx83pukdxdpbb" path="res://Assets/Inhouse/UI elements/quit.png" id="7_rkjp6"]
 [ext_resource type="Texture2D" uid="uid://bxamhi7jv3klc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="8_nx2j7"]
@@ -46,6 +47,7 @@ grow_vertical = 0
 layout_mode = 2
 texture_normal = ExtResource("3_g1rop")
 texture_pressed = ExtResource("4_33qoh")
+script = ExtResource("5_jw7o6")
 
 [node name="Credits" type="TextureButton" parent="Menu/VBoxContainer"]
 layout_mode = 2
