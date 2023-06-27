@@ -1,7 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://2co1ko3rv6yl"]
 
 [ext_resource type="Script" path="res://splash_screen/start1.gd" id="1_c70nk"]
-[ext_resource type="Script" path="res://splash_screen/player1.gd" id="2_d3l0e"]
 [ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://Player/AnimationSheet_Character.png" id="2_s33k4"]
 [ext_resource type="Animation" uid="uid://b8lvwn14qu3sa" path="res://Player/animations/fall.res" id="3_76let"]
 [ext_resource type="Texture2D" uid="uid://mxs1my3gtl77" path="res://Assets/Inhouse/background_flash.png" id="3_wpnk4"]
@@ -9,7 +8,25 @@
 [ext_resource type="Animation" uid="uid://be3o5qkackgit" path="res://Player/animations/jump.res" id="5_lfolc"]
 [ext_resource type="Animation" uid="uid://dgax0e06cqo4a" path="res://Player/animations/landing.res" id="6_mae7d"]
 [ext_resource type="Texture2D" uid="uid://b5hyhkfutljk" path="res://Assets/Inhouse/designed_by.png" id="8_kjqax"]
-[ext_resource type="Script" path="res://splash_screen/player2.gd" id="8_w10qi"]
+
+[sub_resource type="GDScript" id="GDScript_rb3wr"]
+script/source = "extends CharacterBody2D
+var timer = Timer.new()
+
+func _ready():
+	add_child(timer)
+	timer.connect(\"timeout\", play)
+	timer.set_wait_time(1.5)
+	timer.one_shot = false
+	timer.start()
+
+func play():
+	$AnimationPlayer.play(\"run\")
+	await get_tree().create_timer(0.5).timeout
+	$AnimationPlayer.play(\"jump\")
+	await get_tree().create_timer(0.5).timeout
+	$AnimationPlayer.play(\"attack\")
+"
 
 [sub_resource type="Animation" id="Animation_ffvq5"]
 length = 0.001
@@ -71,8 +88,27 @@ _data = {
 "run": SubResource("Animation_k8fpi")
 }
 
+[sub_resource type="GDScript" id="GDScript_gjone"]
+script/source = "extends CharacterBody2D
+var timer = Timer.new()
+
+func _ready():
+	add_child(timer)
+	timer.connect(\"timeout\", play)
+	timer.set_wait_time(1.5)
+	timer.one_shot = false
+	timer.start()
+
+func play():
+	$AnimationPlayer.play(\"run\")
+	await get_tree().create_timer(0.5).timeout
+	$AnimationPlayer.play(\"jump\")
+	await get_tree().create_timer(0.5).timeout
+	$AnimationPlayer.play(\"attack\")
+"
+
 [node name="start1" type="TextureRect"]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -89,7 +125,7 @@ script = ExtResource("1_c70nk")
 
 [node name="player1" type="CharacterBody2D" parent="."]
 position = Vector2(200, 50)
-script = ExtResource("2_d3l0e")
+script = SubResource("GDScript_rb3wr")
 
 [node name="Sprite2D" type="Sprite2D" parent="player1"]
 modulate = Color(1, 0.3, 0.3, 1)
@@ -112,7 +148,7 @@ libraries = {
 
 [node name="player2" type="CharacterBody2D" parent="."]
 position = Vector2(200, 50)
-script = ExtResource("8_w10qi")
+script = SubResource("GDScript_gjone")
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]
 modulate = Color(0, 2, 4.5, 1)

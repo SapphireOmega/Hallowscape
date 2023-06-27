@@ -25,13 +25,15 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

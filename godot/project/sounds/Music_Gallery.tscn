@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjjdbfhy3bjrm"]
+[gd_scene load_steps=13 format=3 uid="uid://cjjdbfhy3bjrm"]
 
 [ext_resource type="Script" path="res://sounds/Music_Gallery.gd" id="1_0apwy"]
 [ext_resource type="AudioStream" uid="uid://6ghd8l08m3qt" path="res://sounds/music/placeholder/SU-4.ogg" id="2_kh1r8"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cu7h8dmxsw4k5" path="res://sounds/sound_effects/sfx_jump_07-80241.mp3" id="9_vuy0i"]
 [ext_resource type="AudioStream" uid="uid://b1vikxikgp6mn" path="res://sounds/sound_effects/land2-43790.mp3" id="10_joc5j"]
 [ext_resource type="AudioStream" uid="uid://dd26r4t7fs3li" path="res://sounds/sound_effects/brain-damage-148577.mp3" id="11_kvul7"]
+[ext_resource type="AudioStream" uid="uid://bqo6eun2ag85p" path="res://sounds/sound_effects/walk_1_fast.wav" id="12_ix0je"]
 
 [node name="Music_Gallery" type="Node"]
 script = ExtResource("1_0apwy")
@@ -73,5 +74,9 @@ volume_db = -3.748
 
 [node name="Brain" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource("11_kvul7")
+
+[node name="Walk" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource("12_ix0je")
+volume_db = -14.992
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

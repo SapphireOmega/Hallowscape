@@ -1,6 +1,6 @@
 extends Area2D
 
-func _on_body_entered(_body: CharacterBody2D) -> void:
+func _on_body_entered(_body) -> void:
 	for child in get_children():
 		create_tween().tween_property(child, "modulate:a", 1, 1)
 
