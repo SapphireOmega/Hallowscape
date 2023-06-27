@@ -1,3 +1,6 @@
+### When activated, do a raycast, draw a line to the collision point, and check
+### if the player was hit. If the player was in fact hit, kill the players.
+
 extends RayCast2D
 
 @export var is_casting = true : set = set_is_casting, get = get_is_casting
