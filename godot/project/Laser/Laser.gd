@@ -24,9 +24,6 @@ func _physics_process(_delta: float) -> void:
 				StageManager.is_killing = true
 				StageManager.kill_players()
 
-
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
