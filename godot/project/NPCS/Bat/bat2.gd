@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var hitpoints = 2
+@export var hitpoints = 3
 var hits_taken = 0
 
 @onready var animation = $AnimationPlayer
@@ -18,11 +18,14 @@ var dir
 @onready var nav_ag := $NavigationAgent2D as NavigationAgent2D
 @onready var spawn = self.position
 
+@onready var dying = false
+
 func _ready():
 	$Attack_player.visible = false
 	$Attack_player.monitoring = false
 	$AttackSprite.visible = false
 	$IdleSprite.visible = true
+	$DeathSprite.visible = false
 	animation.queue("idle")
 	makepath()
 
@@ -58,13 +61,15 @@ func _physics_process(delta):
 	set_direction(x_dir)
 	move_and_slide()
 	
-	if in_range:
+	if in_range and !dying:
 		animation.queue("attack")
-	elif animation.current_animation == "attack":
+	elif animation.current_animation == "attack" and !dying:
 		if animation.animation_finished:
 			pass
-	else:
+	elif !dying:
 		animation.queue("idle")
+	else:
+		animation.queue("die")
 
 	for ani in animation.get_queue():
 		animation.play(ani)
@@ -89,16 +94,30 @@ func makepath() -> void:
 func take_damage():
 	## hit animation ##
 	hits_taken += 1
-	print("hit taken")
 	if hitpoints == hits_taken:
-		print("died")
-		## Death animation ##
+		dying = true
+		$IdleSprite.visible = false
+		$AttackSprite.visible = false
+		$DeathSprite.visible = true
+		animation.stop(true)
+		animation.clear_queue()
+		animation.queue("die")
+		var t = Timer.new()
+		# Waits for exact frame where the player hits.
+		t.set_wait_time(0.7)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		await t.timeout
+		
 		queue_free()
+		
 
 func body_enter_attack(body: CharacterBody2D):
-	$AttackSprite.visible = true
-	$IdleSprite.visible = false
-	in_range = true
+	if !dying:
+		$AttackSprite.visible = true
+		$IdleSprite.visible = false
+		in_range = true
 
 func body_out_of_range(body: CharacterBody2D):
 	in_range = false
@@ -106,7 +125,6 @@ func body_out_of_range(body: CharacterBody2D):
 func damage_player(body: CharacterBody2D):
 	if $Attack_player.monitoring and body.is_in_group("player"):
 		body.take_damage()
-		print(StageManager.health1)
 		if StageManager.health1 == 0:
 			StageManager.kill_players()
 			StageManager.health1 = 3

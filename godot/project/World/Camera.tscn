@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://idh2kqxwhctj"]
+[gd_scene load_steps=6 format=3 uid="uid://swy5exu41qdt"]
 
 [ext_resource type="Script" path="res://World/Camera2D.gd" id="1_enjnk"]
 [ext_resource type="Script" path="res://World/KillBorder.gd" id="2_gw3aa"]
@@ -45,3 +45,5 @@ position = Vector2(-53, 62)
 shape = SubResource("SegmentShape2D_u5ov0")
 
 [node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

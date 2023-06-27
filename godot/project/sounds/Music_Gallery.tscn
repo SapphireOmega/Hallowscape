@@ -8,10 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://7udfibq7h106" path="res://sounds/music/placeholder/SU-2.ogg" id="6_fgkdx"]
 [ext_resource type="AudioStream" uid="uid://c4gilawj61l2l" path="res://sounds/music/placeholder/SU-1.ogg" id="7_0tfo7"]
 [ext_resource type="AudioStream" uid="uid://go2l6ch3m734" path="res://sounds/music/pvg_songs/pengel.ogg" id="8_45k0x"]
-[ext_resource type="AudioStream" uid="uid://cu7h8dmxsw4k5" path="res://sounds/sound_effects/sfx_jump_07-80241.mp3" id="9_vuy0i"]
+[ext_resource type="AudioStream" uid="uid://d3pjepn0mum57" path="res://sounds/sound_effects/whooshy_jump.mp3" id="9_4y8ts"]
 [ext_resource type="AudioStream" uid="uid://b1vikxikgp6mn" path="res://sounds/sound_effects/land2-43790.mp3" id="10_joc5j"]
 [ext_resource type="AudioStream" uid="uid://dd26r4t7fs3li" path="res://sounds/sound_effects/brain-damage-148577.mp3" id="11_kvul7"]
-[ext_resource type="AudioStream" uid="uid://bqo6eun2ag85p" path="res://sounds/sound_effects/walk_1_fast.wav" id="12_ix0je"]
+[ext_resource type="AudioStream" uid="uid://x37a0mnrpbqt" path="res://sounds/sound_effects/walk_2_medium.wav" id="12_y12bb"]
 
 [node name="Music_Gallery" type="Node"]
 script = ExtResource("1_0apwy")
@@ -64,8 +64,8 @@ stream = ExtResource("8_45k0x")
 [node name="Effects" type="Node" parent="."]
 
 [node name="Jump" type="AudioStreamPlayer" parent="Effects"]
-stream = ExtResource("9_vuy0i")
-volume_db = -19.676
+stream = ExtResource("9_4y8ts")
+volume_db = -4.685
 pitch_scale = 0.82
 
 [node name="Land" type="AudioStreamPlayer" parent="Effects"]
@@ -76,7 +76,8 @@ volume_db = -3.748
 stream = ExtResource("11_kvul7")
 
 [node name="Walk" type="AudioStreamPlayer" parent="Effects"]
-stream = ExtResource("12_ix0je")
-volume_db = -14.992
+stream = ExtResource("12_y12bb")
+volume_db = -18.74
+pitch_scale = 0.82
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
