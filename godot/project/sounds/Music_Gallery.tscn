@@ -77,5 +77,6 @@ stream = ExtResource("11_kvul7")
 
 [node name="Walk" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource("12_ix0je")
+volume_db = -14.992
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
