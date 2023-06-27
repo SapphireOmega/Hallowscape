@@ -43,8 +43,9 @@ func _on_quit_button_up():
 
 
 func _on_main_menu_button_up():
-	StageManager.changeStage(preload("res://Menus/main_menu.tscn"))
+	StageManager.changeStage(StageManager.MAINMENU)
 	get_tree().paused = false
 	self.hide()
+	self.is_paused = false
 	$"/root/Server".queue_free()
 	
