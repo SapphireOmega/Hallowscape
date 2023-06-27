@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=23 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -8,9 +8,7 @@
 [ext_resource type="Script" path="res://JorisLevel/Label.gd" id="4_ouo15"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
-[ext_resource type="PackedScene" uid="uid://bf006fvv8xgl8" path="res://NPCS/Enemy2/Enemy2.tscn" id="7_4wtm8"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="7_bxhqr"]
-[ext_resource type="PackedScene" uid="uid://ch422r8ofcrul" path="res://NPCS/Enemy1/enemy1_walls.tscn" id="7_c258x"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
 
@@ -229,12 +227,6 @@ one_way_collision = true
 position = Vector2(1148, 123)
 shape = SubResource("RectangleShape2D_e84k7")
 one_way_collision = true
-
-[node name="Enemy1" parent="." instance=ExtResource("7_c258x")]
-position = Vector2(1358, 317)
-
-[node name="Enemy2" parent="." instance=ExtResource("7_4wtm8")]
-position = Vector2(1787, 246)
 
 [node name="Area2D2" type="Area2D" parent="."]
 position = Vector2(13, -34)

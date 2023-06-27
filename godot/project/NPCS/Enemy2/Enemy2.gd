@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var hitpoints = 3
 var hits_taken = 0
 
-@onready var Animationtree : AnimationTree = $AnimationTree
+#@onready var Animationtree : AnimationTree = $AnimationTree
 @onready var animation = $AnimationPlayer
 
 @export var speed = 40
