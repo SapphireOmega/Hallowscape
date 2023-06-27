@@ -64,6 +64,8 @@ stream = ExtResource("8_45k0x")
 
 [node name="Jump" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource("9_vuy0i")
+volume_db = -19.676
+pitch_scale = 0.82
 
 [node name="Land" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource("10_joc5j")
