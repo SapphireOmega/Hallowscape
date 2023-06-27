@@ -24,6 +24,7 @@ const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main sce
 
 #this fixes the node hierarchy on launch.
 func _on_ready():
+	DisplayServer.window_set_min_size(Vector2(640, 360))
 	var root = get_tree().get_root()
 	var last_child = root.get_child(root.get_child_count()-1)
 	swap_fullscreen_mode()

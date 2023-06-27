@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b887pry8xnfh0"]
+[gd_scene load_steps=8 format=3 uid="uid://b887pry8xnfh0"]
 
 [ext_resource type="Script" path="res://Menus/ingame_menu.gd" id="1_8e4mf"]
-[ext_resource type="Texture2D" uid="uid://cv6513mwkr37m" path="res://Assets/Inhouse/UI elements/start.png" id="2_qbyhb"]
-[ext_resource type="Texture2D" uid="uid://c1emplayetpcj" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="3_spryj"]
-[ext_resource type="Texture2D" uid="uid://cg3s6416krlbt" path="res://Assets/Inhouse/UI elements/quit.png" id="4_bmm0v"]
-[ext_resource type="Texture2D" uid="uid://cnwv8dtih2pqc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="5_po6gq"]
+[ext_resource type="Texture2D" uid="uid://qh3fuu56suky" path="res://Assets/Inhouse/UI elements/start.png" id="2_qbyhb"]
+[ext_resource type="Texture2D" uid="uid://b14kdp4ahab8n" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="3_spryj"]
+[ext_resource type="Texture2D" uid="uid://cxd3bajtlrgpi" path="res://Assets/Inhouse/UI elements/credits.png" id="4_5ky57"]
+[ext_resource type="Texture2D" uid="uid://cx83pukdxdpbb" path="res://Assets/Inhouse/UI elements/quit.png" id="4_bmm0v"]
+[ext_resource type="Texture2D" uid="uid://kubhos2gtp31" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="5_8rapl"]
+[ext_resource type="Texture2D" uid="uid://bxamhi7jv3klc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="5_po6gq"]
 
 [node name="Ingame_menu" type="CanvasLayer"]
 process_mode = 3
@@ -38,6 +40,11 @@ layout_mode = 2
 texture_normal = ExtResource("2_qbyhb")
 texture_pressed = ExtResource("3_spryj")
 
+[node name="Main Menu" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_5ky57")
+texture_pressed = ExtResource("5_8rapl")
+
 [node name="Quit" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -45,4 +52,5 @@ texture_normal = ExtResource("4_bmm0v")
 texture_pressed = ExtResource("5_po6gq")
 
 [connection signal="button_up" from="VBoxContainer/Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="VBoxContainer/Main Menu" to="." method="_on_main_menu_button_up"]
 [connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]
