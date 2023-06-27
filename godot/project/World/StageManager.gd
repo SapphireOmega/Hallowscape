@@ -127,20 +127,25 @@ func adjust_cam_to_stage(stage):
 
 
 var is_killing = false
-func kill_players():
-	get_tree().paused = true
-	await get_tree().create_timer(1).timeout
+func kill_players(player_id):
+	var players = find_players()
+	for player in players:
+		player.dead = true
+		if player.player_id == player_id:
+			player.get_child(4).play("die")
+	await get_tree().create_timer(0.8).timeout
+	
 	$TextureRect2.modulate.a = 0
 	$TextureRect2.show()
 	$Anim.play("DeathIn")
 	await $Anim.animation_finished
-	
-	var players = find_players()
+	################
 	for player in players:
 		player.die()
+		player.dead = false
 	fastMoveCam(getCam())
-	$Anim.play("DeathOut")
-	get_tree().paused = false
+	#################
+	$Anim.play("DeathOut") 
 	await $Anim.animation_finished
 	$TextureRect2.hide()
 	is_killing = false
