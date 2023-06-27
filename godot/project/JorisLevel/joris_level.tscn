@@ -119,15 +119,18 @@ default_color = Color(0.0980392, 0.0980392, 0.207843, 1)
 position = Vector2(580, 324)
 rotation = -3.14159
 collide_with_areas = false
+is_casting = null
 
 [node name="Laser2" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1138, 324)
 rotation = 3.14159
 collide_with_areas = false
+is_casting = null
 
 [node name="Laser3" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1233, 325)
 collide_with_areas = false
+is_casting = null
 
 [node name="Laser4" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1176, 255)
@@ -219,7 +222,6 @@ offset_left = 246.0
 offset_top = 149.0
 offset_right = 502.0
 offset_bottom = 287.0
-texture = ExtResource("8_cikgh")
 
 [node name="Area2D" type="Area2D" parent="TutorialLabel3"]
 script = ExtResource("8_nt7j1")

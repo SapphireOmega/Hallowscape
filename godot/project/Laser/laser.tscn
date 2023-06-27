@@ -7,6 +7,7 @@ target_position = Vector2(1000, 0)
 hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("1_0cjk3")
+is_casting = null
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(-1, 0, 10, 0)

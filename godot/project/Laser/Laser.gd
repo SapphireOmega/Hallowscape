@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		if collider.has_method("die"):
 			if StageManager.is_killing == false:
 				StageManager.is_killing = true
-				StageManager.kill_players()
+				StageManager.kill_players(collider.player_id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

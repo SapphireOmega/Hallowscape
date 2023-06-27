@@ -8,6 +8,6 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.has_method("push_barrels"):
-		StageManager.kill_players()
+		StageManager.kill_players(body.player_id)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
