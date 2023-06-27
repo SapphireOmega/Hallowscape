@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://8mld0lat82id"
+path="res://.godot/imported/Soft chime_wobble.wav-edcd50a8403a35d4e8378f651081c212.sample"
+
+[deps]
+
+source_file="res://Assets/Classic Arcade SFX/Misc/Soft chime_wobble.wav"
+dest_files=["res://.godot/imported/Soft chime_wobble.wav-edcd50a8403a35d4e8378f651081c212.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

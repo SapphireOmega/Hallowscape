@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0tbqn0uc70jy"
+path="res://.godot/imported/Alarm_high pitch.wav-2c9f17aa70028c4700acfd3fd9204f44.sample"
+
+[deps]
+
+source_file="res://Assets/Classic Arcade SFX/Alarms and sirens/Alarm_high pitch.wav"
+dest_files=["res://.godot/imported/Alarm_high pitch.wav-2c9f17aa70028c4700acfd3fd9204f44.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
