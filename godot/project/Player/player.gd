@@ -132,7 +132,8 @@ func x_movement(delta: float) -> void:
 	
 	# Accelerate
 	velocity.x += x_dir * accel_rate * delta
-	
+	#play waling sound
+	MusicGallery.sound_effect("Walk", false)
 	set_direction(x_dir) # This is purely for visuals
 
 
