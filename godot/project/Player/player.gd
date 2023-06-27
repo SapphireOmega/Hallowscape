@@ -172,7 +172,7 @@ func jump_logic(_delta: float) -> void:
 			jump_coyote_timer = 0
 			jump_buffer_timer = 0
 			velocity.y = -jump_force
-			#MusicGallery.sound_effect("Jump")
+			MusicGallery.sound_effect("Jump")
 	
 	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
 	# This should only happen when moving upwards, as doing this while falling would lead to
