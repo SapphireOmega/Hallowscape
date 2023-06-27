@@ -19,7 +19,7 @@ var is_paused = false :
 func _unhandled_input(event):
 	var cs = get_tree().current_scene
 	var cl = cs.find_child("Current_level")
-	if cl.get_child_count() != 0 && cl.get_child(0).name != "Menu":
+	if cl.get_child_count() != 0 && cl.get_child(0).name != "Menu_screen":
 		if event.is_action_released("ui_cancel"):
 			if $"/root/Server" != null:
 				self.is_paused = !is_paused
@@ -40,3 +40,11 @@ func _on_resume_button_up():
 #quit button
 func _on_quit_button_up():
 	get_tree().quit()
+
+
+func _on_main_menu_button_up():
+	StageManager.changeStage(preload("res://Menus/main_menu.tscn"))
+	get_tree().paused = false
+	self.hide()
+	$"/root/Server".queue_free()
+	
