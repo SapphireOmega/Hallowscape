@@ -7,6 +7,5 @@
 [node name="Player_data" type="Node" parent="."]
 
 [node name="Camera2D" parent="Player_data" instance=ExtResource("1_msl8e")]
-limit_bottom = 360
 
 [node name="Current_level" type="Node" parent="."]
