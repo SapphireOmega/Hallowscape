@@ -1,4 +1,4 @@
-9extends Node2D
+extends Node2D
 
 const CAMLIMITS = {
 	"top" :0,
