@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://World/StageManager.gd" id="1_qbcuf"]
 [ext_resource type="PackedScene" uid="uid://by6yogcoubfxo" path="res://Menus/gui.tscn" id="2_lyhjt"]
-[ext_resource type="Texture2D" uid="uid://c2n32jk7eublx" path="res://Menus/Deathscreen.png" id="2_x8qiq"]
-[ext_resource type="Texture2D" uid="uid://b7phrjbl64nd5" path="res://Menus/Deathscreen 1.png" id="4_lf7ip"]
+[ext_resource type="Texture2D" uid="uid://c2n32jk7eublx" path="res://Menus/Loading.png" id="2_x8qiq"]
+[ext_resource type="Texture2D" uid="uid://b7phrjbl64nd5" path="res://Menus/Deathscreen.png" id="4_lf7ip"]
 
 [sub_resource type="Animation" id="Animation_i4b4f"]
 resource_name = "DeathIn"

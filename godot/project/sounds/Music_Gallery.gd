@@ -44,21 +44,6 @@ func get_currently_playing():
 	return null
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#THIS IS TEST CODE TO EASILY REQEST FUNCTIONS
-#func _process(_delta):
-#	#this is just to check if we need to queue a song layer
-#	#TODO: change input to something sensical
-#	if Input.is_action_just_pressed("ui_up") == true:
-#		up_music_intensity()
-#		#queue_track("SU_7")
-#		pass
-#	if Input.is_action_just_pressed("ui_down") == true:
-#		lower_music_intensity()
-#		#stop_track_by_name("SU_7")
-#		pass
-
-
 
 #queues a specific track, this is for non-dynamic music
 #therefore it only plays the most recently queued track
@@ -199,34 +184,14 @@ func not_playing_in_node(node):
 	return n
 
 
+func sound_effect(soundname, interrupt=true, node = "Effects"):
+	if soundname == null:
+		return 1
+	var sound = get_node_or_null(node + "/" + soundname)
+	if sound.is_playing() and interrupt == false:
+		return 1
+	sound.play()
+	return 0
 
 
-
-#probably not needed code
-
-#
-##plays a random track from the given node
-#func play_random_track_from_node(node):
-#	var playable = []
-#	var index = 0
-#	for track in node.get_children():
-#		if not track.is_playing():
-#			playable.append(track)
-#	if playable.size() == 0:
-#		return 1
-#	index = randi() % playable.size()
-#	playable[index].play()
-#	return 0
-#
-##plays a random track from the given node
-#func stop_random_track_from_node(node):
-#	var playing = []
-#	for track in node.get_children():
-#		if track.is_playing():
-#			playing.append(track)
-#	if playing.size() == 0:
-#		return 1
-#	var index = randi() % playing.size()
-#	playing[index].stop()
-#	return 0
 

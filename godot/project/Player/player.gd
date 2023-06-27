@@ -134,7 +134,9 @@ func x_movement(delta: float) -> void:
 	
 	# Accelerate
 	velocity.x += x_dir * accel_rate * delta
-	
+	#play waling sound
+	if !is_double_jumping and !is_jumping:
+		MusicGallery.sound_effect("Walk", false)
 	set_direction(x_dir) # This is purely for visuals
 
 
@@ -170,6 +172,7 @@ func jump_logic(_delta: float) -> void:
 			jump_coyote_timer = 0
 			jump_buffer_timer = 0
 			velocity.y = -jump_force
+			#MusicGallery.sound_effect("Jump")
 	
 	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
 	# This should only happen when moving upwards, as doing this while falling would lead to
@@ -192,6 +195,7 @@ func double_jump_logic(_delta: float) -> void:
 	if get_input()["just_jump"] && (is_jumping or double_jump_bypass) && !is_double_jumping:
 		is_double_jumping = true
 		velocity.y = -jump_force*0.9
+		MusicGallery.sound_effect("Jump")
 
 
 func apply_gravity(delta: float) -> void:
