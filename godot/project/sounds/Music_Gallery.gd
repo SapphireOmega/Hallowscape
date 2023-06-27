@@ -188,8 +188,6 @@ func sound_effect(soundname, node = "Effects"):
 	if soundname == null:
 		return 1
 	var sound = get_node_or_null(node + "/" + soundname)
-	if sound == null or sound.is_playing():
-		return 1
 	sound.play()
 	return 0
 
