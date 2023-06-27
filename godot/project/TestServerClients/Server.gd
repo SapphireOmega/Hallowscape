@@ -1,15 +1,12 @@
-# Note: comment the lines with --- to switch between TCP and UDP
-
+# This file is implementing a server-side script for a multiplayer game using the Godot game engine.
+# It sets up a TCP server to handle incoming connections from players and manages the communication 
+# between the server and the connected clients using Threads.
 extends Node
 
 @export var PORT = 8080
 @export var RunOnLaunch = true
 
-# ---
-#var server : UDPServer
 var server : TCPServer
-# ---
-
 var ThreadsMutex : Mutex
 var GeneralMutex : Mutex
 var PCRThread : Thread
@@ -30,14 +27,9 @@ func _ready():
 
 	# Displays the IP on the waiting screen.
 	var ip = get_ip_addr()
-#	var ip = "145.109.8.16"
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
-	# ---
-#	server = UDPServer.new()
 	server = TCPServer.new()
-	# ---
-
 	ThreadsMutex = Mutex.new()
 	GeneralMutex = Mutex.new()
 
@@ -76,9 +68,6 @@ func processConnectionRequest():
 	$CanvasLayer.show()
 
 	while GameRunning and n_players < MAX_PLAYERS:
-		# ---
-#		server.poll()
-		# ---
 
 		$CanvasLayer/ColorRect/VBoxContainer/PlayerLabel.text = str(n_players) + "/" +\
 		 														str(MAX_PLAYERS) + " connected"
@@ -86,9 +75,7 @@ func processConnectionRequest():
 			# Take the connection and set the TCP delay to false
 			var tcp = server.take_connection()
 
-			# ---
 			tcp.set_no_delay(true)
-			#---
 
 			# Combine the TCP stream to the player ID.
 			GeneralMutex.lock()
@@ -122,17 +109,6 @@ func processConnectionRequest():
 
 # Thread function for listening to client input
 func serveClient(SCThread, tcp):
-	# ---
-#	tcp.bind(PORT, tcp.get_packet_ip())
-#	while GameRunning:
-#		server.poll()
-#		if tcp.get_available_packet_count() > 0:
-#			var data = tcp.get_packet()
-#			var arguments = data.get_string_from_utf8().split(":")
-#			if arguments[0] == "p": # Client presses button
-#				Input.action_press(arguments[1]+players.find_key(tcp))
-#			elif arguments[0] == "r": # Client releases button
-#				Input.action_release(arguments[1]+players.find_key(tcp))
 
 	while tcp.get_status() == tcp.STATUS_CONNECTED and GameRunning:
 		tcp.poll()
@@ -144,7 +120,6 @@ func serveClient(SCThread, tcp):
 		if bytes > 0:
 			# Get available data
 			var data = tcp.get_partial_data(bytes)
-#			print(data[1].get_string_from_utf8())
 			# Split the incoming string into the arguments
 			var arguments = data[1].get_string_from_utf8().split(":")
 			if arguments[0] == "p": # Client presses button
@@ -165,9 +140,7 @@ func serveClient(SCThread, tcp):
 	GeneralMutex.unlock()
 
 	# Close the connection
-	# ---
 	tcp.disconnect_from_host()
-	# ---
 
 	# Remove the client serving thread from the running threads and queue
 	# it for deletion
