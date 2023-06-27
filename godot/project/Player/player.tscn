@@ -73,8 +73,8 @@ radius = 30.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 modulate = Color(1, 0.3, 0.3, 1)
-collision_layer = 7
-collision_mask = 7
+collision_layer = 135
+collision_mask = 135
 script = ExtResource("1_p1f8f")
 max_speed = 160.0
 jump_force = 335.0

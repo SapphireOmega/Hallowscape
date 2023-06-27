@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://idh2kqxwhctj"]
+
+[ext_resource type="Script" path="res://World/Camera2D.gd" id="1_enjnk"]
+[ext_resource type="Script" path="res://World/KillBorder.gd" id="2_gw3aa"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hky2r"]
+a = Vector2(320, -180)
+b = Vector2(320, 180)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fsh5j"]
+a = Vector2(-320, -180)
+b = Vector2(-320, 180)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_u5ov0"]
+a = Vector2(373, 132)
+b = Vector2(-267, 132)
+
+[node name="Camera2D" type="Camera2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 2016
+limit_bottom = 360
+script = ExtResource("1_enjnk")
+
+[node name="Right" type="StaticBody2D" parent="."]
+collision_layer = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+shape = SubResource("SegmentShape2D_hky2r")
+
+[node name="Left" type="StaticBody2D" parent="."]
+collision_layer = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+shape = SubResource("SegmentShape2D_fsh5j")
+
+[node name="Bottom" type="Area2D" parent="."]
+collision_layer = 128
+script = ExtResource("2_gw3aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(-53, 62)
+shape = SubResource("SegmentShape2D_u5ov0")
+
+[node name="Timer" type="Timer" parent="."]
