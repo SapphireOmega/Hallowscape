@@ -23,15 +23,15 @@ limit_bottom = 360
 script = ExtResource("1_enjnk")
 
 [node name="Right" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
 shape = SubResource("SegmentShape2D_hky2r")
 
 [node name="Left" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
 shape = SubResource("SegmentShape2D_fsh5j")
