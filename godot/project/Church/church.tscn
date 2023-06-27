@@ -5,11 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://ds7xbyyv2m5vh" path="res://Church/bg_church.tscn" id="1_ta75v"]
 [ext_resource type="Texture2D" uid="uid://d17r4ifaff001" path="res://Assets/gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png" id="2_khh8y"]
 [ext_resource type="Script" path="res://Church/Area2D.gd" id="4_heb55"]
-[ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="5_wyokp"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="7_qwowr"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="7_vaasb"]
 [ext_resource type="PackedScene" uid="uid://bprfunevs3ysu" path="res://checkpoint/checkpoint.tscn" id="9_unso7"]
-[ext_resource type="Script" path="res://Town/Area2D.gd" id="10_iqyw4"]
+[ext_resource type="Script" path="res://Church/Area2D3.gd" id="10_tfsxp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_osvp7"]
 a = Vector2(0.94873, -18.8857)
@@ -790,13 +789,15 @@ size = Vector2(113.5, 8.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h400c"]
 size = Vector2(35.5, 5.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbolk"]
+size = Vector2(48, 4)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1u15g"]
 size = Vector2(64, 53.625)
 
 [node name="Church" type="Node2D"]
+position = Vector2(1, 0)
 script = ExtResource("1_mo6it")
-
-[node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -830,8 +831,6 @@ script = ExtResource("4_heb55")
 position = Vector2(3.5, 230.812)
 shape = SubResource("RectangleShape2D_833nu")
 
-[node name="Ingame_menu" parent="." instance=ExtResource("5_wyokp")]
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3xc7y")
 format = 2
@@ -851,34 +850,19 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1310725, 2293760, 9, 1376261, 2293760, 10, 1310726, 2359296, 9, 1376262, 2359296, 10, 1310738, 1114112, 13, 1376274, 1114112, 13, 1310739, 1179648, 13, 1376275, 1179648, 13, 1310751, 2883584, 12, 1376287, 2883584, 13, 1310752, 2949120, 12, 1376288, 2949120, 13, 1048596, 1310720, 9, 1114132, 1310720, 10, 1179668, 1310720, 11, 1245204, 1310720, 12, 1310740, 1310720, 11, 1048597, 1376256, 9, 1114133, 1376256, 10, 1179669, 1376256, 11, 1245205, 1376256, 12, 1310741, 1376256, 11, 1048603, 2686976, 9, 1114139, 2686976, 10, 1179675, 2686976, 11, 1245211, 2686976, 12, 1310747, 2686976, 11, 1048604, 2752512, 9, 1114140, 2752512, 10, 1179676, 2752512, 11, 1245212, 2752512, 12, 1310748, 2752512, 11, 1048598, 1900544, 9, 1114134, 1900544, 10, 1179670, 1376256, 5, 1048599, 1966080, 9, 1114135, 1966080, 10, 1179671, 1441792, 5, 1048600, 1900544, 9, 1114136, 1900544, 10, 1048601, 1966080, 9, 1114137, 1966080, 10, 1048602, 1703936, 9, 1114138, 1703936, 10, 1179674, 1638400, 5, 1179672, 1507328, 5, 1179673, 1572864, 5, 1245206, 1376256, 4, 1245207, 1441792, 4, 1245208, 1507328, 4, 1245209, 1572864, 4, 1245210, 1638400, 4, 1310742, 1376256, 4, 1310743, 1441792, 4, 1310744, 1507328, 4, 1310745, 1572864, 4, 1310746, 1638400, 4, 1376278, 1441792, 4, 1376279, 1376256, 4, 1376280, 1441792, 4, 1376281, 1507328, 4, 1376282, 1572864, 4, 1376276, 1310720, 12, 1376277, 1376256, 12, 1376283, 2686976, 12, 1441813, 1310720, 3, 1441814, 1441792, 4, 1441815, 1376256, 4, 1441816, 1441792, 4, 1441817, 1507328, 4, 1441818, 1572864, 4, 1441819, 2686976, 11, 1507349, 1310720, 5, 1507350, 1441792, 4, 1507351, 1507328, 4, 1507352, 1572864, 4, 1507353, 1638400, 4, 1441812, 1245184, 3, 1507348, 1245184, 5, 1507355, 2686976, 13, 1376284, 2752512, 12, 1441820, 2752512, 11, 1507356, 2752512, 13, 1507354, 1572864, 3, 1114130, 1114112, 10, 1179666, 1114112, 11, 1245202, 1114112, 12, 1114131, 1179648, 10, 1179667, 1179648, 11, 1245203, 1179648, 12, 1114141, 2883584, 10, 1179677, 2883584, 11, 1245213, 2883584, 12, 1310749, 2883584, 13, 1114142, 2949120, 10, 1179678, 2949120, 11, 1245214, 2949120, 12, 1310750, 2949120, 13, 1179664, 917504, 12, 1245200, 1114112, 11, 1114129, 983040, 11, 1179665, 983040, 12, 1245201, 1179648, 11, 1245198, 917504, 12, 1310734, 1114112, 11, 1179663, 983040, 11, 1245199, 983040, 12, 1310735, 1179648, 11, 1310732, 917504, 12, 1376268, 917504, 13, 1245197, 983040, 11, 1310733, 983040, 12, 1376269, 983040, 13, 1310731, 786432, 12, 1376267, 786432, 13, 1310736, 1114112, 12, 1310737, 1179648, 12, 1376270, 1114112, 12, 1376271, 1179648, 12, 1441810, 1114112, 13, 1441811, 1179648, 13, 1507346, 1114112, 13, 1507347, 1179648, 13, 1376272, 1114112, 13, 1376273, 1179648, 13, 1441808, 1114112, 13, 1441809, 1179648, 13, 1507344, 1114112, 13, 1507345, 1179648, 13, 1441806, 1114112, 13, 1441807, 1179648, 13, 1507342, 1114112, 13, 1507343, 1179648, 13, 1441804, 1114112, 13, 1441805, 1179648, 13, 1507340, 1114112, 13, 1507341, 1179648, 13, 1441803, 1179648, 13, 1507339, 1179648, 13, 1114143, 3080192, 11, 1179679, 3080192, 12, 1245215, 2883584, 11, 1179680, 3145728, 12, 1245216, 2949120, 11, 1179681, 3080192, 11, 1245217, 3080192, 12, 1310753, 2883584, 11, 1245218, 3145728, 12, 1310754, 2949120, 11, 1245219, 3080192, 11, 1310755, 3080192, 12, 1376291, 2883584, 11, 1310756, 3145728, 12, 1376292, 2949120, 11, 1310757, 3276800, 12, 1376293, 3276800, 13, 1376289, 2883584, 12, 1376290, 2949120, 12, 1441827, 2883584, 12, 1441828, 2949120, 12, 1376285, 2883584, 13, 1376286, 2949120, 13, 1441821, 2883584, 13, 1441822, 2949120, 13, 1507357, 2883584, 13, 1507358, 2949120, 13, 1507359, 2883584, 13, 1507360, 2949120, 13, 1441823, 2883584, 13, 1441824, 2949120, 13, 1441825, 2883584, 13, 1441826, 2949120, 13, 1507361, 2883584, 13, 1507362, 2949120, 13, 1507363, 2883584, 13, 1507364, 2949120, 13, 1441829, 2949120, 13, 1507365, 2949120, 13, -262144, 917504, 5, -196608, 917504, 5, -131072, 917504, 5, -65536, 917504, 5, -262143, 917504, 5, -196607, 917504, 5, -131071, 2162688, 11, -65535, 917504, 5, -262142, 917504, 5, -196606, 917504, 5, -131070, 2097152, 11, -65534, 917504, 5, -262141, 917504, 5, -196605, 917504, 5, -131069, 2162688, 11, -65533, 917504, 5, -262140, 917504, 5, -196604, 917504, 5, -131068, 2097152, 11, -65532, 917504, 5, -262139, 917504, 5, -196603, 917504, 5, -131067, 2162688, 11, -65531, 917504, 5, 0, 917504, 5)
 
-[node name="player" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(67, 302)
-
-[node name="player2" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(39, 303)
-player_id = 2
-
-[node name="Area2D2" parent="." instance=ExtResource("9_unso7")]
-position = Vector2(352, -76)
-
-[node name="One-ways" type="StaticBody2D" parent="."]
-position = Vector2(401, 166)
-
-[node name="platform1" type="CollisionShape2D" parent="One-ways"]
-position = Vector2(294.75, -161.625)
-shape = SubResource("RectangleShape2D_rk34a")
-one_way_collision = true
-
-[node name="platform2" type="CollisionShape2D" parent="One-ways"]
-position = Vector2(303, -35.25)
-shape = SubResource("RectangleShape2D_h400c")
-one_way_collision = true
-
-[node name="Lasers" type="Node" parent="."]
+[node name="Lasers" type="Node2D" parent="."]
 
 [node name="LaserConsole" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(1046, 82)
+scale = Vector2(-1, 1)
 laser_names = ["Laser3"]
+
+[node name="Line2D" type="Line2D" parent="Lasers/LaserConsole"]
+position = Vector2(0.5, 0.5)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(4.5, 6.5, 95.5, 6.5, 95.5, -212.5, -262, -213, -262, -205)
+width = 2.0
+default_color = Color(0.101961, 0.360784, 0.0823529, 1)
 
 [node name="LaserConsole4" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(465, -361)
@@ -892,9 +876,22 @@ laser_names = ["Laser8"]
 position = Vector2(767, -143)
 laser_names = ["Laser5", "Laser7"]
 
+[node name="Line2D" type="Line2D" parent="Lasers/LaserConsole2"]
+position = Vector2(0.5, 0.5)
+points = PackedVector2Array(0, -26, 0, -137, -555, -137, -508, -136, -509, 107, -475, 107)
+width = 2.0
+default_color = Color(0.360784, 0, 0.454902, 1)
+
 [node name="LaserConsole3" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(15, -138)
 laser_names = ["Laser4"]
+
+[node name="Line2D" type="Line2D" parent="Lasers/LaserConsole3"]
+position = Vector2(-5.5, -11.5)
+scale = Vector2(0.2, 0.265)
+points = PackedVector2Array(0, 7.54718, 0, 618.868, 2790, 618.868, 2790, 603.774, 3095, 603.774, 3095, 573.585, 3725, 573.585, 3725, 588.679, 3945, 588.679, 3960, 581.132)
+width = 4.0
+default_color = Color(0.615686, 0.231373, 0, 1)
 
 [node name="Laser" parent="Lasers" instance=ExtResource("7_vaasb")]
 position = Vector2(953, -95)
@@ -910,7 +907,7 @@ position = Vector2(785, -123)
 target_position = Vector2(361, 0)
 
 [node name="Laser4" parent="Lasers" instance=ExtResource("7_vaasb")]
-position = Vector2(803, 5)
+position = Vector2(802, 5)
 target_position = Vector2(361, 0)
 
 [node name="Laser5" parent="Lasers" instance=ExtResource("7_vaasb")]
@@ -928,12 +925,12 @@ target_position = Vector2(361, 0)
 
 [node name="Laser8" parent="Lasers" instance=ExtResource("7_vaasb")]
 position = Vector2(519, -305)
-rotation = -1.55683
+rotation = -1.5708
 target_position = Vector2(361, 0)
 
 [node name="Laser9" parent="Lasers" instance=ExtResource("7_vaasb")]
 position = Vector2(624, -305)
-rotation = -1.55683
+rotation = -1.5708
 enabled = false
 target_position = Vector2(361, 0)
 is_casting = false
@@ -943,9 +940,39 @@ position = Vector2(513, -316)
 rotation = -0.00174533
 target_position = Vector2(361, 0)
 
+[node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
+
+[node name="player" parent="." instance=ExtResource("1_1drrj")]
+position = Vector2(81, 302)
+
+[node name="player2" parent="." instance=ExtResource("1_1drrj")]
+position = Vector2(40, 301)
+player_id = 2
+
+[node name="Area2D4" parent="." instance=ExtResource("9_unso7")]
+position = Vector2(255, -317)
+
+[node name="One-ways" type="StaticBody2D" parent="."]
+position = Vector2(401, 166)
+
+[node name="platform1" type="CollisionShape2D" parent="One-ways"]
+position = Vector2(294.75, -161.625)
+shape = SubResource("RectangleShape2D_rk34a")
+one_way_collision = true
+
+[node name="platform2" type="CollisionShape2D" parent="One-ways"]
+position = Vector2(303, -35.25)
+shape = SubResource("RectangleShape2D_h400c")
+one_way_collision = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="One-ways"]
+position = Vector2(-361, -372)
+shape = SubResource("RectangleShape2D_lbolk")
+one_way_collision = true
+
 [node name="Area2D3" type="Area2D" parent="."]
 position = Vector2(13, -34)
-script = ExtResource("10_iqyw4")
+script = ExtResource("10_tfsxp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 position = Vector2(790, -334)

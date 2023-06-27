@@ -1,14 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbswf22qdsmbk"]
+[gd_scene load_steps=22 format=3 uid="uid://cbswf22qdsmbk"]
 
 [ext_resource type="Script" path="res://JorisLevel2/joris_level2.gd" id="1_jrl34"]
 [ext_resource type="TileSet" uid="uid://djaljh0r6n1qo" path="res://JorisLevel2/joris_level2.tres" id="1_ulaec"]
-[ext_resource type="PackedScene" uid="uid://deng5iavg2kkv" path="res://parallax_background2.tscn" id="2_25ycy"]
+[ext_resource type="PackedScene" uid="uid://1q6wmjrrrm4f" path="res://parallax_background2.tscn" id="2_25ycy"]
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_6mqi6"]
 [ext_resource type="PackedScene" uid="uid://1jjspwmcuqg1" path="res://Barrel/barrel.tscn" id="4_ph7l4"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_ckp68"]
 [ext_resource type="Texture2D" uid="uid://bolawj72o456" path="res://Assets/GothicVania-town-files/PNG/environment/props-sliced/barrel.png" id="6_7xvd0"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_46i7n"]
 [ext_resource type="Script" path="res://JorisLevel2/zipline.gd" id="6_e1mae"]
+[ext_resource type="Script" path="res://JorisLevel2/level2_door.gd" id="10_wpp6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evfhy"]
 size = Vector2(368, 5)
@@ -39,6 +40,9 @@ size = Vector2(32, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2l5b"]
 size = Vector2(128, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isxtd"]
+size = Vector2(96, 168)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jrl34")
@@ -255,3 +259,14 @@ one_way_collision = true
 position = Vector2(1952, 151)
 shape = SubResource("RectangleShape2D_u2l5b")
 one_way_collision = true
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(-27, -131)
+script = ExtResource("10_wpp6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1994, 192)
+shape = SubResource("RectangleShape2D_isxtd")
+
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]

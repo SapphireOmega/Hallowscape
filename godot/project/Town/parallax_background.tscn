@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 "
 
@@ -36,24 +36,25 @@ script = SubResource("GDScript_wdyxm")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 z_index = 1
 motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(640, 0)
+motion_mirroring = Vector2(384, 0)
 script = SubResource("GDScript_8obj0")
 
 [node name="Background" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(320, 180)
-scale = Vector2(1.66667, 1.25)
+position = Vector2(192, 160)
+texture = ExtResource("1_h4k3f")
+
+[node name="Background2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(960, 160)
 texture = ExtResource("1_h4k3f")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.9, 0.9)
-motion_mirroring = Vector2(640, 0)
+motion_mirroring = Vector2(384, 0)
 
 [node name="Middleground" type="Sprite2D" parent="ParallaxLayer2"]
-position = Vector2(320, 256)
-scale = Vector2(1.66667, 1.25)
+position = Vector2(192, 220)
 texture = ExtResource("2_2q7k2")
 
 [node name="Middleground2" type="Sprite2D" parent="ParallaxLayer2"]
-position = Vector2(1600, 256)
-scale = Vector2(1.66667, 1.25)
+position = Vector2(960, 220)
 texture = ExtResource("2_2q7k2")

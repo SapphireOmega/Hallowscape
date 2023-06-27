@@ -8,6 +8,7 @@ const TOWN = preload("res://Town/town.tscn")
 const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
 const MAIN = preload("res://main.tscn")
+const WIN = preload("res://Menus/win_screen.tscn")
 # ---------------------- #
 
 # ---GLOBALS------------- #
@@ -25,6 +26,7 @@ const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main sce
 func _on_ready():
 	var root = get_tree().get_root()
 	var last_child = root.get_child(root.get_child_count()-1)
+	swap_fullscreen_mode()
 	await root.ready
 	if last_child.name != "Main" && last_child.name != self.name:
 		var newstage = MAIN.instantiate()
@@ -35,31 +37,44 @@ func _on_ready():
 		print(f6_error_msg)
 	elif last_child.name == self.name:
 		self.queue_free()
-	if curStagePath().get_child(0) == null:
+	if curStagePath().get_child_count() == 0:
 		print("Stage Manager: No self-chosen stage found, selecting the default stage instead")
 		curStagePath().add_child(default_scene.instantiate())
 	adjust_cam_to_stage(curStage())
 
 func curStagePath():
 	return $"/root/Main".find_child("Current_level")
-	
+
+
+func curServer():
+	return $"/root/Main".find_child("Server")
+
+func swap_fullscreen_mode():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+
+
 func curStage():
+	if $"/root/Main".find_child("Current_level").get_child_count() == 0:
+		return null
 	return $"/root/Main".find_child("Current_level").get_child(0)
 
 
 func getCam():
 	return $"/root/Main".find_child("Player_data").get_child(0)
 
-func changeStage(stage_path, x=0, y=0):
-	$TextureRect.show()
-	$Anim.play("TransIn")
-	await $Anim.animation_finished
+func changeStage(stage_path, x=0, y=0, with_screen = true):
+	if with_screen:
+		$TextureRect.modulate.a = 0
+		$TextureRect.show()
+		$Anim.play("TransIn")
+		await $Anim.animation_finished
 # ----------Do loading stuff here--------- #
 	
 	var stage = stage_path.instantiate()
 	
-	if curStagePath().get_child(0) != null:
-		curStagePath().get_child(0).free()
+	if curStagePath().get_child_count() > 0 and curStagePath().get_child_count() != 0:
+		curStagePath().get_child(0).queue_free()
 	curStagePath().add_child(stage)
 	
 	
@@ -72,9 +87,10 @@ func changeStage(stage_path, x=0, y=0):
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
 # -------------------------------------- #
-	$Anim.play("TransOut")
-	await $Anim.animation_finished
-	$TextureRect.hide()
+	if with_screen:
+		$Anim.play("TransOut")
+		await $Anim.animation_finished
+		$TextureRect.hide()
 
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
@@ -89,12 +105,13 @@ func fastMoveCam(cam):
 
 func find_players():
 	var players = []
-	var stage = curStagePath().get_child(0)
-	if stage != null:
-		for node in stage.get_children():
-			if node.has_method("set_spawn"):
-				players.append(node)
-		return players
+	if curStagePath().get_child_count() > 0:
+		var stage = curStagePath().get_child(0)
+		if stage != null:
+			for node in stage.get_children():
+				if node.has_method("set_spawn"):
+					players.append(node)
+			return players
 	return []
 
 
@@ -105,8 +122,14 @@ func adjust_cam_to_stage(stage):
 		getCam().setCamLimits(cl["top"], cl["bottom"], cl["left"], cl["right"])
 
 
+
+
+
 var is_killing = false
 func kill_players():
+	get_tree().paused = true
+	await get_tree().create_timer(1).timeout
+	$TextureRect2.modulate.a = 0
 	$TextureRect2.show()
 	$Anim.play("DeathIn")
 	await $Anim.animation_finished
@@ -116,6 +139,7 @@ func kill_players():
 		player.die()
 	fastMoveCam(getCam())
 	$Anim.play("DeathOut")
+	get_tree().paused = false
 	await $Anim.animation_finished
 	$TextureRect2.hide()
 	is_killing = false

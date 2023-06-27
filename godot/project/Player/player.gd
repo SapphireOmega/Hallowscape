@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player_id = 1
 
+
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var face_direction := 1
 var x_dir := 1
@@ -47,6 +48,7 @@ var damaged : bool
 # ----------------------------------- #
 var spawn_point: Vector2
 
+
 func _ready() -> void:
 	$Sprite2D.visible = true
 	$Sprite2D2.visible = false
@@ -72,7 +74,7 @@ func get_input() -> Dictionary:
 		"released_jump": Input.is_action_just_released("jump"+str(player_id)) == true,
 		"just_attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
 		"attack": Input.is_action_just_pressed("attack"+str(player_id)) == true,
-		"interact": Input.is_action_just_pressed("interact"+str(player_id)) == true
+		"interact": Input.is_action_pressed("interact"+str(player_id)) == true
 	}
 
 
@@ -89,6 +91,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		if self.is_on_floor: push_barrels(delta)
 		update_animation()
+		
+#	if get_input()["interact"]:
+#		var randomPuzzle = puzzles[randi() % puzzles.size()]
+#		var server = $"/root/Server"
+#		if server:
+#			server.sendPuzzle(player_id, randomPuzzle)
 
 func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():
@@ -115,6 +123,7 @@ func x_movement(delta: float) -> void:
 	# Except if we are turning
 	# (This keeps our momentum gained from outside or slopes)
 	if abs(velocity.x) >= max_speed and sign(velocity.x) == x_dir:
+		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
 		return
 	
 	# Are we turning?

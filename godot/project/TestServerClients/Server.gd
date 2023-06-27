@@ -17,7 +17,7 @@ var players = {"1":null, "2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
-var MAX_PLAYERS = 2
+var MAX_PLAYERS = 1
 var n_players = 0
 var server_paused = true
 
@@ -27,9 +27,10 @@ func _ready():
 		self.set_process(false)
 		server_paused = false
 		return
-	
+
 	# Displays the IP on the waiting screen.
 	var ip = get_ip_addr()
+#	var ip = "145.109.8.16"
 	$CanvasLayer/ColorRect/VBoxContainer/IPLabel.text = ip
 
 	# ---
@@ -44,7 +45,7 @@ func _ready():
 	server.listen(PORT)
 	PCRThread = Thread.new()
 	PCRThread.start(processConnectionRequest)
-	
+
 	# Append the connection accepting thread to the running threads
 	ThreadsMutex.lock()
 	RunningThreads.append(PCRThread)
@@ -55,13 +56,13 @@ func _process(_delta):
 	for thread in ClosingThreads:
 		ClosingThreads.erase(thread)
 		thread.wait_to_finish()
-	
-	# Pause the game and create a new connection accepting thread 
+
+	# Pause the game and create a new connection accepting thread
 	if n_players < MAX_PLAYERS and !PCRThread.is_alive():
 		# Start the new connection accepting thread
 		PCRThread = Thread.new()
 		PCRThread.start(processConnectionRequest)
-		
+
 		# Append the connection accepting thread to the running threads
 		ThreadsMutex.lock()
 		RunningThreads.append(PCRThread)
@@ -73,7 +74,7 @@ func processConnectionRequest():
 	get_tree().paused = true
 	server_paused = true
 	$CanvasLayer.show()
-	
+
 	while GameRunning and n_players < MAX_PLAYERS:
 		# ---
 #		server.poll()
@@ -98,9 +99,9 @@ func processConnectionRequest():
 			# Create a new thread that serves the client
 			var SCThread = Thread.new()
 			SCThread.start(serveClient.bind(SCThread, tcp))
-			
+
 			print("client " + str(players.find_key(tcp)) + " connected")
-			
+
 			# Add the client thread to the running threads
 			ThreadsMutex.lock()
 			RunningThreads.append(SCThread)
@@ -138,7 +139,7 @@ func serveClient(SCThread, tcp):
 		# Extra statement is needed here, otherwise error messages show
 		if tcp.get_status() != tcp.STATUS_CONNECTED:
 			break
-		
+
 		var bytes = tcp.get_available_bytes()
 		if bytes > 0:
 			# Get available data
@@ -150,22 +151,24 @@ func serveClient(SCThread, tcp):
 				Input.action_press(arguments[1]+players.find_key(tcp))
 			elif arguments[0] == "r": # Client releases button
 				Input.action_release(arguments[1]+players.find_key(tcp))
-	# ---
+			elif arguments[0] == "puzzle":
+				instance_from_id(int(arguments[1])).when_puzzle_solved()
+				
 
 	# Here the client is no longer connected
 	print("client " + str(players.find_key(tcp)) + " disconnected")
-	
+
 	# Remove the TCP connection from the player ID
 	GeneralMutex.lock()
 	n_players -= 1
 	players[players.find_key(tcp)] = null
 	GeneralMutex.unlock()
-	
+
 	# Close the connection
 	# ---
 	tcp.disconnect_from_host()
 	# ---
-	
+
 	# Remove the client serving thread from the running threads and queue
 	# it for deletion
 	ThreadsMutex.lock()
@@ -175,11 +178,11 @@ func serveClient(SCThread, tcp):
 
 # Function to send a puzzle to a player (this method can be called
 # from other nodes)
-func sendPuzzle(PlayerID, PuzzleName):
+func sendPuzzle(PlayerID, PuzzleName, ObjectID):
 	var reciever = players[str(PlayerID)]
 	if reciever:
-		var dict = {"action" : "puzzle", "type" : PuzzleName}
-		reciever.put_data(dict.stringify().to_utf8_buffer())
+		var dict = {"action" : "puzzle", "type" : PuzzleName, "object" : ObjectID}
+		reciever.put_data(JSON.stringify(dict).to_utf8_buffer())
 
 # Helper function for obtaining the host IP address
 func get_ip_addr():
@@ -195,11 +198,11 @@ func get_ip_addr():
 func _exit_tree():
 	# Clean up the threads when the game is exited
 	GameRunning = false
-	
+
 	for thread in RunningThreads:
 		if thread.is_alive():
 			thread.wait_to_finish()
-	
+
 	for thread in ClosingThreads:
 		if thread.is_alive():
 			thread.wait_to_finish()

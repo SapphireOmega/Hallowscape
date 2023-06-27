@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn38ugqpya8tp"]
+
+[ext_resource type="Script" path="res://Menus/ParallaxLayer.gd" id="1_f0jwe"]
+[ext_resource type="Texture2D" uid="uid://cmcix7ivss6v" path="res://Assets/GothicVania-town-files/PNG/environment/layers/background.png" id="2_e6nyq"]
+[ext_resource type="Texture2D" uid="uid://bbtvnenu0i6mi" path="res://Assets/TITLE.png" id="3_f2rhn"]
+
+[node name="title_background" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(768, 0)
+script = ExtResource("1_f0jwe")
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(384, 270)
+scale = Vector2(2, 2)
+texture = ExtResource("2_e6nyq")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(320, 150)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_f2rhn")

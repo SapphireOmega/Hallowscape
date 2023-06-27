@@ -1,5 +1,4 @@
-extends TextureRect
-
+extends CharacterBody2D
 var timer = Timer.new()
 
 func _ready():
@@ -10,11 +9,8 @@ func _ready():
 	timer.start()
 
 func play():
-	$player1/AnimationPlayer.play("run")
-	$player2/AnimationPlayer.play("run")
+	$AnimationPlayer.play("run")
 	await get_tree().create_timer(0.5).timeout
-	$player1/AnimationPlayer.play("jump")
-	$player2/AnimationPlayer.play("jump")
+	$AnimationPlayer.play("jump")
 	await get_tree().create_timer(0.5).timeout
-	$player1/AnimationPlayer.play("attack")
-	$player2/AnimationPlayer.play("attack")
+	$AnimationPlayer.play("attack")
