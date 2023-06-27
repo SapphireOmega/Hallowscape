@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bx7m65xjhfkbq" path="res://Assets/GothicVania-town-files/PNG/sprites/hat-man-idle/hat-man-idle-1.png" id="1_l8u32"]
 [ext_resource type="Script" path="res://NPCS/NPC1/npc1.gd" id="1_oie5x"]
-[ext_resource type="Texture2D" uid="uid://bggnqud7rk4do" path="res://NPCS/Enemy1/pixil-frame-0.png" id="4_tvawq"]
+[ext_resource type="Texture2D" uid="uid://s71crl0173ig" path="res://Assets/Inhouse/UI elements/Interact.png" id="3_3cint"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4hv5"]
 size = Vector2(16, 45.25)
@@ -22,8 +22,9 @@ texture = ExtResource("1_l8u32")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -27)
-texture = ExtResource("4_tvawq")
+position = Vector2(0, -37)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("3_3cint")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

@@ -41,12 +41,15 @@ var double_jump_bypass := false
 @export var shake_duration = 0.1
 @export var shake_intensity = 3
 
-var npc_in_range = false
+@onready var npc_in_range = 0
 var dialogue_active = false
+var damaged : bool
 # ----------------------------------- #
 var spawn_point: Vector2
 
 func _ready() -> void:
+	$Sprite2D.visible = true
+	$Sprite2D2.visible = false
 	spawn_point = self.position
 	if player_id == 2:
 		self.modulate = Color(0, 2, 4.5, 1)
@@ -128,11 +131,12 @@ func set_direction(hor_direction) -> void:
 	# This is purely for visuals
 	# Turning relies on the scale of the player
 	# To animate, only scale the sprite
-	if hor_direction == 0:
+	if hor_direction == 0 or velocity == Vector2(0,0):
 		return
 	
 	$Area2D.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 	$Sprite2D.apply_scale(Vector2(hor_direction * face_direction, 1))
+	$Sprite2D2.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
 
 
@@ -217,33 +221,60 @@ func timers(delta: float) -> void:
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
 		if !$AnimationPlayer.current_animation == "attack":
-			$Area2D/CollisionShape2D.disabled = false
-			$AnimationPlayer.play("attack")
-	else:
-		$Area2D/CollisionShape2D.disabled = true
-		if is_jumping == true:
-			if velocity.y < 0:
-				$AnimationPlayer.play("jump")
+			if damaged:
+				$Sprite2D2.visible = true
+				$Sprite2D.visible = false
+				$AnimationPlayer.play("damage")
+				damaged = false
 			else:
-				$AnimationPlayer.play("fall")
+				$Area2D/CollisionShape2D.disabled = false
+				$AnimationPlayer.play("attack")
+	else:
+		if damaged and !is_jumping:
+			$Sprite2D2.visible = true
+			$Sprite2D.visible = false
+			$AnimationPlayer.play("damage")
+			damaged = false
 		else:
-			#this is the lowest priority
-			if $AnimationPlayer.current_animation == "land" && 	land_timer > 0:
-				pass
+			$Area2D/CollisionShape2D.disabled = true
+			if is_jumping == true:
+				if velocity.y < 0:
+					$AnimationPlayer.play("jump")
+					if damaged:
+						$AnimationPlayer.play("damage")
+				else:
+					$AnimationPlayer.play("fall")
 			else:
 				#this is the lowest priority
-				if get_input()["x"] != 0:
-					$AnimationPlayer.play("run")
+				if $AnimationPlayer.current_animation == "land" && 	land_timer > 0:
+					pass
 				else:
-					$AnimationPlayer.play("idle")
+					#this is the lowest priority
+					if !$AnimationPlayer.current_animation == "damage":
+						if get_input()["x"] != 0:
+							$AnimationPlayer.play("run")
+						else:
+							$AnimationPlayer.play("idle")
+	if !$AnimationPlayer.current_animation == "damage":
+		$Sprite2D2.visible = false
+		$Sprite2D.visible = true
 
 
-
+func take_damage():
+	damaged = true
+	update_animation()
+	if player_id == 1:
+		StageManager.health1 -= 1
+		return
+	elif player_id == 2:
+		StageManager.health1 -= 1
+		return
 
 
 #------------ interactables --- #
 
-func _player_detected(body: CharacterBody2D):
+func _player_detected(body):
+	print("yo")
 	var t = Timer.new()
 	# Waits for exact frame where the player hits.
 	t.set_wait_time(0.2)
@@ -253,6 +284,7 @@ func _player_detected(body: CharacterBody2D):
 	await t.timeout
 
 	if body.is_in_group("hit"):
+		print("hit")
 		StageManager.getCam().shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
@@ -264,20 +296,21 @@ func activate_dialogue():
 		DialogueManager.conversing = true
 		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
 		StageManager.dialcam(DialogueManager.conversing)
-		npc_in_range = false
 		DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/test_dialogue.dialogue"))
-		
+
 
 func begin_dialog(body):
 	if body.has_method("npc1"):
-		body.interact_invis()
 		npc_in_range = true
+		StageManager.players_at_npc += 1
+		body.interact_invis(StageManager.players_at_npc)
 	if get_input()["interact"] and npc_in_range:
 		body.Sprite2D2.visible = false
 
 
 func end_dialog(body):
 	if body.has_method("npc1"):
-		body.interact_invis()
 		npc_in_range = false
+		StageManager.players_at_npc -= 1
+		body.interact_invis(StageManager.players_at_npc)
 

@@ -9,7 +9,10 @@ const CHURCH = preload("res://Church/church.tscn")
 const MAINMENU = preload("res://Menus/main_menu.tscn")
 const MAIN = preload("res://main.tscn")
 # ---------------------- #
-var NPC1 = preload("res://NPCS/NPC1/npc1.tscn")
+
+# ---GLOBALS------------- #
+@onready var players_at_npc = 0
+@onready var health1 = 3
 
 const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main scene and moved current_scene
 		into Main/current_level. Check 'remote' for the exact hierarchy"
@@ -129,3 +132,4 @@ func dialcam(conversing):
 		if curr.has_node("npc1"):
 			var cam = curr.get_node("npc1").get_node("dialogue_cam")
 			cam.enabled = false
+
