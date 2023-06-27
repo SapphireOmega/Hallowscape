@@ -13,7 +13,7 @@ const WIN = preload("res://Menus/win_screen.tscn")
 
 # ---GLOBALS------------- #
 @onready var players_at_npc = 0
-@onready var health1 = 3
+@onready var health1 = 300
 
 const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main scene and moved current_scene
 		into Main/current_level. Check 'remote' for the exact hierarchy"

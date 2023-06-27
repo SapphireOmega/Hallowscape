@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3cbgyvp8plfo"]
 
-[ext_resource type="PackedScene" uid="uid://idh2kqxwhctj" path="res://World/Camera.tscn" id="1_msl8e"]
+[ext_resource type="PackedScene" uid="uid://swy5exu41qdt" path="res://World/Camera.tscn" id="1_msl8e"]
 
 [node name="Main" type="Node2D"]
 

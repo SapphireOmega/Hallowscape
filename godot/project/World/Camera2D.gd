@@ -7,7 +7,7 @@ var pos_x : int #number
 var pos_y : int
 
 @onready var timer : Timer = $Timer
-@onready var tween : Tween = create_tween()
+#@onready var tween : Tween = create_tween()
 
 @export var duration = 0.1
 @export var intensity = 3
