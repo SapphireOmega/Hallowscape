@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=28 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="7_bxhqr"]
 [ext_resource type="Texture2D" uid="uid://t2ybsneyjewv" path="res://Assets/Inhouse/arrow.png" id="8_cikgh"]
+[ext_resource type="Script" path="res://JorisLevel/LabelExit.gd" id="8_nt7j1"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
 [ext_resource type="Texture2D" uid="uid://d51bugo2i3ci" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
@@ -27,8 +28,14 @@ shadow_color = Color(0, 0, 0, 0.301961)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_570th"]
 size = Vector2(72, 139)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l68k8"]
+size = Vector2(102, 118)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl1vy"]
-size = Vector2(163, 107)
+size = Vector2(124, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiusi"]
+size = Vector2(77, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -144,6 +151,13 @@ offset_bottom = 23.0
 text = "Push the barrel"
 label_settings = SubResource("LabelSettings_6w5o4")
 
+[node name="Exit" type="Area2D" parent="TutorialLabel1"]
+script = ExtResource("8_nt7j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel1/Exit"]
+position = Vector2(291, -5.5)
+shape = SubResource("RectangleShape2D_570th")
+
 [node name="TutorialLabel2" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
 
@@ -176,11 +190,18 @@ offset_right = 568.0
 offset_bottom = 396.0
 texture = ExtResource("9_svuyy")
 
+[node name="Area2D" type="Area2D" parent="TutorialLabel2"]
+script = ExtResource("8_nt7j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel2/Area2D"]
+position = Vector2(581, 241)
+shape = SubResource("RectangleShape2D_l68k8")
+
 [node name="TutorialLabel3" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3"]
-position = Vector2(411.5, 135.5)
+position = Vector2(431, 155)
 shape = SubResource("RectangleShape2D_tl1vy")
 
 [node name="Label" type="Label" parent="TutorialLabel3"]
@@ -199,6 +220,66 @@ offset_top = 149.0
 offset_right = 502.0
 offset_bottom = 287.0
 texture = ExtResource("8_cikgh")
+
+[node name="Area2D" type="Area2D" parent="TutorialLabel3"]
+script = ExtResource("8_nt7j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3/Area2D"]
+position = Vector2(377.5, 144)
+shape = SubResource("RectangleShape2D_uiusi")
+
+[node name="TutorialLabel4" type="Area2D" parent="."]
+script = ExtResource("4_ouo15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel4"]
+position = Vector2(581, 241)
+shape = SubResource("RectangleShape2D_l68k8")
+
+[node name="TextureRect" type="TextureRect" parent="TutorialLabel4"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 395.0
+offset_top = 193.0
+offset_right = 651.0
+offset_bottom = 331.0
+texture = ExtResource("8_cikgh")
+
+[node name="Area2D" type="Area2D" parent="TutorialLabel4"]
+script = ExtResource("8_nt7j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel4/Area2D"]
+position = Vector2(431, 155)
+shape = SubResource("RectangleShape2D_tl1vy")
+
+[node name="TutorialLabel5" type="Area2D" parent="."]
+script = ExtResource("4_ouo15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel5"]
+position = Vector2(377.5, 144)
+shape = SubResource("RectangleShape2D_uiusi")
+
+[node name="TextureRect" type="TextureRect" parent="TutorialLabel5"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 516.0
+offset_top = 109.0
+offset_right = 772.0
+offset_bottom = 247.0
+texture = ExtResource("8_cikgh")
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="TutorialLabel5"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 500.0
+offset_top = 89.0
+offset_right = 756.0
+offset_bottom = 227.0
+texture = ExtResource("9_svuyy")
+
+[node name="Area2D" type="Area2D" parent="TutorialLabel5"]
+script = ExtResource("8_nt7j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel5/Area2D"]
+position = Vector2(788, 116)
+shape = SubResource("RectangleShape2D_l68k8")
 
 [node name="Barrel" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(164, 311)
