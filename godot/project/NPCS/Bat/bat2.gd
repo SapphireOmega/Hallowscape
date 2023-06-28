@@ -44,7 +44,7 @@ func set_direction(hor_direction) -> void:
 	$Detect_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	makepath()
 	dir = nav_ag.get_next_path_position() - global_position
 	velocity = dir.normalized() * speed
@@ -138,7 +138,7 @@ func damage_player(body):
 				StageManager.health1 = 3
 
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	if in_range == false:
 		$Attack_player.visible = false
 		$AttackSprite.visible = false
