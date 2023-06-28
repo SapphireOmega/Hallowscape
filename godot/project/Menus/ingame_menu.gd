@@ -16,6 +16,7 @@ var is_paused = false :
 #the pause menu is brought up
 #this means that when esc is used for example to quit a dialogue,
 #it wont pause the game instead
+
 func _unhandled_input(event):
 	var cs = get_tree().current_scene
 	var cl = cs.find_child("Current_level")

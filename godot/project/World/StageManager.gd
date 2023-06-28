@@ -73,17 +73,18 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 # ----------Do loading stuff here--------- #
 	
 	var stage = stage_path.instantiate()
+	var oldstage = curStagePath().get_child(0)
 	
 	if curStagePath().get_child_count() > 0 and curStagePath().get_child_count() != 0:
-		curStagePath().get_child(0).queue_free()
+		curStagePath().remove_child(oldstage)
+		oldstage.queue_free()
 	curStagePath().add_child(stage)
-	
 	
 	var players = find_players()
 	for player in players:
 		move_player_to(player, x, y)
 		x+= 15
-		player.set_spawn()
+		#player.set_spawn()
 	
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
@@ -96,6 +97,7 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
 	player.position = Vector2(x,y)
+	print(player.position)
 
 
 func fastMoveCam(cam):
