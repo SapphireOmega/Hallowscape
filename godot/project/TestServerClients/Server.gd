@@ -65,6 +65,9 @@ func processConnectionRequest():
 	# Pause the game and show the pause screen
 	get_tree().paused = true
 	server_paused = true
+
+	# Wait for half a second before showing the paused screen
+	OS.delay_msec(500)
 	$CanvasLayer.show()
 
 	while GameRunning and n_players < MAX_PLAYERS:
