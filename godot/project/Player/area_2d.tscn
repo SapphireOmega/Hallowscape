@@ -4,8 +4,9 @@
 size = Vector2(13.5, 25)
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(12.75, 2.5)
 shape = SubResource("RectangleShape2D_huxho")
-disabled = true

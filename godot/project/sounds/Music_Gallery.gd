@@ -184,10 +184,12 @@ func not_playing_in_node(node):
 	return n
 
 
-func sound_effect(soundname, node = "Effects"):
+func sound_effect(soundname, interrupt=true, node = "Effects"):
 	if soundname == null:
 		return 1
 	var sound = get_node_or_null(node + "/" + soundname)
+	if sound.is_playing() and interrupt == false:
+		return 1
 	sound.play()
 	return 0
 

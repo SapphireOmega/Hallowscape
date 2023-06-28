@@ -16,6 +16,7 @@ var is_paused = false :
 #the pause menu is brought up
 #this means that when esc is used for example to quit a dialogue,
 #it wont pause the game instead
+
 func _unhandled_input(event):
 	var cs = get_tree().current_scene
 	var cl = cs.find_child("Current_level")
@@ -43,8 +44,9 @@ func _on_quit_button_up():
 
 
 func _on_main_menu_button_up():
-	StageManager.changeStage(preload("res://Menus/main_menu.tscn"))
+	StageManager.changeStage(StageManager.MAINMENU)
 	get_tree().paused = false
 	self.hide()
+	self.is_paused = false
 	$"/root/Server".queue_free()
 	

@@ -1,5 +1,11 @@
 extends Control
 
+const CAMLIMITS = {
+	"top" :0,
+	"bottom" :360,
+	"left" :0,
+	"right" :640,
+	}
 
 func _ready():
 	$Menu/VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter

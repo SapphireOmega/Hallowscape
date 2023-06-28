@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqxkshvxfx6je"]
+[gd_scene load_steps=16 format=3 uid="uid://dqxkshvxfx6je"]
 
 [ext_resource type="Texture2D" uid="uid://d3opnbovfjn7h" path="res://Player/AnimationSheet_Character.png" id="1_0nsmd"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_p1f8f"]
@@ -59,6 +59,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 7)]
+}
 
 [sub_resource type="Animation" id="Animation_0u2d6"]
 resource_name = "attack"
@@ -75,6 +87,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [64, 65, 66, 67, 68, 69, 70, 71]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.12, 0.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_0xv2a"]
@@ -135,11 +159,28 @@ tracks/0/keys = {
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
 }
 
+[sub_resource type="Animation" id="Animation_gbjxj"]
+resource_name = "die"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbuc1"]
 _data = {
 "RESET": SubResource("Animation_ffvq5"),
 "attack": SubResource("Animation_0u2d6"),
 "damage": SubResource("Animation_0xv2a"),
+"die": SubResource("Animation_gbjxj"),
 "fall": ExtResource("3_3g3gf"),
 "idle": ExtResource("4_eo0em"),
 "jump": ExtResource("5_7n1kk"),
@@ -159,14 +200,13 @@ max_speed = 160.0
 jump_force = 335.0
 
 [node name="Area2D" parent="." instance=ExtResource("2_2b3wm")]
-collision_layer = 0
-collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("1_0nsmd")
 hframes = 8
 vframes = 9
+frame = 56
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("8_txc5n")

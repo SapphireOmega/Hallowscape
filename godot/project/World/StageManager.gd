@@ -13,7 +13,7 @@ const WIN = preload("res://Menus/win_screen.tscn")
 
 # ---GLOBALS------------- #
 @onready var players_at_npc = 0
-@onready var health1 = 3
+@onready var health1 = 300
 
 const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main scene and moved current_scene
 		into Main/current_level. Check 'remote' for the exact hierarchy"
@@ -24,6 +24,7 @@ const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main sce
 
 #this fixes the node hierarchy on launch.
 func _on_ready():
+	DisplayServer.window_set_min_size(Vector2(640, 360))
 	var root = get_tree().get_root()
 	var last_child = root.get_child(root.get_child_count()-1)
 	swap_fullscreen_mode()
@@ -72,17 +73,18 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 # ----------Do loading stuff here--------- #
 	
 	var stage = stage_path.instantiate()
+	var oldstage = curStagePath().get_child(0)
 	
 	if curStagePath().get_child_count() > 0 and curStagePath().get_child_count() != 0:
-		curStagePath().get_child(0).queue_free()
+		curStagePath().remove_child(oldstage)
+		oldstage.queue_free()
 	curStagePath().add_child(stage)
-	
 	
 	var players = find_players()
 	for player in players:
 		move_player_to(player, x, y)
 		x+= 15
-		player.set_spawn()
+		#player.set_spawn()
 	
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
@@ -95,6 +97,7 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
 	player.position = Vector2(x,y)
+	print(player.position)
 
 
 func fastMoveCam(cam):
@@ -126,20 +129,25 @@ func adjust_cam_to_stage(stage):
 
 
 var is_killing = false
-func kill_players():
-	get_tree().paused = true
-	await get_tree().create_timer(1).timeout
+func kill_players(player_id):
+	var players = find_players()
+	for player in players:
+		player.dead = true
+		if player.player_id == player_id:
+			player.get_child(4).play("die")
+	await get_tree().create_timer(0.8).timeout
+	
 	$TextureRect2.modulate.a = 0
 	$TextureRect2.show()
 	$Anim.play("DeathIn")
 	await $Anim.animation_finished
-	
-	var players = find_players()
+	################
 	for player in players:
 		player.die()
+		player.dead = false
 	fastMoveCam(getCam())
-	$Anim.play("DeathOut")
-	get_tree().paused = false
+	#################
+	$Anim.play("DeathOut") 
 	await $Anim.animation_finished
 	$TextureRect2.hide()
 	is_killing = false
