@@ -14,7 +14,8 @@ var face_direction := -1
 var dir
 @export var max_travel_dist = 400
 
-@export var player: CharacterBody2D
+@export var player1: CharacterBody2D
+@export var player2: CharacterBody2D
 @onready var nav_ag := $NavigationAgent2D as NavigationAgent2D
 @onready var spawn = self.position
 
@@ -36,7 +37,6 @@ func set_direction(hor_direction) -> void:
 	if hor_direction == 0:
 		return
 
-#	print(hor_direction)
 	$IdleSprite.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 	$AttackSprite.apply_scale(Vector2(hor_direction * face_direction, 1))
 	$Attack_player.apply_scale(Vector2(hor_direction * face_direction, 1))
@@ -46,9 +46,10 @@ func set_direction(hor_direction) -> void:
 func _physics_process(delta):
 	makepath()
 	dir = nav_ag.get_next_path_position() - global_position
+	print(dir)
 	velocity = dir.normalized() * speed
 	
-	if abs(player.position.x - position.x) < 30:
+	if abs(player1.position.x - position.x) < 30 and abs(player2.position.x - position.x) < 30:
 		x_dir = 0
 		velocity.x = 0
 	
@@ -57,7 +58,7 @@ func _physics_process(delta):
 		if dir.x > 0: x_dir = 1
 		elif dir.x < 0: x_dir = -1
 		else: x_dir = 0
-	
+	print(velocity)
 	set_direction(x_dir)
 	move_and_slide()
 	
@@ -83,12 +84,18 @@ func almost_equal(a, b) -> bool:
 
 
 func makepath() -> void:
-	if player.position.distance_to(spawn) > max_travel_dist:
+	if player1.position.distance_to(spawn) > max_travel_dist and player2.position.distance_to(spawn) > max_travel_dist:
 		nav_ag.target_position = spawn
-	elif player.position.distance_to(nav_ag.target_position) < 10:
+	elif player1.position.distance_to(self.position) < 10 or player2.position.distance_to(self.position) < 10:
 		pass
 	else:
-		nav_ag.target_position = player.position
+		if player1.position.distance_to(self.position) < player2.position.distance_to(self.position):
+			nav_ag.target_position = player1.position
+			print("yo")
+		else:
+			print("hi")
+			nav_ag.target_position = player2.position
+
 
 
 func take_damage():
@@ -102,8 +109,9 @@ func take_damage():
 		animation.stop(true)
 		animation.clear_queue()
 		animation.queue("die")
+		
 		var t = Timer.new()
-		# Waits for exact frame where the player hits.
+		# Waits for the animation to finish.
 		t.set_wait_time(0.7)
 		t.set_one_shot(true)
 		self.add_child(t)
@@ -111,15 +119,15 @@ func take_damage():
 		await t.timeout
 		
 		queue_free()
-		
 
-func body_enter_attack(body: CharacterBody2D):
+
+func body_enter_attack(_body: CharacterBody2D):
 	if !dying:
 		$AttackSprite.visible = true
 		$IdleSprite.visible = false
 		in_range = true
 
-func body_out_of_range(body: CharacterBody2D):
+func body_out_of_range(_body: CharacterBody2D):
 	in_range = false
 
 func damage_player(body: CharacterBody2D):

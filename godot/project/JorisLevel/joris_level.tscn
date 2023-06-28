@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=26 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -9,11 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="7_bxhqr"]
-[ext_resource type="PackedScene" uid="uid://ch422r8ofcrul" path="res://NPCS/Enemy1/enemy1_walls.tscn" id="7_c258x"]
-[ext_resource type="Texture2D" uid="uid://t2ybsneyjewv" path="res://Assets/Inhouse/arrow.png" id="8_cikgh"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
-[ext_resource type="Texture2D" uid="uid://b6qcgew6uc4ma" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="Texture2D" uid="uid://d4l45mtgoj7id" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="PackedScene" uid="uid://ckapwsq5vqn3l" path="res://NPCS/Bat/bat2.tscn" id="10_vfu1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wues"]
 size = Vector2(33, 260)
@@ -30,6 +29,11 @@ size = Vector2(72, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl1vy"]
 size = Vector2(166, 126)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_f2cgr"]
+vertices = PackedVector2Array(-224, 34, -221, 76, -272, 73, -271, -19, -201, 7, -263, -87, 152, -74, 258, -82, 256, -20, 225, -12, -218, 75, -221, 46, -126, 46, 135, 77, -8, -123, -124, 29, -134, -108, -152, 2)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 6, 9, 13, 12, 15), PackedInt32Array(16, 14, 15, 17), PackedInt32Array(5, 16, 17, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-218, 75, 135, 77, 225, -12, 256, -20, 258, -82, 152, -74, -8, -123, -134, -108, -263, -87, -271, -19, -272, 73, -221, 76, -224, 34, -201, 7, -152, 2, -124, 29, -126, 46, -221, 46)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -199,7 +203,6 @@ offset_left = 246.0
 offset_top = 149.0
 offset_right = 502.0
 offset_bottom = 287.0
-texture = ExtResource("8_cikgh")
 
 [node name="Barrel" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(164, 311)
@@ -210,11 +213,32 @@ position = Vector2(865, 211)
 [node name="Barrel3" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(1264, 313)
 
+[node name="bat" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("10_vfu1k")]
+position = Vector2(1724, 248)
+player1 = NodePath("../player")
+player2 = NodePath("../player2")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="bat"]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_f2cgr")
+navigation_layers = 256
+
+[node name="bat2" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("10_vfu1k")]
+position = Vector2(1807, 288)
+player1 = NodePath("../player")
+player2 = NodePath("../player2")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="bat2"]
+visible = false
+position = Vector2(-83, -40)
+navigation_polygon = SubResource("NavigationPolygon_f2cgr")
+navigation_layers = 256
+
 [node name="player" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(47, 306)
+position = Vector2(1417, 219)
 
 [node name="player2" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(67, 307)
+position = Vector2(1437, 220)
 player_id = 2
 
 [node name="TileMap2" type="TileMap" parent="."]
