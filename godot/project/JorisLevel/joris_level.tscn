@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=24 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -9,10 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="7_bxhqr"]
-[ext_resource type="Texture2D" uid="uid://t2ybsneyjewv" path="res://Assets/Inhouse/arrow.png" id="8_cikgh"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
-[ext_resource type="Texture2D" uid="uid://d51bugo2i3ci" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="Texture2D" uid="uid://d4l45mtgoj7id" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wues"]
 size = Vector2(33, 260)
@@ -112,18 +111,15 @@ default_color = Color(0.0980392, 0.0980392, 0.207843, 1)
 position = Vector2(580, 324)
 rotation = -3.14159
 collide_with_areas = false
-is_casting = null
 
 [node name="Laser2" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1138, 324)
 rotation = 3.14159
 collide_with_areas = false
-is_casting = null
 
 [node name="Laser3" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1233, 325)
 collide_with_areas = false
-is_casting = null
 
 [node name="Laser4" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1176, 255)

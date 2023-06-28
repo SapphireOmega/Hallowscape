@@ -22,9 +22,8 @@ position = Vector2(167, 294)
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-15, -296)
 
-[node name="bat2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6jyb4")]
+[node name="bat2" parent="." instance=ExtResource("3_6jyb4")]
 position = Vector2(259, 300)
-player = NodePath("../player")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="bat2"]
 visible = false
