@@ -84,7 +84,7 @@ func get_input() -> Dictionary:
 func _physics_process(delta: float) -> void:
 	if !dead:
 		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
-		StageManager.dialcam(DialogueManager.conversing)
+		StageManager.dialcam()
 		if !DialogueManager.conversing:
 			x_movement(delta)
 			double_jump_logic(delta)
@@ -304,13 +304,23 @@ func activate_dialogue():
 	if get_input()["interact"] and npc_in_range:
 		DialogueManager.conversing = true
 		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
-		StageManager.dialcam(DialogueManager.conversing)
-		DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/test_dialogue.dialogue"))
+		StageManager.dialcam()
+		if DialogueManager.npc1:
+			DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/npc1_dialogue.dialogue"))
+		elif DialogueManager.npc2:
+			print("npc2")
+			DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC2/npc2_dialogue.dialogue"))
 
 
 func begin_dialog(body):
 	if body.has_method("npc1"):
 		npc_in_range = true
+		DialogueManager.npc1 = true
+		StageManager.players_at_npc += 1
+		body.interact_invis(StageManager.players_at_npc)
+	elif body.has_method("npc2"):
+		npc_in_range = true
+		DialogueManager.npc2 = true
 		StageManager.players_at_npc += 1
 		body.interact_invis(StageManager.players_at_npc)
 	if get_input()["interact"] and npc_in_range:
@@ -319,6 +329,12 @@ func begin_dialog(body):
 
 func end_dialog(body):
 	if body.has_method("npc1"):
+		DialogueManager.npc2 = false
+		npc_in_range = false
+		StageManager.players_at_npc -= 1
+		body.interact_invis(StageManager.players_at_npc)
+	elif body.has_method("npc2"):
+		DialogueManager.npc2 = false
 		npc_in_range = false
 		StageManager.players_at_npc -= 1
 		body.interact_invis(StageManager.players_at_npc)

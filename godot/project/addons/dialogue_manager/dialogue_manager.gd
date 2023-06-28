@@ -65,6 +65,8 @@ var translation_source: TranslationSource = TranslationSource.Guess
 var _node_properties: Array = []
 
 var conversing = false
+var npc1 = false
+var npc2 = false
 
 func _ready() -> void:
 	# Cache the known Node2D properties

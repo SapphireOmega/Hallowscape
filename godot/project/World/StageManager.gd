@@ -153,15 +153,27 @@ func kill_players(player_id):
 	is_killing = false
 
 
-func dialcam(conversing):
-	if conversing:
-		var curr = curStage()
-		if curr.has_node("npc1"):
-			var cam = curr.get_node("npc1").get_node("dialogue_cam")
-			cam.enabled = true
-	else:
-		var curr = curStage()
-		if curr.has_node("npc1"):
-			var cam = curr.get_node("npc1").get_node("dialogue_cam")
-			cam.enabled = false
+func dialcam():
+	if DialogueManager.npc1:
+		if DialogueManager.conversing:
+			var curr = curStage()
+			if curr.has_node("npc1"):
+				var cam = curr.get_node("npc1").get_node("dialogue_cam")
+				cam.enabled = true
+		else:
+			var curr = curStage()
+			if curr.has_node("npc1"):
+				var cam = curr.get_node("npc1").get_node("dialogue_cam")
+				cam.enabled = false
+	elif DialogueManager.npc2:
+		if DialogueManager.conversing:
+			var curr = curStage()
+			if curr.has_node("npc2"):
+				var cam = curr.get_node("npc2").get_node("dialogue_cam")
+				cam.enabled = true
+		else:
+			var curr = curStage()
+			if curr.has_node("npc2"):
+				var cam = curr.get_node("npc2").get_node("dialogue_cam")
+				cam.enabled = false
 
