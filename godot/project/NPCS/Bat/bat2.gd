@@ -6,17 +6,17 @@ var hits_taken = 0
 @onready var animation = $AnimationPlayer
 
 @export var speed = 60
+var dir
+@export var max_travel_dist = 400
 
 var in_range = false
 var x_dir = -1
 var face_direction := -1
 
-var dir
-@export var max_travel_dist = 400
-
 @export var player1: CharacterBody2D
 @export var player2: CharacterBody2D
 @onready var nav_ag := $NavigationAgent2D as NavigationAgent2D
+@onready var nav_reg := self.get_parent().get_node("NavigationRegion2D")
 @onready var spawn = self.position
 
 @onready var dying = false
@@ -39,6 +39,7 @@ func set_direction(hor_direction) -> void:
 
 	$IdleSprite.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 	$AttackSprite.apply_scale(Vector2(hor_direction * face_direction, 1))
+	$DeathSprite.apply_scale(Vector2(hor_direction * face_direction, 1))
 	$Attack_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	$Detect_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
@@ -46,10 +47,9 @@ func set_direction(hor_direction) -> void:
 func _physics_process(delta):
 	makepath()
 	dir = nav_ag.get_next_path_position() - global_position
-	print(dir)
 	velocity = dir.normalized() * speed
 	
-	if abs(player1.position.x - position.x) < 30 and abs(player2.position.x - position.x) < 30:
+	if abs(player1.position.x - position.x) < 30 or abs(player2.position.x - position.x) < 30:
 		x_dir = 0
 		velocity.x = 0
 	
@@ -58,7 +58,7 @@ func _physics_process(delta):
 		if dir.x > 0: x_dir = 1
 		elif dir.x < 0: x_dir = -1
 		else: x_dir = 0
-	print(velocity)
+
 	set_direction(x_dir)
 	move_and_slide()
 	
@@ -91,11 +91,8 @@ func makepath() -> void:
 	else:
 		if player1.position.distance_to(self.position) < player2.position.distance_to(self.position):
 			nav_ag.target_position = player1.position
-			print("yo")
 		else:
-			print("hi")
 			nav_ag.target_position = player2.position
-
 
 
 func take_damage():
@@ -121,22 +118,23 @@ func take_damage():
 		queue_free()
 
 
-func body_enter_attack(_body: CharacterBody2D):
+func body_enter_attack(_body):
 	if !dying:
 		$AttackSprite.visible = true
 		$IdleSprite.visible = false
 		in_range = true
 
-func body_out_of_range(_body: CharacterBody2D):
+
+func body_out_of_range(_body):
 	in_range = false
 
-func damage_player(body: CharacterBody2D):
+
+func damage_player(body):
 	if $Attack_player.monitoring and body.is_in_group("player"):
 		body.take_damage()
 		if StageManager.health1 == 0:
-			StageManager.kill_players()
+			StageManager.kill_players(body.player_id)
 			StageManager.health1 = 3
-
 
 
 func _on_animation_player_animation_finished(anim_name):

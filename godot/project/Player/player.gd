@@ -293,8 +293,10 @@ func _player_detected(body):
 	self.add_child(t)
 	t.start()
 	await t.timeout
-
-	if body.has_method("makepath"):
+	
+	if !body: 
+		return
+	elif body.has_method("makepath"):
 		StageManager.getCam().shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
