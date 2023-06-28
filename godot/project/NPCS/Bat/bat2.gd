@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var hitpoints = 3
 var hits_taken = 0
 
-@onready var animation = $AnimationPlayer
+@onready var animation = $BatAnimationPlayer
 
 @export var speed = 60
 var dir
@@ -130,11 +130,12 @@ func body_out_of_range(_body):
 
 
 func damage_player(body):
-	if $Attack_player.monitoring and body.is_in_group("player"):
-		body.take_damage()
-		if StageManager.health1 == 0:
-			StageManager.kill_players(body.player_id)
-			StageManager.health1 = 3
+	if body:
+		if $Attack_player.monitoring and body.is_in_group("player"):
+			body.take_damage()
+			if StageManager.health1 == 0:
+				StageManager.kill_players(body.player_id)
+				StageManager.health1 = 3
 
 
 func _on_animation_player_animation_finished(anim_name):

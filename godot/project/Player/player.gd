@@ -227,8 +227,6 @@ func timers(delta: float) -> void:
 		land_timer -= delta
 
 
-
-
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
 		if !$AnimationPlayer.current_animation == "attack":
@@ -284,7 +282,6 @@ func take_damage():
 
 
 #------------ interactables --- #
-
 func _player_detected(body):
 	var t = Timer.new()
 	# Waits for exact frame where the player hits.
