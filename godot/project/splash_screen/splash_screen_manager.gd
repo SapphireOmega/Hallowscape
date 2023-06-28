@@ -27,7 +27,7 @@ func _ready() -> void:
 
 # if the left mouse button or bar is pressed. The current splash screen will be skipped.
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_skip"):
+	if Input.is_action_just_released("ui_skip"):
 		_skip()
 
 # This function is responsible for starting the splash screens. It checks if there are any remaining
@@ -35,6 +35,7 @@ func _input(_event: InputEvent) -> void:
 # screens have been shown, so the function calls queue_free() to remove the current node.
 func _start_splash_screen() -> void:
 	if _splash_screens.size() == 0:
+		await get_tree().create_timer(0.1).timeout
 		queue_free()
 		StageManager.changeStage(StageManager.MAINMENU,0,0,false)
 	else:

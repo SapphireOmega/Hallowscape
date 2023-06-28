@@ -227,8 +227,6 @@ func timers(delta: float) -> void:
 		land_timer -= delta
 
 
-
-
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
 		if !$AnimationPlayer.current_animation == "attack":
@@ -284,7 +282,6 @@ func take_damage():
 
 
 #------------ interactables --- #
-
 func _player_detected(body):
 	var t = Timer.new()
 	# Waits for exact frame where the player hits.
@@ -293,8 +290,10 @@ func _player_detected(body):
 	self.add_child(t)
 	t.start()
 	await t.timeout
-
-	if body.has_method("makepath"):
+	
+	if !body: 
+		return
+	elif body.has_method("makepath"):
 		StageManager.getCam().shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
