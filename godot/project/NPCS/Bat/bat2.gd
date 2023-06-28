@@ -1,9 +1,13 @@
+# This file contains functions that create the bat enemy.
+# The bat can fly around in a Navigation region en follow the closest player.
+# When the player is in certain range of the bat, the bat will attack.
+
 extends CharacterBody2D
 
 @export var hitpoints = 3
 var hits_taken = 0
 
-@onready var animation = $BatAnimationPlayer
+
 
 @export var speed = 60
 var dir
@@ -16,12 +20,14 @@ var face_direction := -1
 @export var player1: CharacterBody2D
 @export var player2: CharacterBody2D
 @onready var nav_ag := $NavigationAgent2D as NavigationAgent2D
-@onready var nav_reg := self.get_parent().get_node("NavigationRegion2D")
+@onready var animation = $BatAnimationPlayer
 @onready var spawn = self.position
 
 @onready var dying = false
 
+
 func _ready():
+	#Making sure the right sprite is active for the right animation.
 	$Attack_player.visible = false
 	$Attack_player.monitoring = false
 	$AttackSprite.visible = false
@@ -29,6 +35,7 @@ func _ready():
 	$DeathSprite.visible = false
 	animation.queue("idle")
 	makepath()
+
 
 func set_direction(hor_direction) -> void:
 	# This is purely for visuals
@@ -43,6 +50,7 @@ func set_direction(hor_direction) -> void:
 	$Attack_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	$Detect_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
+
 
 func _physics_process(_delta):
 	makepath()
@@ -76,6 +84,7 @@ func _physics_process(_delta):
 		animation.play(ani)
 
 
+# Checks if the diff between a and b is smaller than 1.
 func almost_equal(a, b) -> bool:
 	if abs(a.x - b.x) < 1 and abs(a.y - b.y) < 1:
 		return true
@@ -83,6 +92,7 @@ func almost_equal(a, b) -> bool:
 		return false
 
 
+# This function is called every frame to calculate the path to the closest player.
 func makepath() -> void:
 	if player1.position.distance_to(spawn) > max_travel_dist and player2.position.distance_to(spawn) > max_travel_dist:
 		nav_ag.target_position = spawn
@@ -95,6 +105,7 @@ func makepath() -> void:
 			nav_ag.target_position = player2.position
 
 
+#Adds a hit point when hit and frees the node when it dies.
 func take_damage():
 	## hit animation ##
 	hits_taken += 1
@@ -118,6 +129,7 @@ func take_damage():
 		queue_free()
 
 
+# If the bat is not dying an attack can be initiated.
 func body_enter_attack(_body):
 	if !dying:
 		$AttackSprite.visible = true
@@ -128,7 +140,7 @@ func body_enter_attack(_body):
 func body_out_of_range(_body):
 	in_range = false
 
-
+# This function takes health from the player and kills them if the health is zero.
 func damage_player(body):
 	if body:
 		if $Attack_player.monitoring and body.is_in_group("player"):
@@ -137,7 +149,7 @@ func damage_player(body):
 				StageManager.kill_players(body.player_id)
 				StageManager.health1 = 3
 
-
+#Making sure the idle animation only plays when the attack animation is finished.
 func _on_animation_player_animation_finished(_anim_name):
 	if in_range == false:
 		$Attack_player.visible = false
