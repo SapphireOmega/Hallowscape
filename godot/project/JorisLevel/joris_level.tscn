@@ -32,10 +32,10 @@ size = Vector2(72, 139)
 size = Vector2(102, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl1vy"]
-size = Vector2(124, 68)
+size = Vector2(154, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uiusi"]
-size = Vector2(77, 38)
+size = Vector2(50, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -119,18 +119,15 @@ default_color = Color(0.0980392, 0.0980392, 0.207843, 1)
 position = Vector2(580, 324)
 rotation = -3.14159
 collide_with_areas = false
-is_casting = null
 
 [node name="Laser2" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1138, 324)
 rotation = 3.14159
 collide_with_areas = false
-is_casting = null
 
 [node name="Laser3" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1233, 325)
 collide_with_areas = false
-is_casting = null
 
 [node name="Laser4" parent="." instance=ExtResource("5_hw5xv")]
 position = Vector2(1176, 255)
@@ -204,7 +201,7 @@ shape = SubResource("RectangleShape2D_l68k8")
 script = ExtResource("4_ouo15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3"]
-position = Vector2(431, 155)
+position = Vector2(416, 155)
 shape = SubResource("RectangleShape2D_tl1vy")
 
 [node name="Label" type="Label" parent="TutorialLabel3"]
@@ -222,12 +219,22 @@ offset_left = 246.0
 offset_top = 149.0
 offset_right = 502.0
 offset_bottom = 287.0
+texture = ExtResource("8_cikgh")
+
+[node name="TextureRect2" type="TextureRect" parent="TutorialLabel3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 422.0
+offset_top = 149.0
+offset_right = 678.0
+offset_bottom = 287.0
+texture = ExtResource("8_cikgh")
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="TutorialLabel3"]
 script = ExtResource("8_nt7j1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel3/Area2D"]
-position = Vector2(377.5, 144)
+position = Vector2(539, 141)
 shape = SubResource("RectangleShape2D_uiusi")
 
 [node name="TutorialLabel4" type="Area2D" parent="."]
@@ -249,14 +256,14 @@ texture = ExtResource("8_cikgh")
 script = ExtResource("8_nt7j1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel4/Area2D"]
-position = Vector2(431, 155)
+position = Vector2(416, 155)
 shape = SubResource("RectangleShape2D_tl1vy")
 
 [node name="TutorialLabel5" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel5"]
-position = Vector2(377.5, 144)
+position = Vector2(539, 140)
 shape = SubResource("RectangleShape2D_uiusi")
 
 [node name="TextureRect" type="TextureRect" parent="TutorialLabel5"]
