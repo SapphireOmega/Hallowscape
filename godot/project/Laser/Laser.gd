@@ -1,3 +1,6 @@
+### When activated, do a raycast, draw a line to the collision point, and check
+### if the player was hit. If the player was in fact hit, kill the players.
+
 extends RayCast2D
 
 @export var is_casting = true : set = set_is_casting, get = get_is_casting
@@ -22,10 +25,7 @@ func _physics_process(_delta: float) -> void:
 		if collider.has_method("die"):
 			if StageManager.is_killing == false:
 				StageManager.is_killing = true
-				StageManager.kill_players()
-
-
-
+				StageManager.kill_players(collider.player_id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

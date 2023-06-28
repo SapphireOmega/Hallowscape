@@ -5,6 +5,7 @@ extends Node
 
 @export var PORT = 8080
 @export var RunOnLaunch = true
+@export var MAX_PLAYERS = 2
 
 var server : TCPServer
 var ThreadsMutex : Mutex
@@ -14,7 +15,6 @@ var players = {"1":null, "2":null}
 var GameRunning = true
 var RunningThreads = []
 var ClosingThreads = []
-var MAX_PLAYERS = 1
 var n_players = 0
 var server_paused = true
 
@@ -176,6 +176,7 @@ func _exit_tree():
 		if thread.is_alive():
 			thread.wait_to_finish()
 
+	# Clean up any threads that were still closing
 	for thread in ClosingThreads:
 		if thread.is_alive():
 			thread.wait_to_finish()

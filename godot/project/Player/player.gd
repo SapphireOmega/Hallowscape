@@ -19,6 +19,7 @@ var x_dir := 1
 # ------------- #
 
 # animations ----- #
+@export var dead = false
 @export var land_anim_length : float = 0.05
 var land_timer : float = 0
 # ------------- #g
@@ -81,24 +82,19 @@ func get_input() -> Dictionary:
 
 
 func _physics_process(delta: float) -> void:
-	StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
-	StageManager.dialcam(DialogueManager.conversing)
-	if !DialogueManager.conversing:
-		x_movement(delta)
-		double_jump_logic(delta)
-		jump_logic(delta)
-		apply_gravity(delta)
-		activate_dialogue()
-		timers(delta)
-		move_and_slide()
-		if self.is_on_floor: push_barrels(delta)
-		update_animation()
-		
-#	if get_input()["interact"]:
-#		var randomPuzzle = puzzles[randi() % puzzles.size()]
-#		var server = $"/root/Server"
-#		if server:
-#			server.sendPuzzle(player_id, randomPuzzle)
+	if !dead:
+		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
+		StageManager.dialcam(DialogueManager.conversing)
+		if !DialogueManager.conversing:
+			x_movement(delta)
+			double_jump_logic(delta)
+			jump_logic(delta)
+			apply_gravity(delta)
+			activate_dialogue()
+			timers(delta)
+			move_and_slide()
+			if self.is_on_floor: push_barrels(delta)
+			update_animation()
 
 func push_barrels(delta: float) -> void:
 	for i in get_slide_collision_count():
@@ -135,7 +131,7 @@ func x_movement(delta: float) -> void:
 	# Accelerate
 	velocity.x += x_dir * accel_rate * delta
 	#play waling sound
-	if !is_double_jumping and !is_jumping:
+	if is_on_floor():
 		MusicGallery.sound_effect("Walk", false)
 	set_direction(x_dir) # This is purely for visuals
 
@@ -172,7 +168,7 @@ func jump_logic(_delta: float) -> void:
 			jump_coyote_timer = 0
 			jump_buffer_timer = 0
 			velocity.y = -jump_force
-			#MusicGallery.sound_effect("Jump")
+			MusicGallery.sound_effect("Jump")
 	
 	# Cut the velocity if let go of jump. This means our jumpheight is varaiable
 	# This should only happen when moving upwards, as doing this while falling would lead to
