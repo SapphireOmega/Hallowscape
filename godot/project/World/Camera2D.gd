@@ -55,7 +55,7 @@ func _on_timer_timeout():
 	shake_amount = 0
 
 # Changing the camera scene for dialogue with npcs
-func focus_cam_to_pos(_pos, conversing):
+func focus_cam_to_pos(conversing):
 	if conversing == true:
 		self.enabled = false
 	else:

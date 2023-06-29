@@ -86,7 +86,7 @@ func get_input() -> Dictionary:
 
 func _physics_process(delta: float) -> void:
 	if !dead:
-		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
+		StageManager.getCam().focus_cam_to_pos(DialogueManager.conversing)
 		StageManager.dialcam()
 		if !DialogueManager.conversing:
 			x_movement(delta)
