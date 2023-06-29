@@ -7,3 +7,26 @@
 script = ExtResource("1_xm7xi")
 
 [node name="Ingame_menu" parent="." instance=ExtResource("1_ltsap")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
