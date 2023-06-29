@@ -135,7 +135,7 @@ func x_movement(delta: float) -> void:
 	velocity.x += x_dir * accel_rate * delta
 	#play waling sound
 	if is_on_floor():
-		MusicGallery.sound_effect("Walk", false)
+		MusicGallery.play_random_footstep()
 	set_direction(x_dir) # This is purely for visuals
 
 
