@@ -1,42 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://by6yogcoubfxo"]
+[gd_scene load_steps=5 format=3 uid="uid://by6yogcoubfxo"]
 
 [ext_resource type="PackedScene" uid="uid://b887pry8xnfh0" path="res://Menus/ingame_menu.tscn" id="1_ltsap"]
 [ext_resource type="Script" path="res://Menus/gui.gd" id="1_xm7xi"]
+[ext_resource type="Texture2D" uid="uid://besu8fr6hfdev" path="res://Assets/Inhouse/UI elements/full_heart.png" id="2_u1hgc"]
+[ext_resource type="Texture2D" uid="uid://pq6jxgyme0ws" path="res://Assets/Inhouse/UI elements/empty_heart.png" id="4_qjv8m"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_xm7xi")
 
 [node name="HP_widget" type="CanvasLayer" parent="."]
 
+[node name="HP_empty" type="HBoxContainer" parent="HP_widget"]
+visible = false
+anchors_preset = -1
+offset_right = 216.0
+offset_bottom = 40.0
+
+[node name="empty4" type="TextureRect" parent="HP_widget/HP_empty"]
+layout_mode = 2
+texture = ExtResource("4_qjv8m")
+
+[node name="empty3" type="TextureRect" parent="HP_widget/HP_empty"]
+layout_mode = 2
+texture = ExtResource("4_qjv8m")
+
+[node name="empty2" type="TextureRect" parent="HP_widget/HP_empty"]
+layout_mode = 2
+texture = ExtResource("4_qjv8m")
+
+[node name="empty1" type="TextureRect" parent="HP_widget/HP_empty"]
+layout_mode = 2
+texture = ExtResource("4_qjv8m")
+
+[node name="empty" type="TextureRect" parent="HP_widget/HP_empty"]
+layout_mode = 2
+texture = ExtResource("4_qjv8m")
+
 [node name="HP" type="HBoxContainer" parent="HP_widget"]
 visible = false
 offset_right = 92.0
 offset_bottom = 40.0
 
-[node name="1" type="ColorRect" parent="HP_widget/HP"]
+[node name="1" type="TextureRect" parent="HP_widget/HP"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-color = Color(0.662745, 0.12549, 0.192157, 1)
+texture = ExtResource("2_u1hgc")
 
-[node name="2" type="ColorRect" parent="HP_widget/HP"]
+[node name="2" type="TextureRect" parent="HP_widget/HP"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-color = Color(0.662745, 0.12549, 0.192157, 1)
+texture = ExtResource("2_u1hgc")
 
-[node name="3" type="ColorRect" parent="HP_widget/HP"]
+[node name="3" type="TextureRect" parent="HP_widget/HP"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-color = Color(0.662745, 0.12549, 0.192157, 1)
+texture = ExtResource("2_u1hgc")
 
-[node name="4" type="ColorRect" parent="HP_widget/HP"]
+[node name="4" type="TextureRect" parent="HP_widget/HP"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-color = Color(0.662745, 0.12549, 0.192157, 1)
+texture = ExtResource("2_u1hgc")
 
-[node name="5" type="ColorRect" parent="HP_widget/HP"]
+[node name="5" type="TextureRect" parent="HP_widget/HP"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-color = Color(0.662745, 0.12549, 0.192157, 1)
+texture = ExtResource("2_u1hgc")
 
 [node name="Ingame_menu" parent="." instance=ExtResource("1_ltsap")]
 
