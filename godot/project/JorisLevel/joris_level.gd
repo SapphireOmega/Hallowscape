@@ -8,3 +8,5 @@ const CAMLIMITS = {
 	}
 
 
+func _ready():
+	MusicGallery.play_track_by_name("Something_Wicked")

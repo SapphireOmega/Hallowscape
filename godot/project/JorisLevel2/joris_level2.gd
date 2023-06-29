@@ -6,3 +6,6 @@ const CAMLIMITS = {
 	"left": 0,
 	"right": 2016,
 }
+
+func _ready():
+	MusicGallery.play_track_by_name("Signs_In_The_Field")

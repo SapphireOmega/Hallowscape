@@ -2,6 +2,8 @@
 
 In this directory all the C++ source code for the Godot game is found.
 
+*NOTE: we did not end up using the C++ bindings. We were exploring these bindings at the start of the project, so we knew what it could and could not do. We thought it better to figure out how to get the C++ bindings to work, rather than trying to get these to work when the project was already well under way, as it could maybe disrupt the project. We thought about using these bindings for bluetooth, as godot does not support bluetooth, but we did not end up using bluethooth.*
+
 ## Discussion on GDScript and C++
 
 Godot has a built-in interpreted scripting language called GDScript. It also exports bindings for other languages. One of these officially supported languages is C++. We have set up this project such that the C++ bindings are available. They are not, however, necessary. The C++ bindings may have some uses, and thus we have set up the project to have the C++ option.

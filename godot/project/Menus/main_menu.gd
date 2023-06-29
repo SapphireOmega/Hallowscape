@@ -9,7 +9,7 @@ const CAMLIMITS = {
 
 func _ready():
 	$Menu/VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
-	MusicGallery.play_track_by_name("pengel")
+	MusicGallery.play_track_by_name("Spooky")
 
 func _on_credits_button_up():
 	$Menu/VBoxContainer.hide()
