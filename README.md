@@ -1,6 +1,6 @@
 # Project Software Engineering 2023 - Group B
 
-TODO: Add phone app as submodule
+See `controllerApp/ReadMe.md` for information about the phone app specifically.
 
 ## Housekeeping
 
@@ -17,9 +17,9 @@ Directories:
 
 ## Running
 
-TODO: Add compiled binaries, add phone app as submodule.
+TODO: Add compiled binaries.
 
-You need to have the app installed on your phone. Make sure you have your computer and your two phones on the same wifi network. Run the game on your computer, and in the app on the phones, type the ip address shown on the computer screen. Your phone will function as controller. You will be able to interact with certain game entities, wich may trigger a puzzle on your phone.
+You need to have the app installed on your phone (see `controllerApp/ReadMe.md`). Make sure you have your computer and your two phones on the same wifi network. Run the game on your computer, and in the app on the phones, type the ip address shown on the computer screen. Your phone will function as controller. You will be able to interact with certain game entities, wich may trigger a puzzle on your phone.
 
 There is the option to run the game without needing a phone if you run godot from the editor. To do this, you will need to have Godot 4 installed. In the Godot project manager (which will run when opening godot without arguments) select `Import` and open the `godot/project/project.godot` file. Then open the newly imported project. To run, just press the triangle in the top-right. To turn off the server and phones, open `TestServerClients/Server.tscn` in the editor, select the root `Server` node, and in the inspector on the right, turn off `RunOnLaunch`.
 
