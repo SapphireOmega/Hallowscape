@@ -148,6 +148,7 @@ func kill_players(player_id):
 		player.dead = false
 	fastMoveCam(getCam())
 	health1 = max_hp
+	set_hp(5)
 	#################
 	$Anim.play("DeathOut") 
 	await $Anim.animation_finished
