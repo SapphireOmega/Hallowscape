@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjjdbfhy3bjrm"]
+[gd_scene load_steps=20 format=3 uid="uid://cjjdbfhy3bjrm"]
 
 [ext_resource type="Script" path="res://sounds/Music_Gallery.gd" id="1_0apwy"]
 [ext_resource type="AudioStream" uid="uid://6ghd8l08m3qt" path="res://sounds/music/placeholder/SU-4.ogg" id="2_kh1r8"]
@@ -9,11 +9,16 @@
 [ext_resource type="AudioStream" uid="uid://c4gilawj61l2l" path="res://sounds/music/placeholder/SU-1.ogg" id="7_0tfo7"]
 [ext_resource type="AudioStream" uid="uid://go2l6ch3m734" path="res://sounds/music/pvg_songs/pengel.ogg" id="8_45k0x"]
 [ext_resource type="AudioStream" uid="uid://d3pjepn0mum57" path="res://sounds/sound_effects/whooshy_jump.mp3" id="9_4y8ts"]
+[ext_resource type="AudioStream" uid="uid://cy1pjvgv4eqi7" path="res://sounds/music/Background music/Spooky.mp3" id="9_426k7"]
 [ext_resource type="AudioStream" uid="uid://to1gj2nifixd" path="res://sounds/sound_effects/landing_sound1.mp3" id="10_cm27s"]
+[ext_resource type="AudioStream" uid="uid://dcimyp2qep33g" path="res://sounds/music/Background music/Something_Wicked.mp3" id="10_xt8n2"]
+[ext_resource type="AudioStream" uid="uid://buabx5wsaok20" path="res://sounds/music/Background music/Signs_In_The_Fields.mp3" id="11_8k7ev"]
 [ext_resource type="AudioStream" uid="uid://dd26r4t7fs3li" path="res://sounds/sound_effects/brain-damage-148577.mp3" id="11_kvul7"]
 [ext_resource type="AudioStream" uid="uid://k8thh5a87kca" path="res://sounds/sound_effects/footstep1.wav" id="12_os7qi"]
+[ext_resource type="AudioStream" uid="uid://b6qdmu1wjmpi" path="res://sounds/music/Background music/Scary_Church.mp3" id="12_trxn8"]
 [ext_resource type="AudioStream" uid="uid://cyjfqboy6v7t" path="res://sounds/sound_effects/footsteps2.wav" id="13_lby30"]
 [ext_resource type="AudioStream" uid="uid://cx2u87lgd4xbc" path="res://sounds/sound_effects/footsteps3.wav" id="14_07gys"]
+[ext_resource type="AudioStream" uid="uid://coggxfbuwt07i" path="res://sounds/sound_effects/Bat_Death(Minecraft Sound).mp3" id="19_occxo"]
 
 [node name="Music_Gallery" type="Node"]
 script = ExtResource("1_0apwy")
@@ -63,6 +68,22 @@ bus = &"Music"
 [node name="pengel" type="AudioStreamPlayer" parent="On_event"]
 stream = ExtResource("8_45k0x")
 
+[node name="Spooky" type="AudioStreamPlayer" parent="On_event"]
+stream = ExtResource("9_426k7")
+volume_db = -20.0
+
+[node name="Something_Wicked" type="AudioStreamPlayer" parent="On_event"]
+stream = ExtResource("10_xt8n2")
+volume_db = -20.0
+
+[node name="Signs_In_The_Field" type="AudioStreamPlayer" parent="On_event"]
+stream = ExtResource("11_8k7ev")
+volume_db = -15.0
+
+[node name="Scary_Church" type="AudioStreamPlayer" parent="On_event"]
+stream = ExtResource("12_trxn8")
+volume_db = -15.0
+
 [node name="Effects" type="Node" parent="."]
 
 [node name="Jump" type="AudioStreamPlayer" parent="Effects"]
@@ -95,5 +116,9 @@ volume_db = -8.433
 [node name="Footstep3" type="AudioStreamPlayer" parent="Effects/Footsteps"]
 stream = ExtResource("14_07gys")
 volume_db = -3.748
+
+[node name="BatDeath" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource("19_occxo")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

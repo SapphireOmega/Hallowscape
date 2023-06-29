@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://coggxfbuwt07i"
+path="res://.godot/imported/Bat_Death(Minecraft Sound).mp3-76f6e37cd24fd3322322e51df131f2e2.mp3str"
+
+[deps]
+
+source_file="res://sounds/sound_effects/Bat_Death(Minecraft Sound).mp3"
+dest_files=["res://.godot/imported/Bat_Death(Minecraft Sound).mp3-76f6e37cd24fd3322322e51df131f2e2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -72,7 +72,7 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 		$Anim.play("TransIn")
 		await $Anim.animation_finished
 # ----------Do loading stuff here--------- #
-	
+	StageManager.hide_hp()
 	var stage = stage_path.instantiate()
 	var oldstage = curStagePath().get_child(0)
 	
@@ -86,7 +86,8 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 		move_player_to(player, x, y)
 		x+= 15
 		#player.set_spawn()
-	
+	health1 = max_hp
+	set_hp(5)
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
 # -------------------------------------- #
@@ -148,6 +149,7 @@ func kill_players(player_id):
 		player.dead = false
 	fastMoveCam(getCam())
 	health1 = max_hp
+	set_hp(5)
 	#################
 	$Anim.play("DeathOut") 
 	await $Anim.animation_finished
@@ -178,4 +180,22 @@ func dialcam():
 			if curr.has_node("npc2"):
 				var cam = curr.get_node("npc2").get_node("dialogue_cam")
 				cam.enabled = false
+
+
+func set_hp(desired_amount):
+	$GUI.set_hp(desired_amount)
+
+func minus_hp():
+	$GUI.minus_hp()
+
+func add_hp():
+	$GUI.add_hp()
+
+func hide_hp():
+	$GUI.hide_hp()
+
+func show_hp():
+	$GUI.show_hp()
+
+
 
