@@ -9,4 +9,6 @@ const CAMLIMITS = {
 
 
 func _ready():
+	StageManager.show_hp()
 	MusicGallery.play_track_by_name("Scary_Church")
+

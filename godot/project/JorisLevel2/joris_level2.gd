@@ -8,4 +8,5 @@ const CAMLIMITS = {
 }
 
 func _ready():
+	StageManager.show_hp()
 	MusicGallery.play_track_by_name("Signs_In_The_Field")
