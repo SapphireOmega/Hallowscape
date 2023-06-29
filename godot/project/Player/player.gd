@@ -278,6 +278,7 @@ func take_damage():
 	damaged = true
 	update_animation()
 	if StageManager.health1 > 0:
+		StageManager.minus_hp()
 		StageManager.health1 -= 1
 		return
 
