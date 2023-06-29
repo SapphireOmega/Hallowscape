@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-var max_hp = 4
-var hp = 4
+var max_hp = 5
+var hp = 5
 var hp_nodes = []
 
 
@@ -14,11 +14,9 @@ func hp_path():
 
 
 func hide_hp():
-	print("hide")
 	hp_path().visible = false
 
 func show_hp():
-	print("show")
 	hp_path().visible = true
 
 func set_hp(desired_amount):
