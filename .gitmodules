@@ -2,3 +2,6 @@
 	path = godot/godot-cpp
 	url = https://github.com/godotengine/godot-cpp
 	branch = 4.0
+[submodule "controllerApp"]
+	path = controllerApp
+	url = https://github.com/mntijn/controllerApp
