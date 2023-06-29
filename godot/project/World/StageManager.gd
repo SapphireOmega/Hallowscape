@@ -13,6 +13,7 @@ const WIN = preload("res://Menus/win_screen.tscn")
 
 # ---GLOBALS------------- #
 @onready var players_at_npc = 0
+@export var max_hp = 5
 @onready var health1 = 5
 
 const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main scene and moved current_scene
@@ -146,6 +147,7 @@ func kill_players(player_id):
 		player.die()
 		player.dead = false
 	fastMoveCam(getCam())
+	health1 = max_hp
 	#################
 	$Anim.play("DeathOut") 
 	await $Anim.animation_finished
