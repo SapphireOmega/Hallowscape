@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://b887pry8xnfh0"]
 
 [ext_resource type="Script" path="res://Menus/ingame_menu.gd" id="1_8e4mf"]
-[ext_resource type="Texture2D" uid="uid://qh3fuu56suky" path="res://Assets/Inhouse/UI elements/start.png" id="2_qbyhb"]
-[ext_resource type="Texture2D" uid="uid://b14kdp4ahab8n" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="3_spryj"]
+[ext_resource type="Texture2D" uid="uid://cv6513mwkr37m" path="res://Assets/Inhouse/UI elements/start.png" id="2_qbyhb"]
+[ext_resource type="Texture2D" uid="uid://c1emplayetpcj" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="3_spryj"]
 [ext_resource type="Texture2D" uid="uid://msqt7etshjbg" path="res://Assets/Inhouse/UI elements/main_menu.png" id="4_44y08"]
-[ext_resource type="Texture2D" uid="uid://cx83pukdxdpbb" path="res://Assets/Inhouse/UI elements/quit.png" id="4_bmm0v"]
-[ext_resource type="Texture2D" uid="uid://bxamhi7jv3klc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="5_po6gq"]
+[ext_resource type="Texture2D" uid="uid://cg3s6416krlbt" path="res://Assets/Inhouse/UI elements/quit.png" id="4_bmm0v"]
+[ext_resource type="Texture2D" uid="uid://cnwv8dtih2pqc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="5_po6gq"]
 [ext_resource type="Texture2D" uid="uid://b7xlyhynayssp" path="res://Assets/Inhouse/UI elements/main_menu_pressed.png" id="5_x7cuc"]
 
 [node name="Ingame_menu" type="CanvasLayer"]
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0.117647, 0.337255)
+color = Color(0.0313726, 0, 0.117647, 0.337255)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8

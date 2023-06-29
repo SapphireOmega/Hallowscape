@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://NPCS/NPC1/npc1.gd" id="1_oie5x"]
 [ext_resource type="Texture2D" uid="uid://y251wswbuvh5" path="res://NPCS/NPC1/hat_man_idle.png" id="2_qwjno"]
 [ext_resource type="Texture2D" uid="uid://s71crl0173ig" path="res://Assets/Inhouse/UI elements/Interact.png" id="3_3cint"]
-[ext_resource type="Texture2D" uid="uid://d4l45mtgoj7id" path="res://Assets/Inhouse/arrow2.png" id="4_v4y3p"]
+[ext_resource type="Texture2D" uid="uid://b7adq1mlajh2p" path="res://Assets/Inhouse/arrow2.png" id="4_v4y3p"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="5_lob8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4hv5"]

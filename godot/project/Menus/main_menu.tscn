@@ -1,14 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3m6x5g4aav3"]
+[gd_scene load_steps=14 format=3 uid="uid://d3m6x5g4aav3"]
 
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_2j5sl"]
-[ext_resource type="PackedScene" path="res://Menus/parallax_background.tscn" id="2_wajao"]
-[ext_resource type="Texture2D" uid="uid://qh3fuu56suky" path="res://Assets/Inhouse/UI elements/start.png" id="3_g1rop"]
-[ext_resource type="Texture2D" uid="uid://b14kdp4ahab8n" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="4_33qoh"]
-[ext_resource type="Texture2D" uid="uid://cxd3bajtlrgpi" path="res://Assets/Inhouse/UI elements/credits.png" id="5_0b0ux"]
+[ext_resource type="PackedScene" uid="uid://dn38ugqpya8tp" path="res://Menus/parallax_background.tscn" id="2_wajao"]
+[ext_resource type="Texture2D" uid="uid://cv6513mwkr37m" path="res://Assets/Inhouse/UI elements/start.png" id="3_g1rop"]
+[ext_resource type="Texture2D" uid="uid://c1emplayetpcj" path="res://Assets/Inhouse/UI elements/start_pressed.png" id="4_33qoh"]
+[ext_resource type="Texture2D" uid="uid://ccecpshrswtrk" path="res://Assets/Inhouse/UI elements/credits.png" id="5_0b0ux"]
 [ext_resource type="Script" path="res://Menus/Start_button.gd" id="5_jw7o6"]
-[ext_resource type="Texture2D" uid="uid://kubhos2gtp31" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="6_ocvdt"]
-[ext_resource type="Texture2D" uid="uid://cx83pukdxdpbb" path="res://Assets/Inhouse/UI elements/quit.png" id="7_rkjp6"]
-[ext_resource type="Texture2D" uid="uid://bxamhi7jv3klc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="8_nx2j7"]
+[ext_resource type="Texture2D" uid="uid://ckonx5qeey4qi" path="res://Assets/Inhouse/UI elements/credits_pressed.png" id="6_ocvdt"]
+[ext_resource type="Texture2D" uid="uid://cg3s6416krlbt" path="res://Assets/Inhouse/UI elements/quit.png" id="7_rkjp6"]
+[ext_resource type="Texture2D" uid="uid://cnwv8dtih2pqc" path="res://Assets/Inhouse/UI elements/quit_pressed.png" id="8_nx2j7"]
+[ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="10_038ui"]
+[ext_resource type="Texture2D" uid="uid://msqt7etshjbg" path="res://Assets/Inhouse/UI elements/main_menu.png" id="11_wjapf"]
+[ext_resource type="Texture2D" uid="uid://b7xlyhynayssp" path="res://Assets/Inhouse/UI elements/main_menu_pressed.png" id="12_slpeb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s11ax"]
+font = ExtResource("10_038ui")
+font_size = 22
 
 [node name="Menu_screen" type="Control"]
 layout_mode = 3
@@ -82,6 +89,7 @@ scale = Vector2(0.95, 0.95)
 pivot_offset = Vector2(56, 0)
 
 [node name="Panel" type="Panel" parent="Credits/PanelContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Credits/PanelContainer"]
@@ -92,6 +100,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "The Team:"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Credits/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -99,6 +108,9 @@ theme_override_constants/separation = 20
 
 [node name="Padding" type="ReferenceRect" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+border_color = Color(0, 0, 0, 1)
+border_width = 0.0
+editor_only = false
 
 [node name="Names" type="VBoxContainer" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -110,60 +122,70 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Amber Stoevelaar"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Andrea" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Andrea Li"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Daan" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Daan Stenekes"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Joris" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Joris Klaasse Bos"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Kai" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Kai Pinas"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Kieran" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Kieran van Gelder"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Montijn" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Montijn van den Beukel"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Rover" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Rover Hofman"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Sven" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Sven Roozendaal"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Teun" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Names"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Teun Sprikkelman"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Jobs" type="VBoxContainer" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer"]
 visible = false
@@ -176,66 +198,77 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Puzzles"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Andrea" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Server stuff"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Daan" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "programming"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Joris" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Level design, team co-lead"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Kai" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Enemy logic"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Kieran" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "programming"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Montijn" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Controller App"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Rover" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Server stuff"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Sven" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Server stuff"
+label_settings = SubResource("LabelSettings_s11ax")
 
 [node name="Teun" type="Label" parent="Credits/PanelContainer/VBoxContainer/HBoxContainer/Jobs"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.462745, 0.372549, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Art, team co-lead"
+label_settings = SubResource("LabelSettings_s11ax")
 
-[node name="Main_menu" type="Button" parent="Credits/PanelContainer/VBoxContainer"]
+[node name="Main_menu" type="TextureButton" parent="Credits/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Main menu"
+texture_normal = ExtResource("11_wjapf")
+texture_pressed = ExtResource("12_slpeb")
 
 [connection signal="button_up" from="Menu/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_button_up"]

@@ -12,7 +12,6 @@ script = ExtResource("1_xm7xi")
 
 [node name="HP_empty" type="HBoxContainer" parent="HP_widget"]
 visible = false
-anchors_preset = -1
 offset_right = 216.0
 offset_bottom = 40.0
 

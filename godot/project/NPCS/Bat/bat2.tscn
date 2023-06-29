@@ -267,6 +267,7 @@ position = Vector2(13, -3)
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("1_fghtw")
+hitpoints = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 256

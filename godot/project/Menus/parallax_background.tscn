@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Menus/ParallaxLayer.gd" id="1_f0jwe"]
 [ext_resource type="Texture2D" uid="uid://cmcix7ivss6v" path="res://Assets/GothicVania-town-files/PNG/environment/layers/background.png" id="2_e6nyq"]
-[ext_resource type="Texture2D" uid="uid://bdrpjxjteiqyx" path="res://Assets/TITLE.png" id="3_f2rhn"]
+[ext_resource type="Texture2D" uid="uid://bu1m5qkhi62oa" path="res://Assets/TITLE.png" id="3_f2rhn"]
 
 [node name="title_background" type="ParallaxBackground"]
 
