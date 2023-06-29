@@ -812,7 +812,6 @@ position = Vector2(1, 0)
 script = ExtResource("1_mo6it")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 rotation = 3.14159
@@ -838,7 +837,6 @@ scale = Vector2(3.16019, -38.8125)
 shape = SubResource("SegmentShape2D_osvp7")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 script = ExtResource("4_heb55")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -931,7 +929,6 @@ player1 = NodePath("../../player")
 player2 = NodePath("../../player2")
 
 [node name="Lasers" type="Node2D" parent="."]
-visible = false
 
 [node name="LaserConsole" parent="Lasers" instance=ExtResource("7_qwowr")]
 position = Vector2(1046, 82)
@@ -1034,7 +1031,6 @@ player_id = 2
 position = Vector2(255, -317)
 
 [node name="One-ways" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(401, 166)
 
 [node name="platform1" type="CollisionShape2D" parent="One-ways"]
@@ -1053,7 +1049,6 @@ shape = SubResource("RectangleShape2D_lbolk")
 one_way_collision = true
 
 [node name="Area2D3" type="Area2D" parent="."]
-visible = false
 position = Vector2(13, -34)
 script = ExtResource("10_tfsxp")
 
