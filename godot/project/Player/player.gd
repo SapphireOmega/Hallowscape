@@ -277,10 +277,8 @@ func update_animation():
 func take_damage():
 	damaged = true
 	update_animation()
-	if player_id == 1:
-		StageManager.health1 -= 1
-		return
-	elif player_id == 2:
+	if StageManager.health1 > 0:
+		StageManager.minus_hp()
 		StageManager.health1 -= 1
 		return
 
@@ -338,7 +336,7 @@ func begin_dialog(body):
 # go away.
 func end_dialog(body):
 	if body.has_method("npc1"):
-		DialogueManager.npc2 = false
+		DialogueManager.npc1 = false
 		npc_in_range = false
 		StageManager.players_at_npc -= 1
 		body.interact_invis(StageManager.players_at_npc)

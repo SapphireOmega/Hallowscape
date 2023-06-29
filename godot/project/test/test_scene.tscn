@@ -28,8 +28,10 @@ position = Vector2(167, 294)
 [node name="Camera2D" type="Camera2D" parent="player2"]
 position = Vector2(-15, -296)
 
-[node name="bat2" parent="." instance=ExtResource("3_6jyb4")]
+[node name="bat2" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("3_6jyb4")]
 position = Vector2(259, 300)
+player1 = NodePath("../player")
+player2 = NodePath("../player2")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="bat2"]
 navigation_polygon = SubResource("NavigationPolygon_tlxsn")
