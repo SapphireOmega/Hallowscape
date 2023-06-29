@@ -1,0 +1,14 @@
+
+~ start
+Priest: There is a way to proceed, but it lies beyond my knowledge. I have been trapped in this cursed form, unable to explore further or find a way out. 
+Priest: However, I do know that the answers you seek may lie at the top of this church, in the bell tower.
+Player1: The bell tower? What could be there?
+Priest: The bell tower holds ancient manuscripts and sacred texts that reveal the secrets of this world. They may provide the key to unraveling the mysteries and finding a path back to your world.
+Player2: We'll do it. [wait=0.5] We'll climb the bell tower and search for those clues. But what about the bats?
+Priest: I'm sure you souls are able to defeat them if you work together.
+You: Thank you, priest. We'll do everything we can to uncover the truth and find a way out. Is there anything else we should know?
+Priest: As you ascend the bell tower, you may encounter additional challenges. The darkness has twisted the very structure of this church, creating obstacles and illusions meant to deter you. 
+Priest: Trust in your instincts, and remember that true faith lies within your hearts.
+Player1: We won't lose hope. We'll find a way to break this curse and return home.
+Priest: I believe in you, my brave companions. May your journey be guided by the light that still flickers within this forsaken place. Go now, and may your steps lead you closer to the answers you seek.
+=> END

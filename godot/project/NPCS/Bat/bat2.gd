@@ -1,26 +1,33 @@
+# This file contains functions that create the bat enemy.
+# The bat can fly around in a Navigation region en follow the closest player.
+# When the player is in certain range of the bat, the bat will attack.
+
 extends CharacterBody2D
 
 @export var hitpoints = 3
 var hits_taken = 0
 
-@onready var animation = $AnimationPlayer
+
 
 @export var speed = 60
+var dir
+@export var max_travel_dist = 400
 
 var in_range = false
 var x_dir = -1
 var face_direction := -1
 
-var dir
-@export var max_travel_dist = 400
-
-@export var player: CharacterBody2D
+@export var player1: CharacterBody2D
+@export var player2: CharacterBody2D
 @onready var nav_ag := $NavigationAgent2D as NavigationAgent2D
+@onready var animation = $BatAnimationPlayer
 @onready var spawn = self.position
 
 @onready var dying = false
 
+
 func _ready():
+	#Making sure the right sprite is active for the right animation.
 	$Attack_player.visible = false
 	$Attack_player.monitoring = false
 	$AttackSprite.visible = false
@@ -29,6 +36,7 @@ func _ready():
 	animation.queue("idle")
 	makepath()
 
+
 func set_direction(hor_direction) -> void:
 	# This is purely for visuals
 	# Turning relies on the scale of the player
@@ -36,19 +44,20 @@ func set_direction(hor_direction) -> void:
 	if hor_direction == 0:
 		return
 
-#	print(hor_direction)
 	$IdleSprite.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 	$AttackSprite.apply_scale(Vector2(hor_direction * face_direction, 1))
+	$DeathSprite.apply_scale(Vector2(hor_direction * face_direction, 1))
 	$Attack_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	$Detect_player.apply_scale(Vector2(hor_direction * face_direction, 1))
 	face_direction = hor_direction # remember direction
 
-func _physics_process(delta):
+
+func _physics_process(_delta):
 	makepath()
 	dir = nav_ag.get_next_path_position() - global_position
 	velocity = dir.normalized() * speed
 	
-	if abs(player.position.x - position.x) < 30:
+	if abs(player1.position.x - position.x) < 30 or abs(player2.position.x - position.x) < 30:
 		x_dir = 0
 		velocity.x = 0
 	
@@ -57,7 +66,7 @@ func _physics_process(delta):
 		if dir.x > 0: x_dir = 1
 		elif dir.x < 0: x_dir = -1
 		else: x_dir = 0
-	
+
 	set_direction(x_dir)
 	move_and_slide()
 	
@@ -75,6 +84,7 @@ func _physics_process(delta):
 		animation.play(ani)
 
 
+# Checks if the diff between a and b is smaller than 1.
 func almost_equal(a, b) -> bool:
 	if abs(a.x - b.x) < 1 and abs(a.y - b.y) < 1:
 		return true
@@ -82,15 +92,20 @@ func almost_equal(a, b) -> bool:
 		return false
 
 
+# This function is called every frame to calculate the path to the closest player.
 func makepath() -> void:
-	if player.position.distance_to(spawn) > max_travel_dist:
+	if player1.position.distance_to(spawn) > max_travel_dist and player2.position.distance_to(spawn) > max_travel_dist:
 		nav_ag.target_position = spawn
-	elif player.position.distance_to(nav_ag.target_position) < 10:
+	elif player1.position.distance_to(self.position) < 10 or player2.position.distance_to(self.position) < 10:
 		pass
 	else:
-		nav_ag.target_position = player.position
+		if player1.position.distance_to(self.position) < player2.position.distance_to(self.position):
+			nav_ag.target_position = player1.position
+		else:
+			nav_ag.target_position = player2.position
 
 
+#Adds a hit point when hit and frees the node when it dies.
 func take_damage():
 	## hit animation ##
 	hits_taken += 1
@@ -102,8 +117,9 @@ func take_damage():
 		animation.stop(true)
 		animation.clear_queue()
 		animation.queue("die")
+		
 		var t = Timer.new()
-		# Waits for exact frame where the player hits.
+		# Waits for the animation to finish.
 		t.set_wait_time(0.7)
 		t.set_one_shot(true)
 		self.add_child(t)
@@ -111,27 +127,30 @@ func take_damage():
 		await t.timeout
 		
 		queue_free()
-		
 
-func body_enter_attack(body: CharacterBody2D):
+
+# If the bat is not dying an attack can be initiated.
+func body_enter_attack(_body):
 	if !dying:
 		$AttackSprite.visible = true
 		$IdleSprite.visible = false
 		in_range = true
 
-func body_out_of_range(body: CharacterBody2D):
+
+func body_out_of_range(_body):
 	in_range = false
 
-func damage_player(body: CharacterBody2D):
-	if $Attack_player.monitoring and body.is_in_group("player"):
-		body.take_damage()
-		if StageManager.health1 == 0:
-			StageManager.kill_players()
-			StageManager.health1 = 3
+# This function takes health from the player and kills them if the health is zero.
+func damage_player(body):
+	if body:
+		if $Attack_player.monitoring and body.is_in_group("player"):
+			body.take_damage()
+			if StageManager.health1 == 0:
+				StageManager.kill_players(body.player_id)
+				StageManager.health1 = 3
 
-
-
-func _on_animation_player_animation_finished(anim_name):
+#Making sure the idle animation only plays when the attack animation is finished.
+func _on_animation_player_animation_finished(_anim_name):
 	if in_range == false:
 		$Attack_player.visible = false
 		$AttackSprite.visible = false

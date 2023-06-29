@@ -1,3 +1,5 @@
+# This file contains functions that determine the camera behaviour.
+
 extends Camera2D
 
 
@@ -40,19 +42,20 @@ func focus_player_centre():
 		self.position = vee
 
 
+# Camera shake handler
 func shake(time: float, amount: float):
 	timer.wait_time = time
 	shake_amount = amount
 	timer.start()
 
 
-
+# Checks if the timer ran out and if so the camera shake will stop.
 func _on_timer_timeout():
 	Tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	shake_amount = 0
 
-
-func focus_cam_to_pos(_pos, conversing):
+# Changing the camera scene for dialogue with npcs
+func focus_cam_to_pos(conversing):
 	if conversing == true:
 		self.enabled = false
 	else:

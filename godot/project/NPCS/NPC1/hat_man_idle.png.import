@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ie8draphywyt"
-path="res://.godot/imported/arrow.png-a8801cbeeb892e1f9bde2b04ee9f06f4.ctex"
+uid="uid://y251wswbuvh5"
+path="res://.godot/imported/hat_man_idle.png-80c4fe1ac82031915120d7d61367ae9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Inhouse/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-a8801cbeeb892e1f9bde2b04ee9f06f4.ctex"]
+source_file="res://NPCS/NPC1/hat_man_idle.png"
+dest_files=["res://.godot/imported/hat_man_idle.png-80c4fe1ac82031915120d7d61367ae9e.ctex"]
 
 [params]
 

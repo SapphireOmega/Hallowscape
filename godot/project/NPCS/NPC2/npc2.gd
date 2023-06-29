@@ -5,7 +5,7 @@ extends CharacterBody2D
 func _ready():
 	$AnimationPlayer.play("idle")
 
-func npc1():pass
+func npc2():pass
 
 # Show the interact button when more than 1 player is in the area.
 func interact_invis(in_area):

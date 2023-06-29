@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=31 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
 [ext_resource type="TileSet" uid="uid://xfd7ufx5rj34" path="res://Town/town_tilemap.tres" id="2_ik626"]
 [ext_resource type="PackedScene" uid="uid://dqxkshvxfx6je" path="res://Player/player.tscn" id="3_v13p8"]
+[ext_resource type="PackedScene" uid="uid://bq30p6n76h0es" path="res://NPCS/NPC1/npc1.tscn" id="4_3nt6g"]
 [ext_resource type="PackedScene" uid="uid://1jjspwmcuqg1" path="res://Barrel/barrel.tscn" id="4_7oqf4"]
 [ext_resource type="Script" path="res://JorisLevel/Label.gd" id="4_ouo15"]
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
@@ -13,7 +14,8 @@
 [ext_resource type="Script" path="res://JorisLevel/LabelExit.gd" id="8_nt7j1"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
-[ext_resource type="Texture2D" uid="uid://d51bugo2i3ci" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="Texture2D" uid="uid://d4l45mtgoj7id" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="PackedScene" uid="uid://ckapwsq5vqn3l" path="res://NPCS/Bat/bat2.tscn" id="10_vfu1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wues"]
 size = Vector2(33, 260)
@@ -39,6 +41,11 @@ size = Vector2(154, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uiusi"]
 size = Vector2(50, 30)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_f2cgr"]
+vertices = PackedVector2Array(136, 82, -157, 85, -124, 63, -227, 60, -191, 86, -252, 86, -110, 49, 152, -74, 225, -12, 258, -82, 256, -20, -8, -123, -108, 32, -134, -108, -128, -11, -245, -77, -217, -8, -254, -7, -238, 8, -234, 44)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 2, 6, 7, 8), PackedInt32Array(7, 9, 10, 8), PackedInt32Array(11, 7, 6, 12), PackedInt32Array(13, 11, 12, 14), PackedInt32Array(15, 13, 14, 16, 17), PackedInt32Array(17, 16, 18), PackedInt32Array(5, 17, 18, 19), PackedInt32Array(5, 19, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-157, 85, 136, 82, 225, -12, 256, -20, 258, -82, 152, -74, -8, -123, -134, -108, -245, -77, -254, -7, -252, 86, -191, 86, -227, 60, -234, 44, -238, 8, -217, -8, -128, -11, -108, 32, -110, 49, -124, 63)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkv25"]
 size = Vector2(77, 4)
@@ -100,6 +107,9 @@ position = Vector2(403, 117.5)
 points = PackedVector2Array(0, 0, 96, 0)
 width = 3.0
 default_color = Color(0.415686, 0.262745, 0.235294, 1)
+
+[node name="npc1" parent="." instance=ExtResource("4_3nt6g")]
+position = Vector2(1767, 308)
 
 [node name="LaserConsole" parent="." instance=ExtResource("6_e85t3")]
 position = Vector2(350, 152)
@@ -250,7 +260,6 @@ offset_left = 246.0
 offset_top = 149.0
 offset_right = 502.0
 offset_bottom = 287.0
-texture = ExtResource("8_cikgh")
 
 [node name="TextureRect2" type="TextureRect" parent="TutorialLabel3"]
 modulate = Color(1, 1, 1, 0)
@@ -338,11 +347,28 @@ position = Vector2(865, 211)
 [node name="Barrel3" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(1264, 313)
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(1724, 248)
+navigation_polygon = SubResource("NavigationPolygon_f2cgr")
+navigation_layers = 256
+
+[node name="bat" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("10_vfu1k")]
+position = Vector2(1797, 299)
+max_travel_dist = 320
+player1 = NodePath("../player")
+player2 = NodePath("../player2")
+
+[node name="bat2" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("10_vfu1k")]
+position = Vector2(1793, 320)
+max_travel_dist = 320
+player1 = NodePath("../player")
+player2 = NodePath("../player2")
+
 [node name="player" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(47, 306)
+position = Vector2(44, 315)
 
 [node name="player2" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(67, 307)
+position = Vector2(64, 316)
 player_id = 2
 
 [node name="TileMap2" type="TileMap" parent="."]
@@ -392,6 +418,8 @@ position = Vector2(1986, 234)
 shape = SubResource("RectangleShape2D_u0ecr")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 257
+collision_mask = 257
 script = ExtResource("9_4lijp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

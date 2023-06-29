@@ -13,7 +13,7 @@ const WIN = preload("res://Menus/win_screen.tscn")
 
 # ---GLOBALS------------- #
 @onready var players_at_npc = 0
-@onready var health1 = 300
+@onready var health1 = 5
 
 const f6_error_msg = "Stage Manager: Main scene wasn't found, created a Main scene and moved current_scene
 		into Main/current_level. Check 'remote' for the exact hierarchy"
@@ -73,17 +73,18 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 # ----------Do loading stuff here--------- #
 	
 	var stage = stage_path.instantiate()
+	var oldstage = curStagePath().get_child(0)
 	
 	if curStagePath().get_child_count() > 0 and curStagePath().get_child_count() != 0:
-		curStagePath().get_child(0).queue_free()
+		curStagePath().remove_child(oldstage)
+		oldstage.queue_free()
 	curStagePath().add_child(stage)
-	
 	
 	var players = find_players()
 	for player in players:
 		move_player_to(player, x, y)
 		x+= 15
-		player.set_spawn()
+		#player.set_spawn()
 	
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
@@ -96,6 +97,7 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 #grabs a given player and moves him to the provided position
 func move_player_to(player, x, y):
 	player.position = Vector2(x,y)
+	print(player.position)
 
 
 func fastMoveCam(cam):
@@ -151,15 +153,27 @@ func kill_players(player_id):
 	is_killing = false
 
 
-func dialcam(conversing):
-	if conversing:
-		var curr = curStage()
-		if curr.has_node("npc1"):
-			var cam = curr.get_node("npc1").get_node("dialogue_cam")
-			cam.enabled = true
-	else:
-		var curr = curStage()
-		if curr.has_node("npc1"):
-			var cam = curr.get_node("npc1").get_node("dialogue_cam")
-			cam.enabled = false
+func dialcam():
+	if DialogueManager.npc1:
+		if DialogueManager.conversing:
+			var curr = curStage()
+			if curr.has_node("npc1"):
+				var cam = curr.get_node("npc1").get_node("dialogue_cam")
+				cam.enabled = true
+		else:
+			var curr = curStage()
+			if curr.has_node("npc1"):
+				var cam = curr.get_node("npc1").get_node("dialogue_cam")
+				cam.enabled = false
+	elif DialogueManager.npc2:
+		if DialogueManager.conversing:
+			var curr = curStage()
+			if curr.has_node("npc2"):
+				var cam = curr.get_node("npc2").get_node("dialogue_cam")
+				cam.enabled = true
+		else:
+			var curr = curStage()
+			if curr.has_node("npc2"):
+				var cam = curr.get_node("npc2").get_node("dialogue_cam")
+				cam.enabled = false
 

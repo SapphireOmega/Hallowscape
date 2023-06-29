@@ -6,7 +6,7 @@ extends CanvasLayer
 var server
 var is_paused = false : 
 	set(value):
-		server = $"/root/Server"
+		server = get_node_or_null("/root/Server")
 		is_paused = value
 		if !(get_tree().paused and server.server_paused):
 			get_tree().paused = is_paused
@@ -16,12 +16,13 @@ var is_paused = false :
 #the pause menu is brought up
 #this means that when esc is used for example to quit a dialogue,
 #it wont pause the game instead
+
 func _unhandled_input(event):
 	var cs = get_tree().current_scene
 	var cl = cs.find_child("Current_level")
 	if cl.get_child_count() != 0 && cl.get_child(0).name != "Menu_screen":
 		if event.is_action_released("ui_cancel"):
-			if $"/root/Server" != null:
+			if get_node_or_null("/root/Server"):
 				self.is_paused = !is_paused
 				if self.is_paused:
 					$"/root/Server/CanvasLayer".hide()

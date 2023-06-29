@@ -1,3 +1,6 @@
+# This file contains all the logic around the player.
+# Player interactions and physics are all handled in this file. 
+
 extends CharacterBody2D
 
 @export var player_id = 1
@@ -83,8 +86,8 @@ func get_input() -> Dictionary:
 
 func _physics_process(delta: float) -> void:
 	if !dead:
-		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
-		StageManager.dialcam(DialogueManager.conversing)
+		StageManager.getCam().focus_cam_to_pos(DialogueManager.conversing)
+		StageManager.dialcam()
 		if !DialogueManager.conversing:
 			x_movement(delta)
 			double_jump_logic(delta)
@@ -226,9 +229,7 @@ func timers(delta: float) -> void:
 	if land_timer >= 0:
 		land_timer -= delta
 
-
-
-
+# This function makes sure the right animation is playing.
 func update_animation():
 	if get_input()["attack"] == true or $AnimationPlayer.current_animation == "attack":
 		if !$AnimationPlayer.current_animation == "attack":
@@ -271,7 +272,7 @@ func update_animation():
 		$Sprite2D2.visible = false
 		$Sprite2D.visible = true
 
-
+# Hitpoint handler
 func take_damage():
 	damaged = true
 	update_animation()
@@ -285,6 +286,7 @@ func take_damage():
 
 #------------ interactables --- #
 
+# This function detects if a body is in the hitbox of the player and damages the body.
 func _player_detected(body):
 	var t = Timer.new()
 	# Waits for exact frame where the player hits.
@@ -293,33 +295,54 @@ func _player_detected(body):
 	self.add_child(t)
 	t.start()
 	await t.timeout
-
-	if body.has_method("makepath"):
+	
+	if !body: 
+		return
+	elif body.has_method("makepath"):
 		StageManager.getCam().shake(shake_duration, shake_intensity)
 		body.take_damage()
 	else:
 		pass
 
 
+# This function activates the right dialogue at the right NPC.
 func activate_dialogue():
 	if get_input()["interact"] and npc_in_range:
 		DialogueManager.conversing = true
-		StageManager.getCam().focus_cam_to_pos(self.position, DialogueManager.conversing)
-		StageManager.dialcam(DialogueManager.conversing)
-		DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/test_dialogue.dialogue"))
+		StageManager.getCam().focus_cam_to_pos(DialogueManager.conversing)
+		StageManager.dialcam()
+		if DialogueManager.npc1:
+			DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC1/npc1_dialogue.dialogue"))
+		elif DialogueManager.npc2:
+			DialogueManager.show_example_dialogue_balloon(load("res://NPCS/NPC2/npc2_dialogue.dialogue"))
 
 
+# This function checks how many players are at the npc for the interact button to
+# show up.
 func begin_dialog(body):
 	if body.has_method("npc1"):
 		npc_in_range = true
+		DialogueManager.npc1 = true
+		StageManager.players_at_npc += 1
+		body.interact_invis(StageManager.players_at_npc)
+	elif body.has_method("npc2"):
+		npc_in_range = true
+		DialogueManager.npc2 = true
 		StageManager.players_at_npc += 1
 		body.interact_invis(StageManager.players_at_npc)
 	if get_input()["interact"] and npc_in_range:
 		body.Sprite2D2.visible = false
 
-
+# This function checks how many players are at the npc for the interact button to
+# go away.
 func end_dialog(body):
 	if body.has_method("npc1"):
+		DialogueManager.npc2 = false
+		npc_in_range = false
+		StageManager.players_at_npc -= 1
+		body.interact_invis(StageManager.players_at_npc)
+	elif body.has_method("npc2"):
+		DialogueManager.npc2 = false
 		npc_in_range = false
 		StageManager.players_at_npc -= 1
 		body.interact_invis(StageManager.players_at_npc)

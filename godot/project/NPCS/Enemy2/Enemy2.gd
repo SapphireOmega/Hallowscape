@@ -1,9 +1,12 @@
+# This file contains functions that determine the behaviour of enemy 2.
+# Enemy 2 follows a player when it is in range and attacks when player gets 
+# too close.
+
 extends CharacterBody2D
 
 @export var hitpoints = 3
 var hits_taken = 0
 
-#@onready var Animationtree : AnimationTree = $AnimationTree
 @onready var animation = $AnimationPlayer
 
 @export var speed = 40
@@ -20,6 +23,7 @@ var face_direction := -1
 
 
 func _ready():
+	#Making sure the right sprite is active for the right animation.
 	$Attack_player.visible = false
 	$Attack_player.monitoring = false
 	$AttackSprite.visible = false
@@ -27,7 +31,7 @@ func _ready():
 	animation.queue("idle")
 
 func _process(_delta):
-	# Move towards the player if the player is within a certain area.
+	# Move towards the player if the player is within the vision area.
 	if abs(player.position.x - position.x) > vision:
 		velocity.x = 0
 	elif player.position.x - position.x > 0:
@@ -74,14 +78,15 @@ func _physics_process(delta):
 		animation.play(ani)
 
 func take_damage():
+	#Adds a hit point when hit and frees the node when it dies.
 	## hit animation ##
 	hits_taken += 1
-	print("hit taken")
 	if hitpoints == hits_taken:
-		print("died")
 		## Death animation ##
 		queue_free()
 
+
+#Activates the attack sprite if the player is close enough.
 func body_enter_attack(_body: CharacterBody2D):
 	$AttackSprite.visible = true
 	$IdleSprite.visible = false
@@ -90,15 +95,17 @@ func body_enter_attack(_body: CharacterBody2D):
 func body_out_of_range(_body: CharacterBody2D):
 	in_range = false
 
+
+#Every hit the player loses one health point.
 func damage_player(body: CharacterBody2D):
 	if $Attack_player.monitoring and body.is_in_group("player"):
 		StageManager.health1 -= 1
 		if StageManager.health1 == 0:
-			
-			StageManager.kill_players()
+			StageManager.kill_players(body.player_id)
 	
 
 
+#Making sure the idle animation only plays when the attack animation is finished.
 func _on_animation_player_animation_finished(_anim_name):
 	if in_range == false:
 		$Attack_player.visible = false
