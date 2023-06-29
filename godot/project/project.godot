@@ -114,11 +114,7 @@ ui_skip={
 
 [internationalization]
 
-<<<<<<< HEAD
-locale/translations_pot_files=PackedStringArray("res://NPCS/NPC1/npc1_dialogue.dialogue", "res://NPCS/NPC2/npc2_dialogue.dialogue")
-=======
 locale/translations_pot_files=PackedStringArray("res://NPCS/NPC1/test_dialogue.dialogue", "res://NPCS/NPC2/npc2_dialogue.dialogue", "res://NPCS/NPC1/npc1_dialogue.dialogue")
->>>>>>> 901fc2d3e8908f74fdc4f425a4a42803c2aa841b
 
 [layer_names]
 
