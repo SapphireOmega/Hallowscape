@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=33 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
 [ext_resource type="Texture2D" uid="uid://b7adq1mlajh2p" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
 [ext_resource type="PackedScene" uid="uid://ckapwsq5vqn3l" path="res://NPCS/Bat/bat2.tscn" id="10_vfu1k"]
+[ext_resource type="Texture2D" uid="uid://cctnyb2urcp87" path="res://Assets/Inhouse/UI elements/phone.png" id="12_t6uno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wues"]
 size = Vector2(33, 260)
@@ -281,6 +282,14 @@ shape = SubResource("RectangleShape2D_uiusi")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialLabel3/Area2D"]
 position = Vector2(834, 167.5)
 shape = SubResource("RectangleShape2D_yeks2")
+
+[node name="TextureRect3" type="TextureRect" parent="TutorialLabel3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 176.0
+offset_top = 75.0
+offset_right = 432.0
+offset_bottom = 213.0
+texture = ExtResource("12_t6uno")
 
 [node name="TutorialLabel4" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
