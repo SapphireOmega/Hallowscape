@@ -9,7 +9,7 @@ var hits_taken = 0
 
 
 
-@export var speed = 60
+@export var speed = 45
 var dir
 @export var max_travel_dist = 400
 

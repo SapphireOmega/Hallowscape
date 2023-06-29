@@ -338,7 +338,7 @@ func begin_dialog(body):
 # go away.
 func end_dialog(body):
 	if body.has_method("npc1"):
-		DialogueManager.npc2 = false
+		DialogueManager.npc1 = false
 		npc_in_range = false
 		StageManager.players_at_npc -= 1
 		body.interact_invis(StageManager.players_at_npc)

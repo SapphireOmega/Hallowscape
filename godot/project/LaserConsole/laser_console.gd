@@ -11,8 +11,7 @@ extends Area2D
 var can_interact = []  # All CharacterBody2Ds that are at the console
 var puzzle_solved: bool = false
 var lever_down: bool = false
-#var puzzles = ["tap", "holes", "shapeSequence", "memory", "lock", "coin"]
-var puzzles = ["shapeSequence"]
+var puzzles = ["tap", "holes", "shapeSequence", "memory", "lock", "coin"]
 
 func _on_body_entered(body) -> void:
 	can_interact.append(body)
