@@ -160,6 +160,7 @@ func jump_logic(_delta: float) -> void:
 			is_jumping = false
 			if !$AnimationPlayer.current_animation == "attack":
 				$AnimationPlayer.play("land")
+				MusicGallery.sound_effect("Land")
 				land_timer = land_anim_length
 	if get_input()["just_jump"]:
 		jump_buffer_timer = jump_buffer

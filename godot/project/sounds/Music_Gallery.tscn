@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c4gilawj61l2l" path="res://sounds/music/placeholder/SU-1.ogg" id="7_0tfo7"]
 [ext_resource type="AudioStream" uid="uid://go2l6ch3m734" path="res://sounds/music/pvg_songs/pengel.ogg" id="8_45k0x"]
 [ext_resource type="AudioStream" uid="uid://d3pjepn0mum57" path="res://sounds/sound_effects/whooshy_jump.mp3" id="9_4y8ts"]
-[ext_resource type="AudioStream" uid="uid://b1vikxikgp6mn" path="res://sounds/sound_effects/land2-43790.mp3" id="10_joc5j"]
+[ext_resource type="AudioStream" uid="uid://to1gj2nifixd" path="res://sounds/sound_effects/landing_sound1.mp3" id="10_cm27s"]
 [ext_resource type="AudioStream" uid="uid://dd26r4t7fs3li" path="res://sounds/sound_effects/brain-damage-148577.mp3" id="11_kvul7"]
 [ext_resource type="AudioStream" uid="uid://x37a0mnrpbqt" path="res://sounds/sound_effects/walk_2_medium.wav" id="12_y12bb"]
 
@@ -69,7 +69,7 @@ volume_db = -4.685
 pitch_scale = 0.82
 
 [node name="Land" type="AudioStreamPlayer" parent="Effects"]
-stream = ExtResource("10_joc5j")
+stream = ExtResource("10_cm27s")
 volume_db = -3.748
 
 [node name="Brain" type="AudioStreamPlayer" parent="Effects"]
