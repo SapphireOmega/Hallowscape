@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cx81owv8k5jdj"]
+[gd_scene load_steps=29 format=3 uid="uid://cx81owv8k5jdj"]
 
 [ext_resource type="Script" path="res://JorisLevel/joris_level.gd" id="1_hhtjg"]
 [ext_resource type="PackedScene" uid="uid://buwempu0wgu20" path="res://Town/parallax_background.tscn" id="1_tdpcp"]
@@ -27,6 +27,9 @@ shadow_color = Color(0, 0, 0, 0.301961)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_570th"]
 size = Vector2(72, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yeks2"]
+size = Vector2(74, 363)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l68k8"]
 size = Vector2(102, 118)
@@ -171,12 +174,16 @@ offset_bottom = 23.0
 text = "Push the barrel"
 label_settings = SubResource("LabelSettings_6w5o4")
 
-[node name="Exit" type="Area2D" parent="TutorialLabel1"]
+[node name="Area2D" type="Area2D" parent="TutorialLabel1"]
 script = ExtResource("8_nt7j1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel1/Exit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel1/Area2D"]
 position = Vector2(291, -5.5)
 shape = SubResource("RectangleShape2D_570th")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialLabel1/Area2D"]
+position = Vector2(725, -95)
+shape = SubResource("RectangleShape2D_yeks2")
 
 [node name="TutorialLabel2" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
@@ -216,6 +223,10 @@ script = ExtResource("8_nt7j1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel2/Area2D"]
 position = Vector2(581, 241)
 shape = SubResource("RectangleShape2D_l68k8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialLabel2/Area2D"]
+position = Vector2(834, 167.5)
+shape = SubResource("RectangleShape2D_yeks2")
 
 [node name="TutorialLabel3" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
@@ -257,6 +268,10 @@ script = ExtResource("8_nt7j1")
 position = Vector2(539, 141)
 shape = SubResource("RectangleShape2D_uiusi")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialLabel3/Area2D"]
+position = Vector2(834, 167.5)
+shape = SubResource("RectangleShape2D_yeks2")
+
 [node name="TutorialLabel4" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
 
@@ -278,6 +293,10 @@ script = ExtResource("8_nt7j1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel4/Area2D"]
 position = Vector2(416, 155)
 shape = SubResource("RectangleShape2D_tl1vy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialLabel4/Area2D"]
+position = Vector2(834, 167.5)
+shape = SubResource("RectangleShape2D_yeks2")
 
 [node name="TutorialLabel5" type="Area2D" parent="."]
 script = ExtResource("4_ouo15")
@@ -306,9 +325,9 @@ texture = ExtResource("9_svuyy")
 [node name="Area2D" type="Area2D" parent="TutorialLabel5"]
 script = ExtResource("8_nt7j1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialLabel5/Area2D"]
-position = Vector2(788, 116)
-shape = SubResource("RectangleShape2D_l68k8")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialLabel5/Area2D"]
+position = Vector2(834, 167.5)
+shape = SubResource("RectangleShape2D_yeks2")
 
 [node name="Barrel" parent="." instance=ExtResource("4_7oqf4")]
 position = Vector2(164, 311)
