@@ -6,11 +6,10 @@
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_xm7xi")
 
-[node name="Ingame_menu" parent="." instance=ExtResource("1_ltsap")]
-
 [node name="HP_widget" type="CanvasLayer" parent="."]
 
 [node name="HP" type="HBoxContainer" parent="HP_widget"]
+visible = false
 offset_right = 92.0
 offset_bottom = 40.0
 
@@ -38,5 +37,7 @@ color = Color(0.662745, 0.12549, 0.192157, 1)
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 color = Color(0.662745, 0.12549, 0.192157, 1)
+
+[node name="Ingame_menu" parent="." instance=ExtResource("1_ltsap")]
 
 [connection signal="ready" from="." to="." method="_on_ready"]

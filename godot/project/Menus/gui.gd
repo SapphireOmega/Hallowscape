@@ -12,6 +12,15 @@ func _on_ready():
 func hp_path():
 	return $HP_widget/HP
 
+
+func hide_hp():
+	print("hide")
+	hp_path().visible = false
+
+func show_hp():
+	print("show")
+	hp_path().visible = true
+
 func set_hp(desired_amount):
 	if desired_amount > max_hp or desired_amount < 0:
 		return 1

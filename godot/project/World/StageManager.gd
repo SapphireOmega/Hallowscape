@@ -72,7 +72,7 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 		$Anim.play("TransIn")
 		await $Anim.animation_finished
 # ----------Do loading stuff here--------- #
-	
+	StageManager.hide_hp()
 	var stage = stage_path.instantiate()
 	var oldstage = curStagePath().get_child(0)
 	
@@ -189,7 +189,11 @@ func minus_hp():
 func add_hp():
 	$GUI.add_hp()
 
+func hide_hp():
+	$GUI.hide_hp()
 
+func show_hp():
+	$GUI.show_hp()
 
 
 
