@@ -179,3 +179,17 @@ func dialcam():
 				var cam = curr.get_node("npc2").get_node("dialogue_cam")
 				cam.enabled = false
 
+
+func set_hp(desired_amount):
+	$GUI.set_hp(desired_amount)
+
+func minus_hp():
+	$GUI.minus_hp()
+
+func add_hp():
+	$GUI.add_hp()
+
+
+
+
+
