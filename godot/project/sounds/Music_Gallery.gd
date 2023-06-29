@@ -193,5 +193,13 @@ func sound_effect(soundname, interrupt=true, node = "Effects"):
 	sound.play()
 	return 0
 
-
+func play_random_footstep(node="Effects", subnode="Footsteps"):
+	var n = get_node_or_null(node + "/" + subnode)
+	print("test1")
+	if len(playing_in_node(n)) == 0:
+		var index = randi() % n.get_child_count()
+		var sound = n.get_child(index)
+		sound.play()
+		print("test2")
+		return 0
 
