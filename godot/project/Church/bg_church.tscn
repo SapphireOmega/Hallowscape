@@ -84,7 +84,7 @@ color = Color(0.0588235, 0.133333, 0.160784, 1)
 offset_left = 480.0
 offset_top = -383.0
 offset_right = 736.0
-offset_bottom = 570.0
+offset_bottom = 576.0
 rotation = 1.5727
 texture = SubResource("GradientTexture1D_cq3vh")
 
