@@ -6,3 +6,7 @@ const CAMLIMITS = {
 	"left" :0,
 	"right" :1152,
 	}
+
+
+func _ready():
+	MusicGallery.play_track_by_name("Scary_Church")
