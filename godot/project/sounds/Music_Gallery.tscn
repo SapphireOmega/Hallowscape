@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cjjdbfhy3bjrm"]
+[gd_scene load_steps=20 format=3 uid="uid://cjjdbfhy3bjrm"]
 
 [ext_resource type="Script" path="res://sounds/Music_Gallery.gd" id="1_0apwy"]
 [ext_resource type="AudioStream" uid="uid://6ghd8l08m3qt" path="res://sounds/music/placeholder/SU-4.ogg" id="2_kh1r8"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://b6qdmu1wjmpi" path="res://sounds/music/Background music/Scary_Church.mp3" id="12_trxn8"]
 [ext_resource type="AudioStream" uid="uid://cyjfqboy6v7t" path="res://sounds/sound_effects/footsteps2.wav" id="13_lby30"]
 [ext_resource type="AudioStream" uid="uid://cx2u87lgd4xbc" path="res://sounds/sound_effects/footsteps3.wav" id="14_07gys"]
+[ext_resource type="AudioStream" uid="uid://coggxfbuwt07i" path="res://sounds/sound_effects/Bat_Death(Minecraft Sound).mp3" id="19_occxo"]
 
 [node name="Music_Gallery" type="Node"]
 script = ExtResource("1_0apwy")
@@ -115,5 +116,9 @@ volume_db = -8.433
 [node name="Footstep3" type="AudioStreamPlayer" parent="Effects/Footsteps"]
 stream = ExtResource("14_07gys")
 volume_db = -3.748
+
+[node name="BatDeath" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource("19_occxo")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

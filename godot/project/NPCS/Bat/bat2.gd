@@ -6,8 +6,7 @@ extends CharacterBody2D
 
 @export var hitpoints = 3
 var hits_taken = 0
-
-
+#@onready var attacked = false
 
 @export var speed = 45
 var dir
@@ -24,6 +23,7 @@ var face_direction := -1
 @onready var spawn = self.position
 
 @onready var dying = false
+#var timer = Timer.new()
 
 
 func _ready():
@@ -33,6 +33,7 @@ func _ready():
 	$AttackSprite.visible = false
 	$IdleSprite.visible = true
 	$DeathSprite.visible = false
+
 	animation.queue("idle")
 	makepath()
 
@@ -56,11 +57,11 @@ func _physics_process(_delta):
 	makepath()
 	dir = nav_ag.get_next_path_position() - global_position
 	velocity = dir.normalized() * speed
-	
+
 	if abs(player1.position.x - position.x) < 30 or abs(player2.position.x - position.x) < 30:
 		x_dir = 0
 		velocity.x = 0
-	
+
 	if almost_equal(self.position, spawn): x_dir = -1
 	else:
 		if dir.x > 0: x_dir = 1
@@ -79,7 +80,7 @@ func _physics_process(_delta):
 		animation.queue("idle")
 	else:
 		animation.queue("die")
-
+	
 	for ani in animation.get_queue():
 		animation.play(ani)
 
@@ -111,12 +112,14 @@ func take_damage():
 	hits_taken += 1
 	if hitpoints == hits_taken:
 		dying = true
+		MusicGallery.sound_effect("BatDeath")
 		$IdleSprite.visible = false
 		$AttackSprite.visible = false
 		$DeathSprite.visible = true
 		animation.stop(true)
 		animation.clear_queue()
 		animation.queue("die")
+		
 		
 		var t = Timer.new()
 		# Waits for the animation to finish.
@@ -147,7 +150,7 @@ func damage_player(body):
 			body.take_damage()
 			if StageManager.health1 == 0:
 				StageManager.kill_players(body.player_id)
-				StageManager.health1 = 3
+				StageManager.health1 = StageManager.max_hp
 
 #Making sure the idle animation only plays when the attack animation is finished.
 func _on_animation_player_animation_finished(_anim_name):

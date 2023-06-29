@@ -277,10 +277,7 @@ func update_animation():
 func take_damage():
 	damaged = true
 	update_animation()
-	if player_id == 1:
-		StageManager.health1 -= 1
-		return
-	elif player_id == 2:
+	if StageManager.health1 > 0:
 		StageManager.health1 -= 1
 		return
 
