@@ -86,7 +86,8 @@ func changeStage(stage_path, x=0, y=0, with_screen = true):
 		move_player_to(player, x, y)
 		x+= 15
 		#player.set_spawn()
-	
+	health1 = max_hp
+	set_hp(5)
 	fastMoveCam(getCam())
 	adjust_cam_to_stage(stage)
 # -------------------------------------- #
