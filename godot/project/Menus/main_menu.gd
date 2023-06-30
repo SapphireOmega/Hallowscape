@@ -7,11 +7,12 @@ const CAMLIMITS = {
 	"right" :640,
 	}
 	
-var server_on = false
+var server_on = true
 
 func _ready():
 	$Menu/VBoxContainer/Start.grab_focus() #selects the start button so you can start with enter
 	MusicGallery.play_track_by_name("Spooky")
+
 
 func _on_credits_button_up():
 	$Menu/VBoxContainer.hide()
@@ -32,6 +33,7 @@ func _on_start_button_up():
 	MusicGallery.stop_track_by_name("pengel")
 	StageManager.changeStage(StageManager.JORISLEVEL, 50, 312)
 	if server_on:
+		print("serv on")
 		var server = preload("res://TestServerClients/Server.tscn").instantiate()
 		$"/root".add_child(server)
 
@@ -46,7 +48,6 @@ func _on_main_menu_button_up():
 
 
 
-func _on_check_button_toggled(button_pressed):
+
+func _on_check_button_2_toggled(button_pressed):
 	server_on = button_pressed
-
-

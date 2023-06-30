@@ -56,4 +56,6 @@ func _on_main_menu_button_up():
 	self.is_paused = false
 	if server:
 		$"/root/Server".queue_free()
-	
+
+
+
