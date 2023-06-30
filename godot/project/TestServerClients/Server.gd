@@ -90,7 +90,7 @@ func processConnectionRequest():
 			var SCThread = Thread.new()
 			SCThread.start(serveClient.bind(SCThread, tcp))
 
-			print("client " + str(players.find_key(tcp)) + " connected")
+#			print("client " + str(players.find_key(tcp)) + " connected")
 
 			# Add the client thread to the running threads
 			ThreadsMutex.lock()
@@ -134,7 +134,7 @@ func serveClient(SCThread, tcp):
 				
 
 	# Here the client is no longer connected
-	print("client " + str(players.find_key(tcp)) + " disconnected")
+#	print("client " + str(players.find_key(tcp)) + " disconnected")
 
 	# Remove the TCP connection from the player ID
 	GeneralMutex.lock()

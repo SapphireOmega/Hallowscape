@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://JorisLevel/LabelExit.gd" id="8_nt7j1"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
-[ext_resource type="Texture2D" uid="uid://b7adq1mlajh2p" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="Texture2D" uid="uid://cgx1hjxonfm4j" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
 [ext_resource type="PackedScene" uid="uid://ckapwsq5vqn3l" path="res://NPCS/Bat/bat2.tscn" id="10_vfu1k"]
 [ext_resource type="Texture2D" uid="uid://cctnyb2urcp87" path="res://Assets/Inhouse/UI elements/phone.png" id="12_t6uno"]
 
