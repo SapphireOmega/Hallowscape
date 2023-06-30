@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwsr0of07xjvi"]
+[gd_scene load_steps=5 format=3 uid="uid://bwsr0of07xjvi"]
 
-[ext_resource type="Texture2D" uid="uid://bswnpojpvxhqq" path="res://Assets/Inhouse/background_flash.png" id="1_q72sq"]
+[ext_resource type="Script" path="res://Menus/win_screen.gd" id="1_k8u32"]
+[ext_resource type="Texture2D" uid="uid://mxs1my3gtl77" path="res://Assets/Inhouse/background_flash.png" id="1_q72sq"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="2_xqw1e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u42ej"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_k8u32")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

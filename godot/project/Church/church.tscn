@@ -1021,10 +1021,10 @@ target_position = Vector2(361, 0)
 [node name="background_layer" parent="." instance=ExtResource("1_ta75v")]
 
 [node name="player" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(81, 302)
+position = Vector2(727, -367)
 
 [node name="player2" parent="." instance=ExtResource("1_1drrj")]
-position = Vector2(40, 301)
+position = Vector2(702, -375)
 player_id = 2
 
 [node name="Area2D4" parent="." instance=ExtResource("9_unso7")]
