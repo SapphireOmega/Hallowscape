@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bh8a7r2oelqwv" path="res://Laser/laser.tscn" id="5_hw5xv"]
 [ext_resource type="PackedScene" uid="uid://cp8xkbkplcbyr" path="res://LaserConsole/laser_console.tscn" id="6_e85t3"]
 [ext_resource type="FontFile" uid="uid://orhlm2a4mq8n" path="res://Assets/Gothic-Regular.ttf" id="7_bxhqr"]
-[ext_resource type="Texture2D" uid="uid://t2ybsneyjewv" path="res://Assets/Inhouse/arrow.png" id="8_cikgh"]
+[ext_resource type="Texture2D" uid="uid://ie8draphywyt" path="res://Assets/Inhouse/arrow.png" id="8_cikgh"]
 [ext_resource type="Script" path="res://JorisLevel/LabelExit.gd" id="8_nt7j1"]
 [ext_resource type="Script" path="res://JorisLevel/haybale.gd" id="9_4lijp"]
 [ext_resource type="Script" path="res://Town/Area2D.gd" id="9_ce241"]
-[ext_resource type="Texture2D" uid="uid://d4l45mtgoj7id" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
+[ext_resource type="Texture2D" uid="uid://b7adq1mlajh2p" path="res://Assets/Inhouse/arrow2.png" id="9_svuyy"]
 [ext_resource type="PackedScene" uid="uid://ckapwsq5vqn3l" path="res://NPCS/Bat/bat2.tscn" id="10_vfu1k"]
 [ext_resource type="Texture2D" uid="uid://cctnyb2urcp87" path="res://Assets/Inhouse/UI elements/phone.png" id="12_t6uno"]
 
@@ -375,10 +375,10 @@ player1 = NodePath("../player")
 player2 = NodePath("../player2")
 
 [node name="player" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(1643, 317)
+position = Vector2(44, 315)
 
 [node name="player2" parent="." instance=ExtResource("3_v13p8")]
-position = Vector2(1663, 318)
+position = Vector2(64, 316)
 player_id = 2
 
 [node name="TileMap2" type="TileMap" parent="."]
