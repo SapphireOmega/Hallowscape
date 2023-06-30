@@ -79,6 +79,19 @@ layout_mode = 2
 texture_normal = ExtResource("7_rkjp6")
 texture_pressed = ExtResource("8_nx2j7")
 
+[node name="CheckButton" type="CheckButton" parent="Menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "server"
+
 [node name="Credits" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -287,4 +300,5 @@ texture_pressed = ExtResource("12_slpeb")
 [connection signal="button_up" from="Menu/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Credits" to="." method="_on_credits_button_up"]
 [connection signal="button_up" from="Menu/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="toggled" from="Menu/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="button_up" from="Credits/PanelContainer/VBoxContainer/Main_menu" to="." method="_on_main_menu_button_up"]
