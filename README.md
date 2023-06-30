@@ -42,5 +42,15 @@ To pause the game, you can click the escape key on the computer. In this pause m
 can return to the main menu, exit or resume the game.
 
 
+-----------------------------------------------------------------------------------------
+				CONNECTING WITHOUT APP
+-----------------------------------------------------------------------------------------
+
+Players can control their characters by using the app controls. However it is possible to
+turn off the server element of the game. This results in loss of controller usage;
+however, the game will still function. The players can use the WASD and arrow keys
+respectively to control their characters. Q and E will function as 'attack' and 'interact'
+for player one, Z and X for player two.
+
 
 --------------------------------- Thank you for playing! ---------------------------------
