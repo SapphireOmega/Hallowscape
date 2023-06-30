@@ -8,7 +8,10 @@ var is_paused = false :
 	set(value):
 		server = get_node_or_null("/root/Server")
 		is_paused = value
-		if !(get_tree().paused and server.server_paused):
+		if server:
+			if !(get_tree().paused and server.server_paused):
+				get_tree().paused = is_paused
+		else:
 			get_tree().paused = is_paused
 		visible = is_paused
 
@@ -29,13 +32,16 @@ func _unhandled_input(event):
 				else:
 					if server.server_paused:
 						$"/root/Server/CanvasLayer".show()
+			else:
+				self.is_paused = !is_paused
 
 
 #resume the game button
 func _on_resume_button_up():
-	self.is_paused = false
-	if server.server_paused:
-		$"/root/Server/CanvasLayer".show()
+	self.is_paused = !is_paused
+	if server:
+		if server.server_paused:
+			$"/root/Server/CanvasLayer".show()
 
 
 #quit button
@@ -48,5 +54,6 @@ func _on_main_menu_button_up():
 	get_tree().paused = false
 	self.hide()
 	self.is_paused = false
-	$"/root/Server".queue_free()
+	if server:
+		$"/root/Server".queue_free()
 	
