@@ -1,9 +1,9 @@
-                                             
-Hallowscape
+<img src="https://github.com/SapphireOmega/Hallowscape/assets/25934395/4494c07f-868b-489a-8d4e-53f0d0dc47e7" width="90%"></img> 
 
------------------------ A revolutionary two-player local coop game ----------------------
 
-Features
+-----------------------------------------------------------------------------------------
+	FEATURES
+-----------------------------------------------------------------------------------------
 - Both players can be controlled via an app connected by a TCP connection to the main
   device running the game
 - When a player first toggles the lever of a laser a puzzle is send to player's phone
@@ -12,8 +12,9 @@ Features
   on platforms, interact with laser levers and attack enemies)
 ‌- The game can be paused using the 'Esc' button, from here the player can return to
   the main menu, quit the game or continue playing it
+  
 -----------------------------------------------------------------------------------------
-	   				 DOWNLOAD
+	DOWNLOAD
 -----------------------------------------------------------------------------------------
 
 HOST: To play the game, you should have a laptop or pc running MacOS or Linux. If you're 
@@ -25,7 +26,7 @@ Either Android or IOS devices suffice.
 
 
 -----------------------------------------------------------------------------------------
-				      GET IT RUNNING
+	GET IT RUNNING
 -----------------------------------------------------------------------------------------
 
 To be able to run the game on a laptop or pc, you should have unpacked the provided .dmg
@@ -47,7 +48,7 @@ can return to the main menu, exit or resume the game.
 
 
 -----------------------------------------------------------------------------------------
-				CONNECTING WITHOUT APP
+	CONNECTING WITHOUT APP
 -----------------------------------------------------------------------------------------
 
 Players can control their characters by using the app controls. However it is possible to
@@ -57,4 +58,6 @@ respectively to control their characters. Q and E will function as 'attack' and 
 for player one, Z and X for player two.
 
 
---------------------------------- Thank you for playing! ---------------------------------
+-----------------------------------------------------------------------------------------
+	THANK YOU FOR PLAYING!
+-----------------------------------------------------------------------------------------
