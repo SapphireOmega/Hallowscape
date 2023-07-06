@@ -1,17 +1,21 @@
-██╗  ██╗ █████╗ ██╗     ██╗      ██████╗ ██╗    ██╗███████╗ ██████╗ █████╗ ██████╗ ███████╗
-██║  ██║██╔══██╗██║     ██║     ██╔═══██╗██║    ██║██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝
-███████║███████║██║     ██║     ██║   ██║██║ █╗ ██║███████╗██║     ███████║██████╔╝█████╗  
-██╔══██║██╔══██║██║     ██║     ██║   ██║██║███╗██║╚════██║██║     ██╔══██║██╔═══╝ ██╔══╝  
-██║  ██║██║  ██║███████╗███████╗╚██████╔╝╚███╔███╔╝███████║╚██████╗██║  ██║██║     ███████╗
-╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚══════╝
+                                             
+ _____     _ _                               
+|  |  |___| | |___ _ _ _ ___ ___ ___ ___ ___ 
+|     | .'| | | . | | | |_ -|  _| .'| . | -_|
+|__|__|__,|_|_|___|_____|___|___|__,|  _|___|
+                                    |_|
 
 ----------------------- A revolutionary two-player local coop game ----------------------
 
 Features
-- Both players can be controlled via an app connected by a TCP connection to the main device running the game
-- When a player first toggles the lever of a laser a puzzle is send to player's phone which they have to solve in order for them to switch the laser
-- The player can interact with objects in the game world (i.e. stand on the ground or on platforms, interact with laser levers and attack enemies)
-‌- The game can be paused using the 'Esc' button, from here the player can return to the main menu, quit the game or continue playing it
+- Both players can be controlled via an app connected by a TCP connection to the main
+  device running the game
+- When a player first toggles the lever of a laser a puzzle is send to player's phone
+  which they have to solve in order for them to switch the laser
+- The player can interact with objects in the game world (i.e. stand on the ground or
+  on platforms, interact with laser levers and attack enemies)
+‌- The game can be paused using the 'Esc' button, from here the player can return to
+  the main menu, quit the game or continue playing it
 -----------------------------------------------------------------------------------------
 	   				 DOWNLOAD
 -----------------------------------------------------------------------------------------
